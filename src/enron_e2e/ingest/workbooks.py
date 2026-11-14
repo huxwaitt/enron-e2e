@@ -340,9 +340,15 @@ def ingest(limit: int | None = None, workers: int = 10, cells_per_part: int = 5_
 
     with ProcessPoolExecutor(max_workers=workers) as ex:
         futs = [ex.submit(process_file, f) for f in files]
-        for fut in as_completed(futs):
-            r = fut.result()
-            wbs.append(r["workbook"])
+        seen: dict[str, str] = {}
+        results = sorted((f.result() for f in as_completed(futs)), key=lambda r: r["workbook"]["file_name"])
+        for r in results:
+            w = r["workbook"]
+            w["duplicate_of"] = seen.get(w["file_id"])
+            wbs.append(w)
+            if w["duplicate_of"]:
+                continue  # byte-identical copy: keep the file row, emit content once
+            seen[w["file_id"]] = w["file_name"]
             sheets += r["sheets"]
             names += r["names"]
             links += r["links"]

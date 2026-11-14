@@ -46,7 +46,7 @@ def features(con: duckdb.DuckDBPyConnection) -> pd.DataFrame:
         """).df()
     else:
         subj = pd.DataFrame(columns=["file_id", "email_subjects"])
-    wb = con.execute("select file_id, original_filename, custodian from wb").df()
+    wb = con.execute("select file_id, original_filename, custodian from wb where duplicate_of is null").df()
     return wb.merge(shn, how="left").merge(hdr, how="left").merge(subj, how="left")
 
 

@@ -28,9 +28,10 @@ TABLES: dict[str, dict] = {
         "purpose": "One row per spreadsheet file in the Hermans corpus with OOXML document properties.",
         "limitations": "last_modified_by='Felienne' and 2014 modified dates are artifacts of the 2014 xls->xlsx conversion; use `created`.",
         "pii": {"author": "personal_name"},
-        "keys": ["file_id"],
+        "keys": ["file_name"],
         "quality": [
-            ("file_id_unique", "select file_id from t group by 1 having count(*) > 1"),
+            ("file_name_unique", "select file_name from t group by 1 having count(*) > 1"),
+            ("content_hash_unique_among_originals", "select file_id from t where duplicate_of is null group by 1 having count(*) > 1"),
             ("parse_errors_below_2pct", "select 1 from t having avg((parse_status <> 'ok')::int) > 0.02"),
             ("custodian_present", "select * from t where custodian is null"),
         ],

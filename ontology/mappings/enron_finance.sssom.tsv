@@ -1,0 +1,54 @@
+#mapping_set_id: https://huxwaitt.github.io/enron-e2e/ontology/mappings/enron_finance.sssom.tsv
+#mapping_set_description: Alignment of the enron-e2e ontology to FIBO, OMG Commons,
+#  W3C ORG/PROV/FOAF and schema.org
+#license: https://opensource.org/licenses/MIT
+#curie_map:
+#  enron: https://huxwaitt.github.io/enron-e2e/ontology/
+#  skos: http://www.w3.org/2004/02/skos/core#
+#  prov: http://www.w3.org/ns/prov#
+#  org: http://www.w3.org/ns/org#
+#  foaf: http://xmlns.com/foaf/0.1/
+#  schema: http://schema.org/
+#  dcterms: http://purl.org/dc/terms/
+#  cmns-org: https://www.omg.org/spec/Commons/Organizations/
+#  fibo-be-le-lp: https://spec.edmcouncil.org/fibo/ontology/BE/LegalEntities/LegalPersons/
+#  fibo-be-le-cb: https://spec.edmcouncil.org/fibo/ontology/BE/LegalEntities/CorporateBodies/
+#  fibo-fbc-fct-mkt: https://spec.edmcouncil.org/fibo/ontology/FBC/FunctionalEntities/Markets/
+#  fibo-fbc-fi-ip: https://spec.edmcouncil.org/fibo/ontology/FBC/FinancialInstruments/InstrumentPricing/
+#  fibo-fbc-pas-caa: https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/
+#  fibo-fnd-agr-ctr: https://spec.edmcouncil.org/fibo/ontology/FND/Agreements/Contracts/
+#  fibo-fnd-pas-psch: https://spec.edmcouncil.org/fibo/ontology/FND/ProductsAndServices/PaymentsAndSchedules/
+#  fibo-der-drc-comm: https://spec.edmcouncil.org/fibo/ontology/DER/DerivativesContracts/CommoditiesContracts/
+#  fibo-der-drc-ma: https://spec.edmcouncil.org/fibo/ontology/DER/DerivativesContracts/DerivativesMasterAgreements/
+#  semapv: https://w3id.org/semapv/vocab/
+subject_id	subject_label	predicate_id	object_id	object_label	mapping_justification	confidence
+enron:Evidence	Evidence	skos:exactMatch	prov:Entity	Entity	semapv:ManualMappingCuration	0.95
+enron:Agent	Agent	skos:exactMatch	prov:Agent	Agent	semapv:ManualMappingCuration	0.95
+enron:Person	Person	skos:closeMatch	schema:Person	person	semapv:ManualMappingCuration	0.8
+enron:Person	Person	skos:exactMatch	foaf:Person	Person	semapv:ManualMappingCuration	0.95
+enron:Organization	Organization	skos:exactMatch	cmns-org:Organization	organization	semapv:ManualMappingCuration	0.95
+enron:Organization	Organization	skos:exactMatch	org:Organization	Organization	semapv:ManualMappingCuration	0.95
+enron:LegalEntity	LegalEntity	skos:closeMatch	fibo-be-le-cb:Corporation	corporation	semapv:ManualMappingCuration	0.8
+enron:LegalEntity	LegalEntity	skos:exactMatch	cmns-org:LegalEntity	LegalEntity	semapv:ManualMappingCuration	0.95
+enron:SpecialPurposeEntity	SpecialPurposeEntity	skos:exactMatch	fibo-be-le-lp:SpecialPurposeVehicle	special purpose vehicle	semapv:ManualMappingCuration	0.95
+enron:SpecialPurposeEntity	SpecialPurposeEntity	skos:relatedMatch	fibo-be-le-lp:VariableInterestEntity	variable interest entity	semapv:ManualMappingCuration	0.6
+enron:BusinessUnit	BusinessUnit	skos:exactMatch	org:OrganizationalUnit	OrganizationalUnit	semapv:ManualMappingCuration	0.95
+enron:Counterparty	Counterparty	skos:exactMatch	fibo-fnd-agr-ctr:Counterparty	Counterparty	semapv:ManualMappingCuration	0.95
+enron:MarketInfrastructure	MarketInfrastructure	skos:closeMatch	fibo-fbc-fct-mkt:Exchange	exchange	semapv:ManualMappingCuration	0.8
+enron:InformationSystem	InformationSystem	skos:relatedMatch	prov:SoftwareAgent	software agent	semapv:ManualMappingCuration	0.6
+enron:InformationSystem	InformationSystem	skos:exactMatch	schema:SoftwareApplication	SoftwareApplication	semapv:ManualMappingCuration	0.95
+enron:ProcessStep	ProcessStep	skos:exactMatch	prov:Plan	Plan	semapv:ManualMappingCuration	0.95
+enron:Standard	Standard	skos:exactMatch	dcterms:Standard	Standard	semapv:ManualMappingCuration	0.95
+enron:Commodity	Commodity	skos:closeMatch	fibo-der-drc-comm:CommodityDerivativeUnderlier	commodity derivative underlier	semapv:ManualMappingCuration	0.8
+enron:Location	Location	skos:exactMatch	schema:Place	Place	semapv:ManualMappingCuration	0.95
+enron:PriceIndex	PriceIndex	skos:exactMatch	fibo-der-drc-comm:CommodityIndex	commodity index	semapv:ManualMappingCuration	0.95
+enron:PriceCurve	PriceCurve	skos:relatedMatch	fibo-fbc-fi-ip:PricingModel	pricing model	semapv:ManualMappingCuration	0.6
+enron:MasterAgreement	MasterAgreement	skos:exactMatch	fibo-der-drc-ma:DerivativeMasterAgreement	derivative master agreement	semapv:ManualMappingCuration	0.95
+enron:Trade	Trade	skos:closeMatch	fibo-fnd-agr-ctr:BilateralContract	bilateral contract	semapv:ManualMappingCuration	0.8
+enron:Invoice	Invoice	skos:relatedMatch	fibo-fnd-pas-psch:PaymentObligation	payment obligation	semapv:ManualMappingCuration	0.6
+enron:Payment	Payment	skos:exactMatch	fibo-fnd-pas-psch:Payment	payment	semapv:ManualMappingCuration	0.95
+enron:GLAccount	GLAccount	skos:relatedMatch	fibo-fbc-pas-caa:ChartOfAccounts	chart of accounts	semapv:ManualMappingCuration	0.6
+enron:JournalEntry	JournalEntry	skos:closeMatch	fibo-fbc-pas-caa:AccountingTransaction	accounting transaction	semapv:ManualMappingCuration	0.8
+enron:Document	Document	skos:exactMatch	schema:DigitalDocument	DigitalDocument	semapv:ManualMappingCuration	0.95
+enron:Workbook	Workbook	skos:exactMatch	schema:SpreadsheetDigitalDocument	SpreadsheetDigitalDocument	semapv:ManualMappingCuration	0.95
+enron:EmailMessage	EmailMessage	skos:exactMatch	schema:EmailMessage	EmailMessage	semapv:ManualMappingCuration	0.95
