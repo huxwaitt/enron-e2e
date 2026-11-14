@@ -9,6 +9,7 @@ how emails are joined to the Hermans spreadsheet files downstream.
 """
 from __future__ import annotations
 
+import datetime as dt
 import email
 import email.policy
 import email.utils
@@ -50,14 +51,17 @@ def _date(v: str | None):
     if not v:
         return None
     try:
-        d = email.utils.parsedate_to_datetime(v)
-        return d.astimezone(__import__("datetime").timezone.utc).replace(tzinfo=__import__("datetime").timezone.utc)
+        return email.utils.parsedate_to_datetime(v).astimezone(dt.timezone.utc)
     except Exception:
         return None
 
 
 def parse_message(path: str, raw: bytes) -> dict:
     msg = email.message_from_bytes(raw, policy=email.policy.compat32)
+
+    def h(name: str) -> str | None:
+        v = msg.get(name)
+        return None if v is None else str(v)
     body = msg.get_payload(decode=False)
     if isinstance(body, list):
         body = "\n".join(str(p.get_payload()) for p in body)
@@ -66,12 +70,12 @@ def parse_message(path: str, raw: bytes) -> dict:
     return {
         "path": path, "custodian": parts[1] if len(parts) > 1 else None,
         "folder": "/".join(parts[2:-1]) if len(parts) > 3 else None,
-        "message_id": msg.get("Message-ID"), "date_raw": msg.get("Date"), "date_utc": _date(msg.get("Date")),
-        "from_addr": (msg.get("From") or "").strip().lower() or None,
-        "to_addrs": _addrs(msg.get("To")), "cc_addrs": _addrs(msg.get("Cc")), "bcc_addrs": _addrs(msg.get("Bcc")),
-        "subject": msg.get("Subject"), "x_from": msg.get("X-From"), "x_to": msg.get("X-To"),
-        "x_cc": msg.get("X-cc"), "x_folder": msg.get("X-Folder"), "x_origin": msg.get("X-Origin"),
-        "x_filename": msg.get("X-FileName"), "body": body, "body_chars": len(body),
+        "message_id": h("Message-ID"), "date_raw": h("Date"), "date_utc": _date(h("Date")),
+        "from_addr": (h("From") or "").strip().lower() or None,
+        "to_addrs": _addrs(h("To")), "cc_addrs": _addrs(h("Cc")), "bcc_addrs": _addrs(h("Bcc")),
+        "subject": h("Subject"), "x_from": h("X-From"), "x_to": h("X-To"),
+        "x_cc": h("X-cc"), "x_folder": h("X-Folder"), "x_origin": h("X-Origin"),
+        "x_filename": h("X-FileName"), "body": body, "body_chars": len(body),
     }
 
 
