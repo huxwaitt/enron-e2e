@@ -47,4 +47,16 @@ def fetch(include_optional: bool = False, only: str | None = None) -> list[dict]
                 raise RuntimeError(f"Checksum mismatch for {f['name']}: {got} != {f['md5']}")
             tmp.replace(dest)
             results.append({"file": str(dest), "status": "downloaded"})
+    extract_spreadsheets()
     return results
+
+
+def extract_spreadsheets() -> None:
+    """Unpack spreadsheets.7z into data/landing/hermans_figshare/extracted (idempotent)."""
+    import py7zr
+    arc = paths.LANDING / "hermans_figshare" / "spreadsheets.7z"
+    dest = paths.LANDING / "hermans_figshare" / "extracted"
+    if not arc.exists() or (dest.exists() and any(dest.iterdir())):
+        return
+    with py7zr.SevenZipFile(arc, "r") as z:
+        z.extractall(dest)
