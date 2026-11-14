@@ -1,0 +1,15 @@
+This repository contains code only. Source data is downloaded at build time.
+
+Enron spreadsheets and related emails:
+  F. Hermans and E. Murphy-Hill, "Enron's Spreadsheets and Related Emails:
+  A Dataset and Analysis", ICSE 2015. figshare, doi:10.6084/m9.figshare.1221767.v2
+  License: CC BY 4.0
+
+Enron email corpus (May 7, 2015 release):
+  W. Cohen, Carnegie Mellon University. https://www.cs.cmu.edu/~enron/
+  Released by FERC during its investigation of Western energy markets.
+
+Synthetic source-system data produced by this repository is fictional
+reconstruction. It is modeled on Enron-era systems as described in public FERC
+materials and on entities observed in the corpus. It is not Enron's actual
+database content.

@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+# raw downloads and the built lake are reproducible from scripts; never committed
+data/
+lake/
+*.duckdb
+*.duckdb.wal
