@@ -50,7 +50,11 @@ class Market:
     def __init__(self, rng: np.random.Generator):
         hist = yaml.safe_load((paths.ONTOLOGY / "reference" / "market_history.yaml").read_text())
         self.hh_monthly = {k: float(v) for k, v in hist["henry_hub_spot_monthly"]["values"].items()}
-        self.days = pd.bdate_range(START, END)
+        # NERC holidays: no standard trading or flow-date nominations
+        self.holidays = pd.to_datetime(["2000-05-29", "2000-07-04", "2000-09-04", "2000-11-23", "2000-12-25",
+                                        "2001-01-01", "2001-05-28", "2001-07-04", "2001-09-03", "2001-11-22",
+                                        "2001-12-25"])
+        self.days = pd.bdate_range(START, END, freq="C", holidays=self.holidays)
         self.d64 = self.days.values.astype("datetime64[D]")
         n = len(self.days)
         # Henry Hub daily spot: monthly anchor interpolated mid-month to mid-month, OU noise
