@@ -86,6 +86,14 @@ TABLES: dict[str, dict] = {
         "quality": [("one_label_per_file", "select file_id from t group by 1 having count(*) > 1"),
                     ("unclassified_below_25pct", "select 1 from t having avg((process_area = 'unclassified')::int) > 0.25")],
     },
+    "gold.workbook_standards": {
+        "path": "gold/workbook_standards.parquet", "owner": "finance-analytics", "domain": "standards",
+        "purpose": "Standards in force for each workbook's process areas at the workbook's creation date.",
+        "limitations": "Driven by heuristic process-area labels; standards with unverified effective dates are included and flagged.",
+        "keys": ["file_id", "standard_id"],
+        "quality": [("pk_unique", "select file_id, standard_id from t group by 1,2 having count(*) > 1"),
+                    ("no_future_standards", "select * from t where effective_known and effective > created")],
+    },
 }
 
 

@@ -13,7 +13,7 @@ import duckdb
 
 from . import paths
 
-STEPS = ["fetch", "emails", "workbooks", "silver", "classify", "reference", "synth", "extract", "ocel", "graph",
+STEPS = ["fetch", "emails", "workbooks", "silver", "classify", "standards", "reference", "synth", "extract", "ocel", "graph",
          "contracts", "catalog", "dq"]
 
 
@@ -61,6 +61,9 @@ def run(step: str, args) -> object:
     if step == "classify":
         from .gold import classify
         return classify.classify().process_area.value_counts().to_dict()
+    if step == "standards":
+        from .gold import standards
+        return standards.build()
     if step == "reference":
         from .gold import reference
         return reference.mine()
