@@ -338,17 +338,20 @@ def ingest(limit: int | None = None, workers: int = 10, cells_per_part: int = 5_
             part += 1
             buf = []
 
+    # Decide canonical copies up front (first file name per content hash) so results can stream.
+    canonical: dict[str, str] = {}
+    for f in files:
+        canonical.setdefault(_md5(Path(f)), Path(f).name)
     with ProcessPoolExecutor(max_workers=workers) as ex:
         futs = [ex.submit(process_file, f) for f in files]
-        seen: dict[str, str] = {}
-        results = sorted((f.result() for f in as_completed(futs)), key=lambda r: r["workbook"]["file_name"])
-        for r in results:
+        for fut in as_completed(futs):
+            r = fut.result()
             w = r["workbook"]
-            w["duplicate_of"] = seen.get(w["file_id"])
+            first = canonical[w["file_id"]]
+            w["duplicate_of"] = None if first == w["file_name"] else first
             wbs.append(w)
             if w["duplicate_of"]:
                 continue  # byte-identical copy: keep the file row, emit content once
-            seen[w["file_id"]] = w["file_name"]
             sheets += r["sheets"]
             names += r["names"]
             links += r["links"]
