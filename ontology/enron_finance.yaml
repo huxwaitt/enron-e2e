@@ -1,0 +1,584 @@
+id: https://huxwaitt.github.io/enron-e2e/ontology/enron_finance
+name: enron_finance
+title: Enron finance data estate ontology
+description: >-
+  Conceptual model for Enron Corp's trading, logistics, settlement and accounting
+  estate circa 1999-2001, as evidenced by the Enron spreadsheet and email corpora.
+  Every class maps to external standards (FIBO, OMG Commons, W3C ORG/PROV, schema.org)
+  so lake records can be joined to other finance knowledge graphs. Instance IRIs are
+  minted under the `enroni:` namespace and never reused (see ontology/ID_POLICY.md).
+version: 0.1.0
+license: MIT
+default_prefix: enron
+default_range: string
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  enron: https://huxwaitt.github.io/enron-e2e/ontology/
+  enroni: https://huxwaitt.github.io/enron-e2e/id/
+  skos: http://www.w3.org/2004/02/skos/core#
+  prov: http://www.w3.org/ns/prov#
+  org: http://www.w3.org/ns/org#
+  foaf: http://xmlns.com/foaf/0.1/
+  schema: http://schema.org/
+  dcat: http://www.w3.org/ns/dcat#
+  dcterms: http://purl.org/dc/terms/
+  xsd: http://www.w3.org/2001/XMLSchema#
+  cmns-org: https://www.omg.org/spec/Commons/Organizations/
+  fibo-be-le-lp: https://spec.edmcouncil.org/fibo/ontology/BE/LegalEntities/LegalPersons/
+  fibo-be-le-cb: https://spec.edmcouncil.org/fibo/ontology/BE/LegalEntities/CorporateBodies/
+  fibo-fbc-fct-mkt: https://spec.edmcouncil.org/fibo/ontology/FBC/FunctionalEntities/Markets/
+  fibo-fbc-fi-fi: https://spec.edmcouncil.org/fibo/ontology/FBC/FinancialInstruments/FinancialInstruments/
+  fibo-fbc-fi-ip: https://spec.edmcouncil.org/fibo/ontology/FBC/FinancialInstruments/InstrumentPricing/
+  fibo-fbc-fi-stl: https://spec.edmcouncil.org/fibo/ontology/FBC/FinancialInstruments/Settlement/
+  fibo-fbc-pas-caa: https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/
+  fibo-fnd-agr-ctr: https://spec.edmcouncil.org/fibo/ontology/FND/Agreements/Contracts/
+  fibo-fnd-pas-psch: https://spec.edmcouncil.org/fibo/ontology/FND/ProductsAndServices/PaymentsAndSchedules/
+  fibo-der-drc-comm: https://spec.edmcouncil.org/fibo/ontology/DER/DerivativesContracts/CommoditiesContracts/
+  fibo-der-drc-ff: https://spec.edmcouncil.org/fibo/ontology/DER/DerivativesContracts/FuturesAndForwards/
+  fibo-der-drc-swp: https://spec.edmcouncil.org/fibo/ontology/DER/DerivativesContracts/Swaps/
+  fibo-der-drc-opt: https://spec.edmcouncil.org/fibo/ontology/DER/DerivativesContracts/Options/
+  fibo-der-drc-ma: https://spec.edmcouncil.org/fibo/ontology/DER/DerivativesContracts/DerivativesMasterAgreements/
+
+imports:
+  - linkml:types
+
+# ---------------------------------------------------------------------------
+classes:
+
+  NamedThing:
+    abstract: true
+    description: Anything with a persistent identifier in the estate.
+    slots: [id, label, alt_labels, description, evidence, is_synthetic, valid_from, valid_to]
+
+  Evidence:
+    description: >-
+      Provenance pointer from an assertion back to the corpus or to a synthetic
+      generator. Lets every fact in the lake be traced to a cell, an email or a rule.
+    class_uri: prov:Entity
+    attributes:
+      source_kind:
+        range: EvidenceSourceKind
+        required: true
+      source_id:
+        description: workbook file_id, email message_id, filing accession, or generator run id
+      locator:
+        description: sheet!cell range, header field, or rule name
+      quote:
+        description: verbatim snippet supporting the assertion
+      confidence:
+        range: float
+        minimum_value: 0
+        maximum_value: 1
+
+  # ---------------- agents and organizations ----------------
+  Agent:
+    is_a: NamedThing
+    abstract: true
+    class_uri: prov:Agent
+
+  Person:
+    is_a: Agent
+    class_uri: foaf:Person
+    close_mappings: [schema:Person]
+    slots: [email_addresses, job_title, member_of, is_custodian, maildir_name]
+
+  Organization:
+    is_a: Agent
+    abstract: true
+    class_uri: org:Organization
+    exact_mappings: [cmns-org:Organization]
+
+  LegalEntity:
+    is_a: Organization
+    description: A legally registered Enron affiliate (e.g. Enron North America Corp.).
+    class_uri: cmns-org:LegalEntity
+    close_mappings: [fibo-be-le-cb:Corporation]
+    slots: [parent_entity, jurisdiction, segment, sec_registrant, ferc_regulated, special_purpose]
+
+  SpecialPurposeEntity:
+    is_a: LegalEntity
+    description: >-
+      Off-balance-sheet or structured vehicle (e.g. LJM2, Chewco, Whitewing, Raptor
+      vehicles). Kept distinct because consolidation treatment is the point of interest.
+    exact_mappings: [fibo-be-le-lp:SpecialPurposeVehicle]
+    related_mappings: [fibo-be-le-lp:VariableInterestEntity]
+
+  BusinessUnit:
+    is_a: Organization
+    description: Management unit (segment, business unit, department) that is not itself a legal entity.
+    class_uri: org:OrganizationalUnit
+    slots: [parent_unit, legal_entity, unit_type]
+
+  TradingDesk:
+    is_a: BusinessUnit
+    description: Commercial desk owning books and traders (e.g. "West Power", "Texas Gas", "NW desk").
+    slots: [commodity, region]
+
+  Counterparty:
+    is_a: Organization
+    description: External trading counterparty, as mastered in Global Counterparty (GCP).
+    class_uri: fibo-fnd-agr-ctr:Counterparty
+    slots: [gcp_cp_id, short_name, credit_rating, counterparty_type, parent_counterparty]
+
+  MarketInfrastructure:
+    is_a: Organization
+    description: Exchange, ISO/RTO, pipeline operator or price publisher.
+    slots: [infrastructure_type]
+    close_mappings: [fibo-fbc-fct-mkt:Exchange]
+
+  # ---------------- systems and process ----------------
+  InformationSystem:
+    is_a: NamedThing
+    description: An application in the trade-to-ledger chain (Sitara, EnPower, ERMS, Unify, SAP ...).
+    class_uri: schema:SoftwareApplication
+    related_mappings: [prov:SoftwareAgent]
+    slots: [system_code, platform, process_areas, owning_unit, upstream_systems, downstream_systems]
+
+  ProcessStep:
+    is_a: NamedThing
+    description: A step in a front-to-back process (e.g. "Actualize volumes", "Run DPR").
+    class_uri: prov:Plan
+    slots: [process_area, performed_in, inputs, outputs, governed_by]
+
+  Control:
+    is_a: NamedThing
+    description: >-
+      A check that existed (or should have) at the time, e.g. daily P&L sign-off,
+      deal-entry verification, RAC credit approval. Pre-SOX; mapped to modern control objectives.
+    slots: [process_area, control_type, governed_by, modern_equivalent]
+
+  Standard:
+    is_a: NamedThing
+    description: Accounting, regulatory, contractual or market standard; records live in standards/era_standards.yaml.
+    class_uri: dcterms:Standard
+    slots: [designation, issuer, effective_date, process_areas]
+
+  # ---------------- market reference data ----------------
+  Commodity:
+    is_a: NamedThing
+    slots: [commodity_kind, default_unit]
+    close_mappings: [fibo-der-drc-comm:CommodityDerivativeUnderlier]
+
+  Location:
+    is_a: NamedThing
+    abstract: true
+    slots: [location_type, region, commodity, operator]
+    class_uri: schema:Place
+
+  TradingHub:
+    is_a: Location
+    description: Liquid pricing point (Henry Hub, Waha, Mid-C, Palo Verde, PJM West ...).
+
+  DeliveryPoint:
+    is_a: Location
+    description: Physical meter/interconnect or pool where title transfers.
+    slots: [pipeline, meter_number]
+
+  Pipeline:
+    is_a: Location
+    description: Interstate or intrastate pipeline system (Transwestern, Northern Natural, El Paso ...).
+    slots: [ferc_regulated]
+
+  PowerControlArea:
+    is_a: Location
+    description: Power control area, ISO zone or transmission path (NP15, SP15, COB, ERCOT ...).
+
+  PriceIndex:
+    is_a: NamedThing
+    description: Published or exchange price used to settle index deals (IFERC monthly, Gas Daily, NYMEX).
+    exact_mappings: [fibo-der-drc-comm:CommodityIndex]
+    slots: [publisher, index_frequency, location, commodity]
+
+  PriceCurve:
+    is_a: NamedThing
+    description: Forward curve maintained in ERMS/TDS for valuation (price, basis, volatility).
+    slots: [curve_code, curve_type, commodity, location, index]
+    related_mappings: [fibo-fbc-fi-ip:PricingModel]
+
+  CurvePoint:
+    description: One marked value of a curve for a delivery period on a valuation date.
+    attributes:
+      curve: {range: PriceCurve, required: true}
+      valuation_date: {range: date, required: true}
+      delivery_start: {range: date, required: true}
+      value: {range: float, required: true}
+      unit: {}
+      is_synthetic: {range: boolean}
+
+  # ---------------- trading ----------------
+  MasterAgreement:
+    is_a: NamedThing
+    description: Governing master (ISDA 1992, GISB 1996 base contract, EEI 2000 master, enabling agreements).
+    exact_mappings: [fibo-der-drc-ma:DerivativeMasterAgreement]
+    slots: [agreement_form, counterparty, legal_entity, effective_date, netting, collateral_threshold]
+
+  Trade:
+    is_a: NamedThing
+    description: A deal as captured in a front-office system (Sitara, EnPower, TAGG) or on EnronOnline.
+    close_mappings: [fibo-fnd-agr-ctr:BilateralContract]
+    slots: [deal_number, source_system, eol_transaction_id, trade_date, legal_entity, counterparty, book,
+            trader, commodity, instrument_type, buy_sell, volume, volume_unit, volume_frequency, price,
+            price_type, price_index, premium_or_adder, delivery_location, delivery_start, delivery_end,
+            deal_status, master_agreement, confirmation_status]
+
+  Book:
+    is_a: NamedThing
+    description: Portfolio/book in ERMS/RisktRAC that positions roll up to (e.g. "ENA-FT-WEST-PHY").
+    class_uri: enron:Book
+    slots: [book_code, desk, legal_entity, commodity, book_type, region]
+
+  Position:
+    is_a: NamedThing
+    description: Net open position by book, curve and delivery period on a date (DPR input).
+    slots: [book, curve, as_of_date, delivery_start, quantity, volume_unit]
+
+  Valuation:
+    is_a: NamedThing
+    description: Mark-to-market result (DPR line) by book on a date, incl. new-deal and curve-shift P&L.
+    slots: [book, as_of_date, mtm_value, daily_pnl, new_deal_pnl, curve_shift_pnl, var_95, currency]
+
+  # ---------------- logistics ----------------
+  Nomination:
+    is_a: NamedThing
+    description: Gas nomination / power schedule submitted to a pipeline or ISO.
+    slots: [trade, pipeline, delivery_location, flow_date, nominated_volume, scheduled_volume, actual_volume,
+            volume_unit]
+
+  Imbalance:
+    is_a: NamedThing
+    slots: [pipeline, delivery_location, flow_month, imbalance_volume, volume_unit, counterparty]
+
+  # ---------------- settlement and accounting ----------------
+  Invoice:
+    is_a: NamedThing
+    description: Settlement invoice/statement produced by Unify for a counterparty and production month.
+    slots: [invoice_number, counterparty, legal_entity, production_month, invoice_date, due_date, amount,
+            currency, trades, invoice_status]
+    related_mappings: [fibo-fnd-pas-psch:PaymentObligation]
+
+  Payment:
+    is_a: NamedThing
+    exact_mappings: [fibo-fnd-pas-psch:Payment]
+    slots: [counterparty, legal_entity, payment_date, amount, currency, invoices, direction]
+
+  GLAccount:
+    is_a: NamedThing
+    description: SAP R/3 general ledger account.
+    related_mappings: [fibo-fbc-pas-caa:ChartOfAccounts]
+    slots: [account_number, account_type, fs_line]
+
+  CostCenter:
+    is_a: NamedThing
+    slots: [cost_center_code, legal_entity, business_unit]
+
+  JournalEntry:
+    is_a: NamedThing
+    description: SAP FI document (BKPF header with BSEG lines).
+    close_mappings: [fibo-fbc-pas-caa:AccountingTransaction]
+    slots: [document_number, company_code, fiscal_year, posting_date, document_type, header_text,
+            entered_by, lines]
+
+  JournalLine:
+    attributes:
+      gl_account: {range: GLAccount, required: true}
+      debit_credit: {range: DebitCredit, required: true}
+      amount: {range: float, required: true}
+      cost_center: {range: CostCenter}
+      counterparty: {range: Counterparty}
+      trading_partner: {range: LegalEntity}
+
+  # ---------------- documents (the corpus itself) ----------------
+  Document:
+    is_a: NamedThing
+    abstract: true
+    class_uri: schema:DigitalDocument
+    slots: [created, author, custodian]
+
+  Workbook:
+    is_a: Document
+    description: One spreadsheet file from the Hermans corpus (deduplicated by MD5).
+    class_uri: schema:SpreadsheetDigitalDocument
+    slots: [file_id, original_filename, process_area, document_role, mentions, sheets, derived_from,
+            version_family, as_of_date]
+
+  Worksheet:
+    is_a: NamedThing
+    slots: [workbook, sheet_name, sheet_state, sheet_role]
+
+  TableRegion:
+    is_a: NamedThing
+    description: A detected rectangular table inside a sheet, with header and data ranges.
+    slots: [worksheet, cell_range, header_range, table_role]
+
+  EmailMessage:
+    is_a: Document
+    class_uri: schema:EmailMessage
+    slots: [message_id, sent_at, sender, recipients, subject, attachments, thread]
+
+# ---------------------------------------------------------------------------
+slots:
+  id: {identifier: true, range: uriorcurie}
+  label: {slot_uri: skos:prefLabel}
+  alt_labels: {multivalued: true, slot_uri: skos:altLabel}
+  description: {slot_uri: dcterms:description}
+  evidence: {range: Evidence, multivalued: true, inlined_as_list: true, slot_uri: prov:wasDerivedFrom}
+  is_synthetic:
+    range: boolean
+    description: True when the record was produced by a generator rather than observed in the corpus.
+  valid_from: {range: date}
+  valid_to: {range: date}
+  email_addresses: {multivalued: true}
+  job_title: {}
+  member_of: {range: Organization, multivalued: true, slot_uri: org:memberOf}
+  is_custodian: {range: boolean, description: "Person is one of the mailbox custodians in the corpus."}
+  maildir_name: {}
+  parent_entity: {range: LegalEntity, slot_uri: org:subOrganizationOf}
+  parent_unit: {range: BusinessUnit, slot_uri: org:subOrganizationOf}
+  legal_entity: {range: LegalEntity}
+  jurisdiction: {}
+  segment: {range: BusinessUnit, description: "Reportable segment per FAS 131 in the 2000 Form 10-K."}
+  sec_registrant: {range: boolean}
+  ferc_regulated: {range: boolean}
+  special_purpose: {range: boolean}
+  unit_type: {range: UnitType}
+  region: {}
+  commodity: {range: Commodity}
+  gcp_cp_id: {description: "Global Counterparty CP ID."}
+  short_name: {description: "ERMS/GCP short name."}
+  credit_rating: {}
+  counterparty_type: {}
+  parent_counterparty: {range: Counterparty}
+  infrastructure_type: {range: InfrastructureType}
+  system_code: {}
+  platform: {}
+  process_areas: {range: ProcessArea, multivalued: true}
+  process_area: {range: ProcessArea}
+  owning_unit: {range: BusinessUnit}
+  upstream_systems: {range: InformationSystem, multivalued: true}
+  downstream_systems: {range: InformationSystem, multivalued: true}
+  performed_in: {range: InformationSystem, multivalued: true}
+  inputs: {range: NamedThing, multivalued: true, slot_uri: prov:used}
+  outputs: {range: NamedThing, multivalued: true, slot_uri: prov:generated}
+  governed_by: {range: Standard, multivalued: true}
+  control_type: {}
+  modern_equivalent: {description: "e.g. SOX 404 key control, COSO 2013 principle."}
+  designation: {}
+  issuer: {}
+  effective_date: {range: date}
+  commodity_kind: {range: CommodityKind}
+  default_unit: {range: VolumeUnit}
+  location_type: {}
+  operator: {range: Organization}
+  pipeline: {range: Pipeline}
+  meter_number: {}
+  publisher: {range: MarketInfrastructure}
+  index_frequency: {}
+  location: {range: Location}
+  curve_code: {}
+  curve_type: {range: CurveType}
+  index: {range: PriceIndex}
+  agreement_form: {range: AgreementForm}
+  counterparty: {range: Counterparty}
+  netting: {range: boolean}
+  collateral_threshold: {range: float}
+  deal_number: {}
+  source_system: {range: InformationSystem}
+  eol_transaction_id: {}
+  trade_date: {range: date}
+  book: {range: Book}
+  trader: {range: Person}
+  instrument_type: {range: InstrumentType}
+  buy_sell: {range: BuySell}
+  volume: {range: float}
+  volume_unit: {range: VolumeUnit}
+  volume_frequency: {}
+  price: {range: float}
+  price_type: {range: PriceType}
+  price_index: {range: PriceIndex}
+  premium_or_adder: {range: float}
+  delivery_location: {range: Location}
+  delivery_start: {range: date}
+  delivery_end: {range: date}
+  deal_status: {}
+  master_agreement: {range: MasterAgreement}
+  confirmation_status: {}
+  book_code: {}
+  desk: {range: TradingDesk}
+  book_type: {}
+  curve: {range: PriceCurve}
+  as_of_date: {range: date}
+  quantity: {range: float}
+  mtm_value: {range: float}
+  daily_pnl: {range: float}
+  new_deal_pnl: {range: float}
+  curve_shift_pnl: {range: float}
+  var_95: {range: float}
+  currency: {}
+  trade: {range: Trade}
+  flow_date: {range: date}
+  flow_month: {}
+  nominated_volume: {range: float}
+  scheduled_volume: {range: float}
+  actual_volume: {range: float}
+  imbalance_volume: {range: float}
+  invoice_number: {}
+  production_month: {}
+  invoice_date: {range: date}
+  due_date: {range: date}
+  amount: {range: float}
+  trades: {range: Trade, multivalued: true}
+  invoice_status: {}
+  payment_date: {range: date}
+  invoices: {range: Invoice, multivalued: true}
+  direction: {}
+  account_number: {}
+  account_type: {}
+  fs_line: {}
+  cost_center_code: {}
+  business_unit: {range: BusinessUnit}
+  document_number: {}
+  company_code: {}
+  fiscal_year: {range: integer}
+  posting_date: {range: date}
+  document_type: {}
+  header_text: {}
+  entered_by: {range: Person}
+  lines: {range: JournalLine, multivalued: true, inlined_as_list: true}
+  created: {range: datetime, slot_uri: dcterms:created}
+  author: {slot_uri: dcterms:creator}
+  custodian: {range: Person}
+  file_id: {description: "MD5 of the file bytes."}
+  original_filename: {}
+  document_role: {range: DocumentRole}
+  mentions: {range: NamedThing, multivalued: true, slot_uri: schema:mentions}
+  sheets: {range: Worksheet, multivalued: true}
+  derived_from: {range: Workbook, multivalued: true, slot_uri: prov:wasDerivedFrom}
+  version_family: {description: "Groups files that are versions of the same recurring report."}
+  workbook: {range: Workbook}
+  sheet_name: {}
+  sheet_state: {}
+  sheet_role: {}
+  worksheet: {range: Worksheet}
+  cell_range: {}
+  header_range: {}
+  table_role: {}
+  message_id: {}
+  sent_at: {range: datetime}
+  sender: {range: Person}
+  recipients: {range: Person, multivalued: true}
+  subject: {}
+  attachments: {range: Workbook, multivalued: true}
+  thread: {}
+
+# ---------------------------------------------------------------------------
+enums:
+  EvidenceSourceKind:
+    permissible_values:
+      workbook_cell: {}
+      workbook_metadata: {}
+      email: {}
+      email_header: {}
+      public_filing: {}
+      ferc_record: {}
+      synthetic_generator: {}
+      curated: {description: "Hand-curated reference fact with a cited source."}
+
+  ProcessArea:
+    description: >-
+      Front-to-back process areas of a merchant energy company. The same vocabulary
+      is used by the standards catalog, the workbook classifier and the process log.
+    permissible_values:
+      deal_capture: {description: "Trade entry and EnronOnline transactions (Sitara, EnPower, TAGG, EOL)."}
+      confirmation: {description: "Trade confirmations and contract administration (Global Contracts)."}
+      credit: {description: "Counterparty credit, limits, collateral, master netting (GCP, RAC credit)."}
+      risk_and_valuation: {description: "Curves, positions, MTM, VaR, DPR (ERMS, RisktRAC, TDS)."}
+      scheduling_logistics: {description: "Gas nominations, pipeline scheduling, power scheduling and tagging."}
+      settlement: {description: "Actualization, invoicing, payments, imbalances (Unify)."}
+      accounting_r2r: {description: "GL, accruals, reconciliations, close (SAP)."}
+      consolidation_reporting: {description: "Consolidation, SEC and segment reporting."}
+      regulatory_reporting: {description: "FERC, state commission and ISO reporting."}
+      fpa: {description: "Plans, budgets, forecasts, management reporting."}
+      treasury: {description: "Cash, funding, liquidity, bank and payment operations."}
+      tax: {}
+      audit_controls: {description: "Internal audit, RAC oversight, external audit (Andersen)."}
+      structured_finance: {description: "SPEs, prepays, monetizations, FAS 125/140 transactions."}
+      origination_assets: {description: "Origination, asset development, project finance models."}
+      hr_admin: {description: "People, PRC, expenses, facilities."}
+      it_projects: {}
+      other: {}
+
+  UnitType:
+    permissible_values: {segment: {}, business_unit: {}, department: {}, desk: {}, team: {}}
+
+  InfrastructureType:
+    permissible_values: {exchange: {}, iso_rto: {}, pipeline_operator: {}, price_publisher: {}, utility: {}, regulator: {}}
+
+  CommodityKind:
+    permissible_values:
+      natural_gas: {meaning: fibo-der-drc-comm:GasCommodity}
+      power: {meaning: fibo-der-drc-comm:GeneratedResource}
+      crude_oil: {meaning: fibo-der-drc-comm:OilCommodity}
+      refined_products: {}
+      ngl: {}
+      coal: {}
+      emissions: {meaning: fibo-der-drc-comm:EnvironmentalResource}
+      weather: {meaning: fibo-der-drc-comm:WeatherDerivative}
+      metals: {meaning: fibo-der-drc-comm:Metal}
+      pulp_paper: {meaning: fibo-der-drc-comm:PaperResource}
+      bandwidth: {}
+      transport_capacity: {}
+      interest_rate: {}
+      fx: {}
+      equity: {}
+      credit: {}
+
+  InstrumentType:
+    permissible_values:
+      physical_forward: {meaning: fibo-der-drc-comm:CommodityForward}
+      physical_spot: {meaning: fibo-der-drc-comm:CommoditySpotContract}
+      financial_swap: {meaning: fibo-der-drc-comm:CommoditySwap}
+      basis_swap: {meaning: fibo-der-drc-swp:BasisSwap}
+      index_swap: {}
+      option: {meaning: fibo-der-drc-comm:CommodityOption}
+      futures: {meaning: fibo-der-drc-comm:CommodityFuture}
+      transport: {}
+      storage: {}
+      tolling: {}
+      prepay: {description: "Prepaid forward used as financing (cf. Mahonia-style structures)."}
+
+  BuySell:
+    permissible_values: {buy: {}, sell: {}}
+  PriceType:
+    permissible_values: {fixed: {}, index: {}, index_plus: {}, formula: {}}
+  VolumeUnit:
+    permissible_values: {MMBtu: {}, Dth: {}, Mcf: {}, MWh: {}, MW: {}, bbl: {}, ton: {}, USD: {}}
+  CurveType:
+    permissible_values: {price: {}, basis: {}, index: {}, volatility: {}, interest_rate: {}}
+  AgreementForm:
+    permissible_values:
+      isda_1992: {}
+      gisb_1996: {}
+      eei_2000: {}
+      enfolio: {description: "Enron master firm purchase/sale agreement."}
+      online_gtc: {description: "EnronOnline general terms and conditions."}
+      other: {}
+  DebitCredit:
+    permissible_values:
+      S: {description: "Soll (debit)"}
+      H: {description: "Haben (credit)"}
+  DocumentRole:
+    description: What job a workbook does in the process (independent of process area).
+    permissible_values:
+      report: {}
+      reconciliation: {}
+      schedule: {description: "Supporting schedule/roll-forward."}
+      model: {description: "Valuation or deal model."}
+      extract: {description: "Raw system dump."}
+      template: {}
+      form: {}
+      tracker: {}
+      list: {}
+      plan_budget: {}
+      calculation: {}
+      other: {}

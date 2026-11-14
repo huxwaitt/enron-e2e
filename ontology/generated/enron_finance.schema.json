@@ -1,0 +1,4291 @@
+{
+    "$defs": {
+        "Agent": {
+            "additionalProperties": false,
+            "description": "",
+            "properties": {
+                "alt_labels": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "items": {
+                        "$ref": "#/$defs/Evidence"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "is_synthetic": {
+                    "description": "True when the record was produced by a generator rather than observed in the corpus.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "label": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_from": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_to": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "Agent",
+            "type": "object"
+        },
+        "AgreementForm": {
+            "description": "",
+            "enum": [
+                "isda_1992",
+                "gisb_1996",
+                "eei_2000",
+                "enfolio",
+                "online_gtc",
+                "other"
+            ],
+            "title": "AgreementForm",
+            "type": "string"
+        },
+        "Book": {
+            "additionalProperties": false,
+            "description": "Portfolio/book in ERMS/RisktRAC that positions roll up to (e.g. \"ENA-FT-WEST-PHY\").",
+            "properties": {
+                "alt_labels": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "book_code": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "book_type": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "commodity": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "desk": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "items": {
+                        "$ref": "#/$defs/Evidence"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "is_synthetic": {
+                    "description": "True when the record was produced by a generator rather than observed in the corpus.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "label": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "legal_entity": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "region": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_from": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_to": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "Book",
+            "type": "object"
+        },
+        "BusinessUnit": {
+            "additionalProperties": false,
+            "description": "Management unit (segment, business unit, department) that is not itself a legal entity.",
+            "properties": {
+                "alt_labels": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "items": {
+                        "$ref": "#/$defs/Evidence"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "is_synthetic": {
+                    "description": "True when the record was produced by a generator rather than observed in the corpus.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "label": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "legal_entity": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "parent_unit": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "unit_type": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/UnitType"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "valid_from": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_to": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "BusinessUnit",
+            "type": "object"
+        },
+        "BuySell": {
+            "description": "",
+            "enum": [
+                "buy",
+                "sell"
+            ],
+            "title": "BuySell",
+            "type": "string"
+        },
+        "Commodity": {
+            "additionalProperties": false,
+            "description": "",
+            "properties": {
+                "alt_labels": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "commodity_kind": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/CommodityKind"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "default_unit": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/VolumeUnit"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "items": {
+                        "$ref": "#/$defs/Evidence"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "is_synthetic": {
+                    "description": "True when the record was produced by a generator rather than observed in the corpus.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "label": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_from": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_to": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "Commodity",
+            "type": "object"
+        },
+        "CommodityKind": {
+            "description": "",
+            "enum": [
+                "natural_gas",
+                "power",
+                "crude_oil",
+                "refined_products",
+                "ngl",
+                "coal",
+                "emissions",
+                "weather",
+                "metals",
+                "pulp_paper",
+                "bandwidth",
+                "transport_capacity",
+                "interest_rate",
+                "fx",
+                "equity",
+                "credit"
+            ],
+            "title": "CommodityKind",
+            "type": "string"
+        },
+        "Control": {
+            "additionalProperties": false,
+            "description": "A check that existed (or should have) at the time, e.g. daily P&L sign-off, deal-entry verification, RAC credit approval. Pre-SOX; mapped to modern control objectives.",
+            "properties": {
+                "alt_labels": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "control_type": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "items": {
+                        "$ref": "#/$defs/Evidence"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "governed_by": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "is_synthetic": {
+                    "description": "True when the record was produced by a generator rather than observed in the corpus.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "label": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "modern_equivalent": {
+                    "description": "e.g. SOX 404 key control, COSO 2013 principle.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "process_area": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/ProcessArea"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "valid_from": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_to": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "Control",
+            "type": "object"
+        },
+        "CostCenter": {
+            "additionalProperties": false,
+            "description": "",
+            "properties": {
+                "alt_labels": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "business_unit": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "cost_center_code": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "items": {
+                        "$ref": "#/$defs/Evidence"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "is_synthetic": {
+                    "description": "True when the record was produced by a generator rather than observed in the corpus.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "label": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "legal_entity": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_from": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_to": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "CostCenter",
+            "type": "object"
+        },
+        "Counterparty": {
+            "additionalProperties": false,
+            "description": "External trading counterparty, as mastered in Global Counterparty (GCP).",
+            "properties": {
+                "alt_labels": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "counterparty_type": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "credit_rating": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "items": {
+                        "$ref": "#/$defs/Evidence"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "gcp_cp_id": {
+                    "description": "Global Counterparty CP ID.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "is_synthetic": {
+                    "description": "True when the record was produced by a generator rather than observed in the corpus.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "label": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "parent_counterparty": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "short_name": {
+                    "description": "ERMS/GCP short name.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_from": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_to": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "Counterparty",
+            "type": "object"
+        },
+        "CurvePoint": {
+            "additionalProperties": false,
+            "description": "One marked value of a curve for a delivery period on a valuation date.",
+            "properties": {
+                "curve": {
+                    "type": "string"
+                },
+                "delivery_start": {
+                    "format": "date",
+                    "type": "string"
+                },
+                "is_synthetic": {
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "unit": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valuation_date": {
+                    "format": "date",
+                    "type": "string"
+                },
+                "value": {
+                    "type": "number"
+                }
+            },
+            "required": [
+                "curve",
+                "valuation_date",
+                "delivery_start",
+                "value"
+            ],
+            "title": "CurvePoint",
+            "type": "object"
+        },
+        "CurveType": {
+            "description": "",
+            "enum": [
+                "price",
+                "basis",
+                "index",
+                "volatility",
+                "interest_rate"
+            ],
+            "title": "CurveType",
+            "type": "string"
+        },
+        "DebitCredit": {
+            "description": "",
+            "enum": [
+                "S",
+                "H"
+            ],
+            "title": "DebitCredit",
+            "type": "string"
+        },
+        "DeliveryPoint": {
+            "additionalProperties": false,
+            "description": "Physical meter/interconnect or pool where title transfers.",
+            "properties": {
+                "alt_labels": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "commodity": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "items": {
+                        "$ref": "#/$defs/Evidence"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "is_synthetic": {
+                    "description": "True when the record was produced by a generator rather than observed in the corpus.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "label": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "location_type": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "meter_number": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "operator": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "pipeline": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "region": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_from": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_to": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "DeliveryPoint",
+            "type": "object"
+        },
+        "Document": {
+            "additionalProperties": false,
+            "description": "",
+            "properties": {
+                "alt_labels": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "author": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "created": {
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "custodian": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "items": {
+                        "$ref": "#/$defs/Evidence"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "is_synthetic": {
+                    "description": "True when the record was produced by a generator rather than observed in the corpus.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "label": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_from": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_to": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "Document",
+            "type": "object"
+        },
+        "DocumentRole": {
+            "description": "What job a workbook does in the process (independent of process area).",
+            "enum": [
+                "report",
+                "reconciliation",
+                "schedule",
+                "model",
+                "extract",
+                "template",
+                "form",
+                "tracker",
+                "list",
+                "plan_budget",
+                "calculation",
+                "other"
+            ],
+            "title": "DocumentRole",
+            "type": "string"
+        },
+        "EmailMessage": {
+            "additionalProperties": false,
+            "description": "",
+            "properties": {
+                "alt_labels": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "attachments": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "author": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "created": {
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "custodian": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "items": {
+                        "$ref": "#/$defs/Evidence"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "is_synthetic": {
+                    "description": "True when the record was produced by a generator rather than observed in the corpus.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "label": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "message_id": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "recipients": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "sender": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "sent_at": {
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "subject": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "thread": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_from": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_to": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "EmailMessage",
+            "type": "object"
+        },
+        "Evidence": {
+            "additionalProperties": false,
+            "description": "Provenance pointer from an assertion back to the corpus or to a synthetic generator. Lets every fact in the lake be traced to a cell, an email or a rule.",
+            "properties": {
+                "confidence": {
+                    "maximum": 1,
+                    "minimum": 0,
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "locator": {
+                    "description": "sheet!cell range, header field, or rule name",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "quote": {
+                    "description": "verbatim snippet supporting the assertion",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "source_id": {
+                    "description": "workbook file_id, email message_id, filing accession, or generator run id",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "source_kind": {
+                    "$ref": "#/$defs/EvidenceSourceKind"
+                }
+            },
+            "required": [
+                "source_kind"
+            ],
+            "title": "Evidence",
+            "type": "object"
+        },
+        "EvidenceSourceKind": {
+            "description": "",
+            "enum": [
+                "workbook_cell",
+                "workbook_metadata",
+                "email",
+                "email_header",
+                "public_filing",
+                "ferc_record",
+                "synthetic_generator",
+                "curated"
+            ],
+            "title": "EvidenceSourceKind",
+            "type": "string"
+        },
+        "GLAccount": {
+            "additionalProperties": false,
+            "description": "SAP R/3 general ledger account.",
+            "properties": {
+                "account_number": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "account_type": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "alt_labels": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "items": {
+                        "$ref": "#/$defs/Evidence"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "fs_line": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "is_synthetic": {
+                    "description": "True when the record was produced by a generator rather than observed in the corpus.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "label": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_from": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_to": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "GLAccount",
+            "type": "object"
+        },
+        "Imbalance": {
+            "additionalProperties": false,
+            "description": "",
+            "properties": {
+                "alt_labels": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "counterparty": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "delivery_location": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "items": {
+                        "$ref": "#/$defs/Evidence"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "flow_month": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "imbalance_volume": {
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "is_synthetic": {
+                    "description": "True when the record was produced by a generator rather than observed in the corpus.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "label": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "pipeline": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_from": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_to": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "volume_unit": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/VolumeUnit"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "Imbalance",
+            "type": "object"
+        },
+        "InformationSystem": {
+            "additionalProperties": false,
+            "description": "An application in the trade-to-ledger chain (Sitara, EnPower, ERMS, Unify, SAP ...).",
+            "properties": {
+                "alt_labels": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "downstream_systems": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "items": {
+                        "$ref": "#/$defs/Evidence"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "is_synthetic": {
+                    "description": "True when the record was produced by a generator rather than observed in the corpus.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "label": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "owning_unit": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "platform": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "process_areas": {
+                    "items": {
+                        "$ref": "#/$defs/ProcessArea"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "system_code": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "upstream_systems": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "valid_from": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_to": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "InformationSystem",
+            "type": "object"
+        },
+        "InfrastructureType": {
+            "description": "",
+            "enum": [
+                "exchange",
+                "iso_rto",
+                "pipeline_operator",
+                "price_publisher",
+                "utility",
+                "regulator"
+            ],
+            "title": "InfrastructureType",
+            "type": "string"
+        },
+        "InstrumentType": {
+            "description": "",
+            "enum": [
+                "physical_forward",
+                "physical_spot",
+                "financial_swap",
+                "basis_swap",
+                "index_swap",
+                "option",
+                "futures",
+                "transport",
+                "storage",
+                "tolling",
+                "prepay"
+            ],
+            "title": "InstrumentType",
+            "type": "string"
+        },
+        "Invoice": {
+            "additionalProperties": false,
+            "description": "Settlement invoice/statement produced by Unify for a counterparty and production month.",
+            "properties": {
+                "alt_labels": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "amount": {
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "counterparty": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "currency": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "due_date": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "items": {
+                        "$ref": "#/$defs/Evidence"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "invoice_date": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "invoice_number": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "invoice_status": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "is_synthetic": {
+                    "description": "True when the record was produced by a generator rather than observed in the corpus.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "label": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "legal_entity": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "production_month": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "trades": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "valid_from": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_to": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "Invoice",
+            "type": "object"
+        },
+        "JournalEntry": {
+            "additionalProperties": false,
+            "description": "SAP FI document (BKPF header with BSEG lines).",
+            "properties": {
+                "alt_labels": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "company_code": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "document_number": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "document_type": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "entered_by": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "items": {
+                        "$ref": "#/$defs/Evidence"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "fiscal_year": {
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "header_text": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "is_synthetic": {
+                    "description": "True when the record was produced by a generator rather than observed in the corpus.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "label": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "lines": {
+                    "items": {
+                        "$ref": "#/$defs/JournalLine"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "posting_date": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_from": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_to": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "JournalEntry",
+            "type": "object"
+        },
+        "JournalLine": {
+            "additionalProperties": false,
+            "description": "",
+            "properties": {
+                "amount": {
+                    "type": "number"
+                },
+                "cost_center": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "counterparty": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "debit_credit": {
+                    "$ref": "#/$defs/DebitCredit"
+                },
+                "gl_account": {
+                    "type": "string"
+                },
+                "trading_partner": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "gl_account",
+                "debit_credit",
+                "amount"
+            ],
+            "title": "JournalLine",
+            "type": "object"
+        },
+        "LegalEntity": {
+            "additionalProperties": false,
+            "description": "A legally registered Enron affiliate (e.g. Enron North America Corp.).",
+            "properties": {
+                "alt_labels": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "items": {
+                        "$ref": "#/$defs/Evidence"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "ferc_regulated": {
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "is_synthetic": {
+                    "description": "True when the record was produced by a generator rather than observed in the corpus.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "jurisdiction": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "label": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "parent_entity": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "sec_registrant": {
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "segment": {
+                    "description": "Reportable segment per FAS 131 in the 2000 Form 10-K.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "special_purpose": {
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "valid_from": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_to": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "LegalEntity",
+            "type": "object"
+        },
+        "Location": {
+            "additionalProperties": false,
+            "description": "",
+            "properties": {
+                "alt_labels": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "commodity": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "items": {
+                        "$ref": "#/$defs/Evidence"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "is_synthetic": {
+                    "description": "True when the record was produced by a generator rather than observed in the corpus.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "label": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "location_type": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "operator": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "region": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_from": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_to": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "Location",
+            "type": "object"
+        },
+        "MarketInfrastructure": {
+            "additionalProperties": false,
+            "description": "Exchange, ISO/RTO, pipeline operator or price publisher.",
+            "properties": {
+                "alt_labels": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "items": {
+                        "$ref": "#/$defs/Evidence"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "infrastructure_type": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/InfrastructureType"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "is_synthetic": {
+                    "description": "True when the record was produced by a generator rather than observed in the corpus.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "label": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_from": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_to": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "MarketInfrastructure",
+            "type": "object"
+        },
+        "MasterAgreement": {
+            "additionalProperties": false,
+            "description": "Governing master (ISDA 1992, GISB 1996 base contract, EEI 2000 master, enabling agreements).",
+            "properties": {
+                "agreement_form": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/AgreementForm"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "alt_labels": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "collateral_threshold": {
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "counterparty": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "effective_date": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "items": {
+                        "$ref": "#/$defs/Evidence"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "is_synthetic": {
+                    "description": "True when the record was produced by a generator rather than observed in the corpus.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "label": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "legal_entity": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "netting": {
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "valid_from": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_to": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "MasterAgreement",
+            "type": "object"
+        },
+        "NamedThing": {
+            "additionalProperties": false,
+            "description": "Anything with a persistent identifier in the estate.",
+            "properties": {
+                "alt_labels": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "items": {
+                        "$ref": "#/$defs/Evidence"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "is_synthetic": {
+                    "description": "True when the record was produced by a generator rather than observed in the corpus.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "label": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_from": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_to": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "NamedThing",
+            "type": "object"
+        },
+        "Nomination": {
+            "additionalProperties": false,
+            "description": "Gas nomination / power schedule submitted to a pipeline or ISO.",
+            "properties": {
+                "actual_volume": {
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "alt_labels": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "delivery_location": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "items": {
+                        "$ref": "#/$defs/Evidence"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "flow_date": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "is_synthetic": {
+                    "description": "True when the record was produced by a generator rather than observed in the corpus.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "label": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "nominated_volume": {
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "pipeline": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "scheduled_volume": {
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "trade": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_from": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_to": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "volume_unit": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/VolumeUnit"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "Nomination",
+            "type": "object"
+        },
+        "Organization": {
+            "additionalProperties": false,
+            "description": "",
+            "properties": {
+                "alt_labels": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "items": {
+                        "$ref": "#/$defs/Evidence"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "is_synthetic": {
+                    "description": "True when the record was produced by a generator rather than observed in the corpus.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "label": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_from": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_to": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "Organization",
+            "type": "object"
+        },
+        "Payment": {
+            "additionalProperties": false,
+            "description": "",
+            "properties": {
+                "alt_labels": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "amount": {
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "counterparty": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "currency": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "direction": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "items": {
+                        "$ref": "#/$defs/Evidence"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "invoices": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "is_synthetic": {
+                    "description": "True when the record was produced by a generator rather than observed in the corpus.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "label": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "legal_entity": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "payment_date": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_from": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_to": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "Payment",
+            "type": "object"
+        },
+        "Person": {
+            "additionalProperties": false,
+            "description": "",
+            "properties": {
+                "alt_labels": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "email_addresses": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "items": {
+                        "$ref": "#/$defs/Evidence"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "is_custodian": {
+                    "description": "Person is one of the mailbox custodians in the corpus.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "is_synthetic": {
+                    "description": "True when the record was produced by a generator rather than observed in the corpus.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "job_title": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "label": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "maildir_name": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "member_of": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "valid_from": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_to": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "Person",
+            "type": "object"
+        },
+        "Pipeline": {
+            "additionalProperties": false,
+            "description": "Interstate or intrastate pipeline system (Transwestern, Northern Natural, El Paso ...).",
+            "properties": {
+                "alt_labels": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "commodity": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "items": {
+                        "$ref": "#/$defs/Evidence"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "ferc_regulated": {
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "is_synthetic": {
+                    "description": "True when the record was produced by a generator rather than observed in the corpus.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "label": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "location_type": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "operator": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "region": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_from": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_to": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "Pipeline",
+            "type": "object"
+        },
+        "Position": {
+            "additionalProperties": false,
+            "description": "Net open position by book, curve and delivery period on a date (DPR input).",
+            "properties": {
+                "alt_labels": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "as_of_date": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "book": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "curve": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "delivery_start": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "items": {
+                        "$ref": "#/$defs/Evidence"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "is_synthetic": {
+                    "description": "True when the record was produced by a generator rather than observed in the corpus.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "label": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "quantity": {
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "valid_from": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_to": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "volume_unit": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/VolumeUnit"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "Position",
+            "type": "object"
+        },
+        "PowerControlArea": {
+            "additionalProperties": false,
+            "description": "Power control area, ISO zone or transmission path (NP15, SP15, COB, ERCOT ...).",
+            "properties": {
+                "alt_labels": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "commodity": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "items": {
+                        "$ref": "#/$defs/Evidence"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "is_synthetic": {
+                    "description": "True when the record was produced by a generator rather than observed in the corpus.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "label": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "location_type": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "operator": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "region": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_from": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_to": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "PowerControlArea",
+            "type": "object"
+        },
+        "PriceCurve": {
+            "additionalProperties": false,
+            "description": "Forward curve maintained in ERMS/TDS for valuation (price, basis, volatility).",
+            "properties": {
+                "alt_labels": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "commodity": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "curve_code": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "curve_type": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/CurveType"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "items": {
+                        "$ref": "#/$defs/Evidence"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "index": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "is_synthetic": {
+                    "description": "True when the record was produced by a generator rather than observed in the corpus.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "label": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "location": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_from": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_to": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "PriceCurve",
+            "type": "object"
+        },
+        "PriceIndex": {
+            "additionalProperties": false,
+            "description": "Published or exchange price used to settle index deals (IFERC monthly, Gas Daily, NYMEX).",
+            "properties": {
+                "alt_labels": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "commodity": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "items": {
+                        "$ref": "#/$defs/Evidence"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "index_frequency": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "is_synthetic": {
+                    "description": "True when the record was produced by a generator rather than observed in the corpus.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "label": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "location": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "publisher": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_from": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_to": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "PriceIndex",
+            "type": "object"
+        },
+        "PriceType": {
+            "description": "",
+            "enum": [
+                "fixed",
+                "index",
+                "index_plus",
+                "formula"
+            ],
+            "title": "PriceType",
+            "type": "string"
+        },
+        "ProcessArea": {
+            "description": "Front-to-back process areas of a merchant energy company. The same vocabulary is used by the standards catalog, the workbook classifier and the process log.",
+            "enum": [
+                "deal_capture",
+                "confirmation",
+                "credit",
+                "risk_and_valuation",
+                "scheduling_logistics",
+                "settlement",
+                "accounting_r2r",
+                "consolidation_reporting",
+                "regulatory_reporting",
+                "fpa",
+                "treasury",
+                "tax",
+                "audit_controls",
+                "structured_finance",
+                "origination_assets",
+                "hr_admin",
+                "it_projects",
+                "other"
+            ],
+            "title": "ProcessArea",
+            "type": "string"
+        },
+        "ProcessStep": {
+            "additionalProperties": false,
+            "description": "A step in a front-to-back process (e.g. \"Actualize volumes\", \"Run DPR\").",
+            "properties": {
+                "alt_labels": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "items": {
+                        "$ref": "#/$defs/Evidence"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "governed_by": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "inputs": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "is_synthetic": {
+                    "description": "True when the record was produced by a generator rather than observed in the corpus.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "label": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "outputs": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "performed_in": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "process_area": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/ProcessArea"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "valid_from": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_to": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "ProcessStep",
+            "type": "object"
+        },
+        "SpecialPurposeEntity": {
+            "additionalProperties": false,
+            "description": "Off-balance-sheet or structured vehicle (e.g. LJM2, Chewco, Whitewing, Raptor vehicles). Kept distinct because consolidation treatment is the point of interest.",
+            "properties": {
+                "alt_labels": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "items": {
+                        "$ref": "#/$defs/Evidence"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "ferc_regulated": {
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "is_synthetic": {
+                    "description": "True when the record was produced by a generator rather than observed in the corpus.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "jurisdiction": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "label": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "parent_entity": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "sec_registrant": {
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "segment": {
+                    "description": "Reportable segment per FAS 131 in the 2000 Form 10-K.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "special_purpose": {
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "valid_from": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_to": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "SpecialPurposeEntity",
+            "type": "object"
+        },
+        "Standard": {
+            "additionalProperties": false,
+            "description": "Accounting, regulatory, contractual or market standard; records live in standards/era_standards.yaml.",
+            "properties": {
+                "alt_labels": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "designation": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "effective_date": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "items": {
+                        "$ref": "#/$defs/Evidence"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "is_synthetic": {
+                    "description": "True when the record was produced by a generator rather than observed in the corpus.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "issuer": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "label": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "process_areas": {
+                    "items": {
+                        "$ref": "#/$defs/ProcessArea"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "valid_from": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_to": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "Standard",
+            "type": "object"
+        },
+        "TableRegion": {
+            "additionalProperties": false,
+            "description": "A detected rectangular table inside a sheet, with header and data ranges.",
+            "properties": {
+                "alt_labels": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "cell_range": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "items": {
+                        "$ref": "#/$defs/Evidence"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "header_range": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "is_synthetic": {
+                    "description": "True when the record was produced by a generator rather than observed in the corpus.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "label": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "table_role": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_from": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_to": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "worksheet": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "TableRegion",
+            "type": "object"
+        },
+        "Trade": {
+            "additionalProperties": false,
+            "description": "A deal as captured in a front-office system (Sitara, EnPower, TAGG) or on EnronOnline.",
+            "properties": {
+                "alt_labels": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "book": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "buy_sell": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/BuySell"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "commodity": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "confirmation_status": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "counterparty": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "deal_number": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "deal_status": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "delivery_end": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "delivery_location": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "delivery_start": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "eol_transaction_id": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "items": {
+                        "$ref": "#/$defs/Evidence"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "instrument_type": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/InstrumentType"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "is_synthetic": {
+                    "description": "True when the record was produced by a generator rather than observed in the corpus.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "label": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "legal_entity": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "master_agreement": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "premium_or_adder": {
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "price": {
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "price_index": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "price_type": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/PriceType"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "source_system": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "trade_date": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "trader": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_from": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_to": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "volume": {
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "volume_frequency": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "volume_unit": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/VolumeUnit"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "Trade",
+            "type": "object"
+        },
+        "TradingDesk": {
+            "additionalProperties": false,
+            "description": "Commercial desk owning books and traders (e.g. \"West Power\", \"Texas Gas\", \"NW desk\").",
+            "properties": {
+                "alt_labels": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "commodity": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "items": {
+                        "$ref": "#/$defs/Evidence"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "is_synthetic": {
+                    "description": "True when the record was produced by a generator rather than observed in the corpus.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "label": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "legal_entity": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "parent_unit": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "region": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "unit_type": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/UnitType"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "valid_from": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_to": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "TradingDesk",
+            "type": "object"
+        },
+        "TradingHub": {
+            "additionalProperties": false,
+            "description": "Liquid pricing point (Henry Hub, Waha, Mid-C, Palo Verde, PJM West ...).",
+            "properties": {
+                "alt_labels": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "commodity": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "items": {
+                        "$ref": "#/$defs/Evidence"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "is_synthetic": {
+                    "description": "True when the record was produced by a generator rather than observed in the corpus.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "label": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "location_type": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "operator": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "region": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_from": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_to": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "TradingHub",
+            "type": "object"
+        },
+        "UnitType": {
+            "description": "",
+            "enum": [
+                "segment",
+                "business_unit",
+                "department",
+                "desk",
+                "team"
+            ],
+            "title": "UnitType",
+            "type": "string"
+        },
+        "Valuation": {
+            "additionalProperties": false,
+            "description": "Mark-to-market result (DPR line) by book on a date, incl. new-deal and curve-shift P&L.",
+            "properties": {
+                "alt_labels": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "as_of_date": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "book": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "currency": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "curve_shift_pnl": {
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "daily_pnl": {
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "items": {
+                        "$ref": "#/$defs/Evidence"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "is_synthetic": {
+                    "description": "True when the record was produced by a generator rather than observed in the corpus.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "label": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "mtm_value": {
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "new_deal_pnl": {
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "valid_from": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_to": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "var_95": {
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "Valuation",
+            "type": "object"
+        },
+        "VolumeUnit": {
+            "description": "",
+            "enum": [
+                "MMBtu",
+                "Dth",
+                "Mcf",
+                "MWh",
+                "MW",
+                "bbl",
+                "ton",
+                "USD"
+            ],
+            "title": "VolumeUnit",
+            "type": "string"
+        },
+        "Workbook": {
+            "additionalProperties": false,
+            "description": "One spreadsheet file from the Hermans corpus (deduplicated by MD5).",
+            "properties": {
+                "alt_labels": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "as_of_date": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "author": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "created": {
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "custodian": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "derived_from": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "document_role": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/DocumentRole"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "evidence": {
+                    "items": {
+                        "$ref": "#/$defs/Evidence"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "file_id": {
+                    "description": "MD5 of the file bytes.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "is_synthetic": {
+                    "description": "True when the record was produced by a generator rather than observed in the corpus.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "label": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "mentions": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "original_filename": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "process_area": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/ProcessArea"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "sheets": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "valid_from": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_to": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "version_family": {
+                    "description": "Groups files that are versions of the same recurring report.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "Workbook",
+            "type": "object"
+        },
+        "Worksheet": {
+            "additionalProperties": false,
+            "description": "",
+            "properties": {
+                "alt_labels": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "items": {
+                        "$ref": "#/$defs/Evidence"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "is_synthetic": {
+                    "description": "True when the record was produced by a generator rather than observed in the corpus.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "label": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "sheet_name": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "sheet_role": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "sheet_state": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_from": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "valid_to": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "workbook": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "Worksheet",
+            "type": "object"
+        }
+    },
+    "$id": "https://huxwaitt.github.io/enron-e2e/ontology/enron_finance",
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": true,
+    "metamodel_version": "1.12.0",
+    "title": "enron_finance",
+    "type": "object",
+    "version": "0.1.0"
+}
+
