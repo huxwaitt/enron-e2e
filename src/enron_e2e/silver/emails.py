@@ -27,29 +27,43 @@ def build(con: duckdb.DuckDBPyConnection | None = None) -> dict:
     out = paths.SILVER
     out.mkdir(parents=True, exist_ok=True)
     con = con or duckdb.connect()
+    con.execute("set enable_progress_bar = false")
     con.create_function("msg_iri", msg_iri, ["VARCHAR"], "VARCHAR")
     con.execute(f"create or replace view bm as select * from read_parquet('{MSG}')")
 
-    # ---- messages: collapse copies of the same Message-ID across custodians/folders
+    # ---- messages: the CMU release minted a unique Message-ID per *file*, so the same
+    # email in a sender's "sent" folder and five inboxes has six IDs. Collapse on content.
+    con.execute("""
+        create or replace table bm_keyed as
+        select *, md5(coalesce(from_addr, '') || '|' || coalesce(date_utc::varchar, '') || '|' ||
+                      coalesce(subject, '') || '|' || left(regexp_replace(coalesce(body, ''), '\s+', ' ', 'g'), 4000)) as content_key
+        from bm where message_id is not null
+    """)
+    con.execute("""
+        create or replace table msg_map as
+        select message_id, min(message_id) over (partition by content_key) as canonical_id from bm_keyed
+    """)
     con.execute("""
         create or replace table messages as
-        select message_id,
-               msg_iri(message_id)                         as message_iri,
+        select min(message_id)                              as message_id,
+               msg_iri(min(message_id))                     as message_iri,
+               content_key,
                any_value(date_utc)                          as sent_at,
                any_value(from_addr)                         as from_addr,
                any_value(to_addrs)                          as to_addrs,
                any_value(cc_addrs)                          as cc_addrs,
                any_value(bcc_addrs)                         as bcc_addrs,
                any_value(subject)                           as subject,
-               regexp_replace(lower(coalesce(any_value(subject), '')), '^((re|fw|fwd)\\s*:\\s*)+', '') as thread_subject,
+               regexp_replace(lower(coalesce(any_value(subject), '')), '^((re|fw|fwd)\s*:\s*)+', '') as thread_subject,
                any_value(x_from)                            as x_from,
                arg_max(body, body_chars)                    as body,
                list(distinct custodian order by custodian)  as custodians,
                list(path order by path)                     as paths,
+               list(message_id order by message_id)         as source_message_ids,
                count(*)                                     as n_copies,
                bool_or(lower(folder) like '%sent%')         as in_sent_folder
-        from bm where message_id is not null
-        group by message_id
+        from bm_keyed
+        group by content_key
     """)
     con.execute(f"copy messages to '{(out / 'messages.parquet').as_posix()}' (format parquet, compression zstd)")
 
@@ -88,6 +102,7 @@ def build(con: duckdb.DuckDBPyConnection | None = None) -> dict:
         select custodian as maildir_name, arg_max(from_addr, n) as email, max(n) as n_sent
         from sent group by custodian
     """)
+    con.execute(f"copy msg_map to '{(out / 'message_id_map.parquet').as_posix()}' (format parquet)")
     con.execute(f"copy persons to '{(out / 'persons.parquet').as_posix()}' (format parquet)")
     con.execute(f"copy custodians to '{(out / 'custodians.parquet').as_posix()}' (format parquet)")
 
@@ -95,8 +110,8 @@ def build(con: duckdb.DuckDBPyConnection | None = None) -> dict:
     con.execute(f"create or replace view wb as select * from read_parquet('{WB}')")
     con.execute(f"""
         create or replace table refs as
-        select r.*, m.custodians, m.sent_at, m.from_addr
-        from read_parquet('{REFS}') r join messages m using (message_id)
+        select r.* exclude (message_id), mm.canonical_id as message_id, m.custodians, m.sent_at, m.from_addr
+        from read_parquet('{REFS}') r join msg_map mm using (message_id) join messages m on m.message_id = mm.canonical_id
     """)
     # Hermans converted .xls to .xlsx and prefixed custodian/id; compare on stem.
     con.execute("""
@@ -115,10 +130,10 @@ def build(con: duckdb.DuckDBPyConnection | None = None) -> dict:
         )
         select *,
                -- Hermans' custodian "michelle_lokay" vs maildir "lokay-m": compare surname + initial
-               list_contains(list_transform(custodians, c -> split_part(c, '-', 1) || '_' || split_part(c, '-', 2)),
+               list_contains(list_transform(custodians, lambda c: split_part(c, '-', 1) || '_' || split_part(c, '-', 2)),
                              split_part(wb_custodian, '_', -1) || '_' || left(wb_custodian, 1)) as custodian_match,
                case when n_candidates = 1 then 0.9 else 0.9 / n_candidates end
-                 + case when list_contains(list_transform(custodians, c -> split_part(c, '-', 1) || '_' || split_part(c, '-', 2)),
+                 + case when list_contains(list_transform(custodians, lambda c: split_part(c, '-', 1) || '_' || split_part(c, '-', 2)),
                                            split_part(wb_custodian, '_', -1) || '_' || left(wb_custodian, 1)) then 0.1 else 0 end
                  as score
         from cand
