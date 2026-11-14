@@ -1,0 +1,14 @@
+LICENSE
+NOTICE
+pyproject.toml
+src/enron_e2e/__init__.py
+src/enron_e2e/fetch.py
+src/enron_e2e/paths.py
+src/enron_e2e.egg-info/PKG-INFO
+src/enron_e2e.egg-info/SOURCES.txt
+src/enron_e2e.egg-info/dependency_links.txt
+src/enron_e2e.egg-info/entry_points.txt
+src/enron_e2e.egg-info/requires.txt
+src/enron_e2e.egg-info/top_level.txt
+src/enron_e2e/ingest/__init__.py
+src/enron_e2e/ingest/emails.py

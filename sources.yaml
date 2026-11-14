@@ -1,0 +1,45 @@
+# Source registry. Every external input to the lake is pinned here with a checksum,
+# a license and a citation. `enron-e2e fetch` downloads into data/landing/<source_id>/
+# and refuses to proceed on a checksum mismatch.
+sources:
+  - source_id: hermans_figshare
+    title: "Enron Spreadsheets and Emails (Hermans & Murphy-Hill, ICSE 2015)"
+    publisher: figshare
+    doi: 10.6084/m9.figshare.1221767.v2
+    license: CC-BY-4.0
+    citation: >-
+      F. Hermans and E. Murphy-Hill, "Enron's Spreadsheets and Related Emails:
+      A Dataset and Analysis", ICSE 2015.
+    files:
+      - name: spreadsheets.7z
+        url: https://ndownloader.figshare.com/files/3242531
+        md5: 188ec98d04c83a4725d9205cc75ce5a2
+        bytes: 992635888
+        required: true
+      # The emails that carried the spreadsheets (8.8 GB, 13-part 7z). Optional:
+      # the CMU corpus below covers message metadata; these add the attachments.
+      - {name: eml.7z.001, url: https://ndownloader.figshare.com/files/3242534, md5: b6c3d965d13f15eef4deb788b45c8ce0, bytes: 734003200, required: false}
+      - {name: eml.7z.002, url: https://ndownloader.figshare.com/files/3242537, md5: 9f99c3dbbd381059da6b1f4ab2b40a7b, bytes: 734003200, required: false}
+      - {name: eml.7z.003, url: https://ndownloader.figshare.com/files/3242543, md5: db9e82003cb6a6ec6a347b1475b8b9a1, bytes: 734003200, required: false}
+      - {name: eml.7z.004, url: https://ndownloader.figshare.com/files/3242540, md5: 9764024636612edaca6ed7a66c200cca, bytes: 734003200, required: false}
+      - {name: eml.7z.005, url: https://ndownloader.figshare.com/files/3242564, md5: 2a58bda4962c39cab04ee5a88b2a8d4c, bytes: 734003200, required: false}
+      - {name: eml.7z.006, url: https://ndownloader.figshare.com/files/3242558, md5: 9bbccbad3498ddb690483d718a715285, bytes: 734003200, required: false}
+      - {name: eml.7z.007, url: https://ndownloader.figshare.com/files/3242555, md5: 17e8b9852c50efbc14782387a6e158fa, bytes: 734003200, required: false}
+      - {name: eml.7z.008, url: https://ndownloader.figshare.com/files/3242552, md5: c0abbe1c225ca2e507fc5bd2b0638ac3, bytes: 734003200, required: false}
+      - {name: eml.7z.009, url: https://ndownloader.figshare.com/files/3242549, md5: 09f4cbb192142c62a0709e9fe5e75c4f, bytes: 734003200, required: false}
+      - {name: eml.7z.010, url: https://ndownloader.figshare.com/files/3242546, md5: f5dca8395581cae4fbe5c1e344a2ff42, bytes: 734003200, required: false}
+      - {name: eml.7z.011, url: https://ndownloader.figshare.com/files/3242573, md5: 58d357fc1e5550c8f49cea6c86211726, bytes: 734003200, required: false}
+      - {name: eml.7z.012, url: https://ndownloader.figshare.com/files/3242570, md5: 432ebe36c347325e492120d3492cc36f, bytes: 734003200, required: false}
+      - {name: eml.7z.013, url: https://ndownloader.figshare.com/files/3242567, md5: b4305db6c7455f7ee9c69f7e5bb1a456, bytes: 51635782, required: false}
+
+  - source_id: cmu_email
+    title: "Enron Email Dataset, May 7 2015 release (CMU)"
+    publisher: Carnegie Mellon University
+    license: "Public record (released by FERC); redistributed by CMU for research"
+    citation: W. Cohen, Enron Email Dataset, https://www.cs.cmu.edu/~enron/
+    files:
+      - name: enron_mail_20150507.tar.gz
+        url: https://www.cs.cmu.edu/~enron/enron_mail_20150507.tar.gz
+        md5: 0dfec6b13323d01f4275c6913f461ac6
+        bytes: 443254787
+        required: true

@@ -17,6 +17,7 @@ dependencies = [
   "xlrd>=2.0",
   "py7zr>=0.21",
   "pyyaml>=6",
+  "defusedxml>=0.7",
 ]
 
 [project.optional-dependencies]

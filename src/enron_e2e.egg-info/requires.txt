@@ -1,0 +1,11 @@
+pandas>=2.2
+numpy>=1.26
+pyarrow>=15
+duckdb>=1.0
+openpyxl>=3.1
+xlrd>=2.0
+py7zr>=0.21
+pyyaml>=6
+
+[dev]
+pytest>=8
