@@ -1,0 +1,58 @@
+# Curated LegalEntity / SpecialPurposeEntity / BusinessUnit instances.
+# email_mentions = exact-phrase count over CMU corpus bodies (517,401 messages).
+# Parent relationships and segment assignment follow Enron's 2000 Form 10-K
+# segment structure; assignments marked `confidence: medium` still need a
+# filing citation.
+segments:
+  - {id: enroni:org/seg-wholesale, label: Wholesale Services, unit_type: segment,
+     alt_labels: [Enron Wholesale Services, EWS], email_mentions: 2709}
+  - {id: enroni:org/seg-retail, label: Retail Energy Services, unit_type: segment}
+  - {id: enroni:org/seg-broadband, label: Broadband Services, unit_type: segment}
+  - {id: enroni:org/seg-transport-dist, label: Transportation and Distribution, unit_type: segment,
+     alt_labels: [Enron Transportation Services, ETS, Gas Pipeline Group], email_mentions: 941}
+  - {id: enroni:org/seg-corporate, label: Corporate and Other, unit_type: segment}
+
+legal_entities:
+  - {id: enroni:org/enron-corp, label: Enron Corp., jurisdiction: Oregon, sec_registrant: true, email_mentions: 16694}
+  - {id: enroni:org/ena, label: Enron North America Corp., alt_labels: [ENA, Enron Capital & Trade Resources Corp., ECT],
+     parent_entity: enroni:org/enron-corp, segment: enroni:org/seg-wholesale, email_mentions: 21294,
+     description: "Successor name of Enron Capital & Trade Resources Corp. (4,060 mentions under the old name)."}
+  - {id: enroni:org/epmi, label: "Enron Power Marketing, Inc.", alt_labels: [EPMI], parent_entity: enroni:org/ena,
+     segment: enroni:org/seg-wholesale, ferc_regulated: true, email_mentions: 663,
+     description: FERC-authorized power marketer; counterparty on most US power trades.}
+  - {id: enroni:org/enron-canada, label: Enron Canada Corp., parent_entity: enroni:org/ena, segment: enroni:org/seg-wholesale, email_mentions: 580}
+  - {id: enroni:org/enron-europe, label: Enron Europe Limited, alt_labels: [Enron Capital & Trade Resources International Corp.],
+     segment: enroni:org/seg-wholesale, jurisdiction: England and Wales, email_mentions: 499, confidence: medium}
+  - {id: enroni:org/egm, label: Enron Global Markets LLC, alt_labels: [EGM], segment: enroni:org/seg-wholesale, email_mentions: 155}
+  - {id: enroni:org/eim, label: Enron Industrial Markets LLC, alt_labels: [EIM], segment: enroni:org/seg-wholesale, email_mentions: 114}
+  - {id: enroni:org/enron-net-works, label: "Enron Net Works, LLC", alt_labels: [ENW, Enron Net Works LLC, EnronNetworks],
+     segment: enroni:org/seg-wholesale, email_mentions: 720,
+     description: Ran EnronOnline, Global Contracts/Facilities and back-office platforms (CommodityLogic).}
+  - {id: enroni:org/enrononline-llc, label: EnronOnline LLC, parent_entity: enroni:org/enron-net-works, email_mentions: 147, confidence: medium}
+  - {id: enroni:org/ees, label: "Enron Energy Services, Inc.", alt_labels: [EES], parent_entity: enroni:org/enron-corp,
+     segment: enroni:org/seg-retail, email_mentions: 114}
+  - {id: enroni:org/ees-ops, label: "Enron Energy Services Operations, Inc.", parent_entity: enroni:org/ees, segment: enroni:org/seg-retail, email_mentions: 90}
+  - {id: enroni:org/ebs, label: "Enron Broadband Services, Inc.", alt_labels: [EBS], parent_entity: enroni:org/enron-corp,
+     segment: enroni:org/seg-broadband, email_mentions: 84}
+  - {id: enroni:org/nng, label: Northern Natural Gas Company, alt_labels: [NNG, Northern Natural], parent_entity: enroni:org/enron-corp,
+     segment: enroni:org/seg-transport-dist, ferc_regulated: true, email_mentions: 175}
+  - {id: enroni:org/tw, label: Transwestern Pipeline Company, alt_labels: [TW, Transwestern], parent_entity: enroni:org/enron-corp,
+     segment: enroni:org/seg-transport-dist, ferc_regulated: true, email_mentions: 926}
+  - {id: enroni:org/pge, label: Portland General Electric Company, alt_labels: [PGE, Portland General], parent_entity: enroni:org/enron-corp,
+     segment: enroni:org/seg-transport-dist, ferc_regulated: true, email_mentions: 96}
+  - {id: enroni:org/ecs, label: Enron Compression Services, segment: enroni:org/seg-transport-dist, email_mentions: 172, confidence: medium}
+  - {id: enroni:org/enron-wind, label: Enron Wind Corp., segment: enroni:org/seg-wholesale, email_mentions: 35, confidence: medium}
+  - {id: enroni:org/azurix, label: Azurix Corp., segment: enroni:org/seg-corporate, email_mentions: 250, confidence: medium,
+     description: Water company; Enron held a significant stake.}
+
+special_purpose_entities:
+  # Facts per the Powers Report (Report of Investigation by the Special Investigative
+  # Committee of the Board of Directors of Enron Corp., 1 Feb 2002).
+  - {id: enroni:org/jedi, label: "Joint Energy Development Investments L.P.", alt_labels: [JEDI], email_mentions: 75}
+  - {id: enroni:org/chewco, label: "Chewco Investments, L.P.", alt_labels: [Chewco], email_mentions: 61,
+     description: Bought CalPERS' JEDI interest in 1997; consolidation was restated in 2001 because it failed the 3% outside equity test.}
+  - {id: enroni:org/ljm1, label: "LJM Cayman, L.P.", alt_labels: [LJM, LJM1], email_mentions: 197}
+  - {id: enroni:org/ljm2, label: "LJM2 Co-Investment, L.P.", alt_labels: [LJM2], email_mentions: 196}
+  - {id: enroni:org/whitewing, label: Whitewing Associates L.P., alt_labels: [Whitewing], email_mentions: 4}
+  - {id: enroni:org/talon, label: Talon I LLC, alt_labels: [Raptor I, Talon], email_mentions: 16,
+     description: First of the four Raptor vehicles (Talon, Timberwolf, Porcupine, Bobcat) used to hedge merchant investments.}

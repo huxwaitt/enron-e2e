@@ -1,0 +1,152 @@
+# Curated InformationSystem instances. `evidence.email_mentions` is a case-sensitive
+# whole-word count over the CMU corpus bodies (517,401 messages); regenerate with
+# `enron-e2e evidence systems`. FERC = "Enron's Energy Trading Business Process and
+# Databases", https://www.ferc.gov/enrons-energy-trading-business-process-and-databases
+systems:
+  - id: enroni:sys/eol
+    label: EnronOnline
+    alt_labels: [EOL]
+    system_code: EOL
+    description: Internet trading platform where Enron was principal to every trade; gas EOL deals flowed into Sitara.
+    process_areas: [deal_capture]
+    downstream_systems: [enroni:sys/sitara, enroni:sys/enpower, enroni:sys/tagg]
+    evidence: [{source_kind: ferc_record, source_id: FERC}, {source_kind: email, locator: "EnronOnline", quote: "8,435 mentions (case-insensitive)"}]
+
+  - id: enroni:sys/sitara
+    label: Sitara
+    system_code: SITARA
+    platform: Oracle
+    description: Front-office system for physical gas deals; 2000 redesign added financial deal types to replace CPR and TAGG for gas.
+    process_areas: [deal_capture, scheduling_logistics]
+    upstream_systems: [enroni:sys/eol]
+    downstream_systems: [enroni:sys/unify-gas, enroni:sys/erms]
+    evidence: [{source_kind: ferc_record, source_id: FERC}, {source_kind: email, locator: "\\bSitara\\b", quote: "6,101 mentions"}]
+
+  - id: enroni:sys/tagg
+    label: TAGG
+    system_code: TAGG
+    platform: Oracle (shared with ERMS)
+    description: Deal entry front end paired with ERMS; trader logins for TDS required a TAGG ID.
+    process_areas: [deal_capture, risk_and_valuation]
+    downstream_systems: [enroni:sys/erms]
+    evidence: [{source_kind: ferc_record, source_id: FERC}, {source_kind: email, locator: "\\bTAGG\\b", quote: "2,735 mentions"}]
+
+  - id: enroni:sys/cpr
+    label: CPR
+    system_code: CPR
+    description: Legacy gas position/risk system slated for replacement by Sitara.
+    process_areas: [deal_capture, risk_and_valuation]
+    evidence: [{source_kind: email, locator: "\\bCPR\\b", quote: "2,549 mentions; also matches first-aid 'CPR', see review"}]
+
+  - id: enroni:sys/erms
+    label: ERMS
+    alt_labels: [Enron Risk Management System]
+    system_code: ERMS
+    platform: Oracle
+    description: Risk management, valuation, position management, rate/price curve management and management reporting.
+    process_areas: [risk_and_valuation]
+    upstream_systems: [enroni:sys/tagg, enroni:sys/sitara]
+    downstream_systems: [enroni:sys/risktrac]
+    evidence: [{source_kind: ferc_record, source_id: FERC}, {source_kind: email, locator: "\\bERMS\\b", quote: "1,353 mentions"}]
+
+  - id: enroni:sys/enpower
+    label: EnPower
+    system_code: ENPOWER
+    platform: Oracle (550+ tables)
+    description: Central repository for electric power trading data; portfolio, position and risk support for power.
+    process_areas: [deal_capture, risk_and_valuation, scheduling_logistics]
+    upstream_systems: [enroni:sys/eol]
+    downstream_systems: [enroni:sys/risktrac, enroni:sys/unify-power]
+    evidence: [{source_kind: ferc_record, source_id: FERC}, {source_kind: email, locator: "EnPower", quote: "3,182 mentions"}]
+
+  - id: enroni:sys/risktrac
+    label: RisktRAC
+    system_code: RISKTRAC
+    description: Portfolio aggregation for VaR, P&L and open positions; takes valued deals from EnPower and curves/MTM from ERMS.
+    process_areas: [risk_and_valuation]
+    upstream_systems: [enroni:sys/enpower, enroni:sys/erms]
+    evidence: [{source_kind: ferc_record, source_id: FERC}, {source_kind: email, locator: "RisktRAC", quote: "478 mentions"}]
+
+  - id: enroni:sys/tds
+    label: Trader Decision Support
+    alt_labels: [TDS]
+    system_code: TDS
+    description: Trader analytics/curve tool on top of TAGG/ERMS.
+    process_areas: [risk_and_valuation]
+    upstream_systems: [enroni:sys/erms]
+    evidence: [{source_kind: email, locator: "\\bTDS\\b", quote: "1,360 mentions; 'TDS -Trader Decision Support On-Call'"}]
+
+  - id: enroni:sys/unify-gas
+    label: Unify (Gas)
+    system_code: UNIFY_GAS
+    platform: Microsoft SQL Server
+    description: Gas settlements - volume actualization, invoicing, imbalances; separate gas, financial and power databases.
+    process_areas: [settlement, scheduling_logistics]
+    upstream_systems: [enroni:sys/sitara]
+    downstream_systems: [enroni:sys/sap]
+    evidence: [{source_kind: ferc_record, source_id: FERC}, {source_kind: email, locator: "\\bUnify\\b", quote: "3,362 mentions"}]
+
+  - id: enroni:sys/unify-power
+    label: Unify (Power)
+    system_code: UNIFY_POWER
+    platform: Microsoft SQL Server
+    process_areas: [settlement]
+    upstream_systems: [enroni:sys/enpower]
+    downstream_systems: [enroni:sys/sap]
+    evidence: [{source_kind: ferc_record, source_id: FERC}]
+
+  - id: enroni:sys/unify-financial
+    label: Unify (Financial)
+    system_code: UNIFY_FIN
+    platform: Microsoft SQL Server
+    process_areas: [settlement]
+    upstream_systems: [enroni:sys/tagg]
+    downstream_systems: [enroni:sys/sap]
+    evidence: [{source_kind: ferc_record, source_id: FERC}]
+
+  - id: enroni:sys/gcp
+    label: Global Counterparty
+    alt_labels: [GCP]
+    system_code: GCP
+    description: Counterparty master (CP ID, BA ID); ERMS short names synchronized weekly; feeds Treasury/SAP payments.
+    process_areas: [credit, deal_capture, treasury]
+    downstream_systems: [enroni:sys/erms, enroni:sys/sap, enroni:sys/unify-gas]
+    evidence: [{source_kind: email, locator: "\\bGCP\\b", quote: "1,164 mentions; 'ERMS short names will be changed in GCP and ERMS each Friday'"}]
+
+  - id: enroni:sys/global-contracts
+    label: Global Contracts
+    alt_labels: [Global Facilities]
+    system_code: GCON
+    description: Contract and facilities master run by Enron Net Works; data setup for physical gas and power.
+    process_areas: [confirmation]
+    evidence: [{source_kind: email, locator: "Global Contracts", quote: "1,160 mentions; 'Enron Net Works, LLC - Global Contracts'"}]
+
+  - id: enroni:sys/cas
+    label: CAS
+    system_code: CAS
+    description: Pipeline contract system used by Enron Transportation Services (Transwestern rate settlement changes).
+    process_areas: [scheduling_logistics, settlement]
+    evidence: [{source_kind: email, locator: "\\bCAS\\b", quote: "513 mentions"}]
+
+  - id: enroni:sys/sap
+    label: SAP R/3
+    system_code: SAP
+    description: Corporate ERP - general ledger, accounts payable and Treasury payment processing.
+    process_areas: [accounting_r2r, treasury]
+    upstream_systems: [enroni:sys/unify-gas, enroni:sys/unify-power, enroni:sys/unify-financial, enroni:sys/gcp]
+    evidence: [{source_kind: email, locator: "\\bSAP\\b", quote: "4,450 mentions; 'Treasury, SAP, and GCP have been working together ... payment issues'"}]
+
+process_steps:
+  - {id: enroni:step/capture-trade, label: Capture trade, process_area: deal_capture, performed_in: [enroni:sys/eol, enroni:sys/sitara, enroni:sys/enpower, enroni:sys/tagg]}
+  - {id: enroni:step/check-credit, label: Check counterparty credit, process_area: credit, performed_in: [enroni:sys/gcp]}
+  - {id: enroni:step/confirm-trade, label: Confirm trade, process_area: confirmation, performed_in: [enroni:sys/global-contracts]}
+  - {id: enroni:step/book-risk, label: Book to risk and value, process_area: risk_and_valuation, performed_in: [enroni:sys/erms, enroni:sys/enpower]}
+  - {id: enroni:step/run-dpr, label: Run Daily Position Report, process_area: risk_and_valuation, performed_in: [enroni:sys/erms, enroni:sys/risktrac],
+     description: "Consolidated DPR process (Global Services) - daily P&L and positions tied out by book."}
+  - {id: enroni:step/nominate, label: Nominate / schedule, process_area: scheduling_logistics, performed_in: [enroni:sys/sitara, enroni:sys/enpower]}
+  - {id: enroni:step/actualize, label: Actualize volumes, process_area: settlement, performed_in: [enroni:sys/unify-gas, enroni:sys/unify-power]}
+  - {id: enroni:step/invoice, label: Invoice counterparty, process_area: settlement, performed_in: [enroni:sys/unify-gas, enroni:sys/unify-power, enroni:sys/unify-financial]}
+  - {id: enroni:step/apply-cash, label: Receive / pay cash, process_area: treasury, performed_in: [enroni:sys/sap]}
+  - {id: enroni:step/post-gl, label: Post to general ledger, process_area: accounting_r2r, performed_in: [enroni:sys/sap]}
+  - {id: enroni:step/close-month, label: Month-end close and MTM reconciliation, process_area: accounting_r2r, performed_in: [enroni:sys/sap, enroni:sys/erms]}
+  - {id: enroni:step/consolidate, label: Consolidate and report, process_area: consolidation_reporting, performed_in: [enroni:sys/sap]}

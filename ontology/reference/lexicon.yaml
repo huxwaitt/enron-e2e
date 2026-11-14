@@ -1,0 +1,97 @@
+# Candidate market reference entities. `aliases` are case-insensitive regexes,
+# matched on word boundaries against workbook cell text, sheet names and file names.
+# The mining step (gold.reference) emits an instance only when an entry is observed,
+# and attaches its observation counts as evidence. Unobserved entries are kept here
+# as negative evidence.
+pipelines:
+  - {slug: northern-natural, label: Northern Natural Gas, aliases: ["northern natural", "\\bNNG\\b"], enron_owned: true}
+  - {slug: transwestern, label: Transwestern Pipeline, aliases: ["transwestern", "\\bTW\\b"], enron_owned: true}
+  - {slug: florida-gas, label: Florida Gas Transmission, aliases: ["florida gas", "\\bFGT\\b"], enron_owned: partial}
+  - {slug: northern-border, label: Northern Border Pipeline, aliases: ["northern border"], enron_owned: partial}
+  - {slug: el-paso, label: El Paso Natural Gas, aliases: ["el paso", "\\bEPNG\\b"]}
+  - {slug: transco, label: Transcontinental Gas Pipe Line, aliases: ["transco"]}
+  - {slug: tennessee, label: Tennessee Gas Pipeline, aliases: ["tennessee gas", "\\bTGP\\b", "\\bTENN\\b"]}
+  - {slug: texas-eastern, label: Texas Eastern Transmission, aliases: ["texas eastern", "\\bTETCO\\b"]}
+  - {slug: ngpl, label: Natural Gas Pipeline Co. of America, aliases: ["\\bNGPL\\b", "natural gas pipeline co"]}
+  - {slug: anr, label: ANR Pipeline, aliases: ["\\bANR\\b"]}
+  - {slug: panhandle, label: Panhandle Eastern Pipe Line, aliases: ["panhandle", "\\bPEPL\\b"]}
+  - {slug: trunkline, label: Trunkline Gas, aliases: ["trunkline"]}
+  - {slug: texas-gas, label: Texas Gas Transmission, aliases: ["texas gas"]}
+  - {slug: columbia-gulf, label: Columbia Gulf Transmission, aliases: ["columbia gulf", "\\bCGT\\b"]}
+  - {slug: columbia-gas, label: Columbia Gas Transmission, aliases: ["columbia gas", "\\bTCO\\b"]}
+  - {slug: kern-river, label: Kern River Gas Transmission, aliases: ["kern river"]}
+  - {slug: pge-gt-nw, label: PG&E Gas Transmission Northwest, aliases: ["PG&E GT", "\\bPGT\\b", "\\bGTN\\b"]}
+  - {slug: northwest-pipeline, label: Northwest Pipeline, aliases: ["northwest pipeline", "\\bNWPL\\b"]}
+  - {slug: cig, label: Colorado Interstate Gas, aliases: ["colorado interstate", "\\bCIG\\b"]}
+  - {slug: questar, label: Questar Pipeline, aliases: ["questar"]}
+  - {slug: southern-natural, label: Southern Natural Gas, aliases: ["southern natural", "\\bSONAT\\b"]}
+  - {slug: koch-gateway, label: Koch Gateway Pipeline, aliases: ["koch gateway"]}
+  - {slug: algonquin, label: Algonquin Gas Transmission, aliases: ["algonquin"]}
+  - {slug: iroquois, label: Iroquois Gas Transmission, aliases: ["iroquois"]}
+  - {slug: transcanada, label: TransCanada PipeLines, aliases: ["transcanada"]}
+  - {slug: nova, label: NOVA Gas Transmission, aliases: ["\\bNOVA\\b"]}
+  - {slug: hpl, label: Houston Pipe Line, aliases: ["houston pipe ?line", "\\bHPL\\b"]}
+  - {slug: lone-star, label: Lone Star Gas, aliases: ["lone star"]}
+  - {slug: mojave, label: Mojave Pipeline, aliases: ["mojave"]}
+  - {slug: socal-gas, label: Southern California Gas, aliases: ["socal ?gas", "\\bSoCalGas\\b"]}
+
+gas_hubs:
+  - {slug: henry-hub, label: Henry Hub, aliases: ["henry hub", "\\bHH\\b"]}
+  - {slug: waha, label: Waha, aliases: ["\\bwaha\\b"]}
+  - {slug: katy, label: Katy, aliases: ["\\bkaty\\b"]}
+  - {slug: houston-ship-channel, label: Houston Ship Channel, aliases: ["ship channel", "\\bHSC\\b"]}
+  - {slug: carthage, label: Carthage, aliases: ["carthage"]}
+  - {slug: agua-dulce, label: Agua Dulce, aliases: ["agua dulce"]}
+  - {slug: chicago-citygate, label: Chicago Citygate, aliases: ["chicago city ?gate", "chicago cg"]}
+  - {slug: michcon, label: MichCon Citygate, aliases: ["michcon"]}
+  - {slug: dominion-south, label: Dominion South Point, aliases: ["dominion south", "\\bCNG south\\b"]}
+  - {slug: transco-z6-ny, label: Transco Zone 6 NY, aliases: ["z(one)? ?6 ?NY", "zone 6"]}
+  - {slug: tetco-m3, label: Texas Eastern M-3, aliases: ["\\bM-?3\\b"]}
+  - {slug: sumas, label: Sumas, aliases: ["\\bsumas\\b"]}
+  - {slug: malin, label: Malin, aliases: ["\\bmalin\\b"]}
+  - {slug: opal, label: Opal, aliases: ["\\bopal\\b"]}
+  - {slug: socal-border, label: SoCal Border (Topock/Ehrenberg), aliases: ["socal border", "topock", "ehrenberg"]}
+  - {slug: pge-citygate, label: PG&E Citygate, aliases: ["PG&E city ?gate"]}
+  - {slug: permian, label: El Paso Permian, aliases: ["permian"]}
+  - {slug: san-juan, label: El Paso San Juan, aliases: ["san juan"]}
+  - {slug: rockies, label: Rockies (CIG/NWPL), aliases: ["rockies"]}
+  - {slug: aeco, label: AECO-C / NIT, aliases: ["\\bAECO\\b", "\\bNIT\\b"]}
+  - {slug: nymex-hh, label: NYMEX Henry Hub futures, aliases: ["nymex"]}
+
+power_points:
+  - {slug: mid-c, label: Mid-Columbia, aliases: ["mid-?c\\b", "mid columbia"]}
+  - {slug: cob, label: California-Oregon Border, aliases: ["\\bCOB\\b"]}
+  - {slug: np15, label: NP15, aliases: ["\\bNP-?15\\b"]}
+  - {slug: sp15, label: SP15, aliases: ["\\bSP-?15\\b"]}
+  - {slug: zp26, label: ZP26, aliases: ["\\bZP-?26\\b"]}
+  - {slug: palo-verde, label: Palo Verde, aliases: ["palo verde", "\\bPV\\b"]}
+  - {slug: four-corners, label: Four Corners, aliases: ["four corners", "4 corners"]}
+  - {slug: mead, label: Mead, aliases: ["\\bmead\\b"]}
+  - {slug: pjm-west, label: PJM West Hub, aliases: ["\\bPJM\\b"]}
+  - {slug: cinergy, label: Cinergy, aliases: ["cinergy"]}
+  - {slug: entergy, label: Entergy, aliases: ["entergy"]}
+  - {slug: tva, label: TVA, aliases: ["\\bTVA\\b"]}
+  - {slug: comed, label: ComEd, aliases: ["\\bComEd\\b", "commonwealth edison"]}
+  - {slug: into-southern, label: Into Southern, aliases: ["into southern", "\\bSOCO\\b"]}
+  - {slug: ercot, label: ERCOT, aliases: ["\\bERCOT\\b"]}
+  - {slug: nepool, label: NEPOOL, aliases: ["\\bNEPOOL\\b"]}
+  - {slug: nyiso, label: NYISO, aliases: ["\\bNYISO\\b", "\\bNYPP\\b"]}
+  - {slug: caiso, label: California ISO, aliases: ["\\bCAISO\\b", "\\bCal ?ISO\\b"]}
+  - {slug: calpx, label: California Power Exchange, aliases: ["\\bCalPX\\b", "\\bPX\\b"]}
+
+price_indices:
+  - {slug: iferc, label: Inside FERC Gas Market Report (first-of-month), aliases: ["\\bIFERC\\b", "inside ferc"], publisher: platts}
+  - {slug: gas-daily, label: Gas Daily, aliases: ["gas daily", "\\bGD\\b"], publisher: platts}
+  - {slug: ngi, label: Natural Gas Intelligence, aliases: ["\\bNGI\\b"]}
+  - {slug: megawatt-daily, label: Megawatt Daily, aliases: ["megawatt daily"], publisher: platts}
+  - {slug: dow-jones-power, label: Dow Jones power indices, aliases: ["dow jones", "\\bDJ\\b"]}
+  - {slug: nymex-settle, label: NYMEX settlement price, aliases: ["nymex"]}
+
+exchanges_isos:
+  - {slug: nymex, label: New York Mercantile Exchange, type: exchange, aliases: ["nymex"]}
+  - {slug: ipe, label: International Petroleum Exchange, type: exchange, aliases: ["\\bIPE\\b"]}
+  - {slug: caiso, label: California Independent System Operator, type: iso_rto, aliases: ["\\bCAISO\\b"]}
+  - {slug: pjm, label: PJM Interconnection, type: iso_rto, aliases: ["\\bPJM\\b"]}
+  - {slug: ercot, label: Electric Reliability Council of Texas, type: iso_rto, aliases: ["\\bERCOT\\b"]}
+  - {slug: ferc, label: Federal Energy Regulatory Commission, type: regulator, aliases: ["\\bFERC\\b"]}
+  - {slug: platts, label: Platts (McGraw-Hill), type: price_publisher, aliases: ["platts"]}
