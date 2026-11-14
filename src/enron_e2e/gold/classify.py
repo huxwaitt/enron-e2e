@@ -53,7 +53,7 @@ def features(con: duckdb.DuckDBPyConnection) -> pd.DataFrame:
 def _score(text_by_field: dict, compiled: dict, weights: dict):
     scores, hits = defaultdict(float), defaultdict(set)
     for field, text in text_by_field.items():
-        if not text:
+        if not isinstance(text, str) or not text:
             continue
         w = weights[field]
         for label, pats in compiled.items():

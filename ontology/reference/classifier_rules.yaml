@@ -1,7 +1,7 @@
 # Weighted lexicon for the workbook classifier (gold.classify). Patterns are
 # case-insensitive regexes. Field weights scale a hit by where it was found.
 # Change a rule, rebuild, and diff gold/workbook_labels.parquet. The rules are versioned with the code.
-version: 1
+version: 2
 field_weights: {filename: 3.0, sheet_name: 2.0, header_text: 1.0, email_subject: 1.5}
 min_score: 2.0
 
@@ -9,7 +9,7 @@ process_areas:
   deal_capture: ["\\bdeals?\\b", "\\btickets?\\b", "\\btrades?\\b", "\\bEOL\\b", "enrononline", "deal ?#", "deal ?(no|num)", "trade date", "sitara", "enpower", "\\btagg\\b", "new deals", "deal entry", "buy/sell", "\\bb/s\\b", "trader"]
   confirmation: ["confirm", "\\bcontracts?\\b", "\\bmaster\\b", "\\bisda\\b", "\\bgisb\\b", "\\beei\\b", "enfolio", "executed", "assignment", "\\bnda\\b", "global contracts"]
   credit: ["\\bcredit\\b", "collateral", "\\bmargin", "exposure", "\\blimits?\\b", "letters? of credit", "\\bL/?C\\b", "rating", "guarant", "netting", "\\bGCP\\b", "counterparty"]
-  risk_and_valuation: ["position", "\\bp ?& ?l\\b", "\\bpnl\\b", "\\bmtm\\b", "mark.to.market", "\\bvar\\b", "\\bcurves?\\b", "\\bbasis\\b", "\\bfwd\\b", "forward", "\\bdpr\\b", "\\bbooks?\\b", "\\bdelta\\b", "\\bgamma\\b", "\\bvol(atility)?\\b", "\\berms\\b", "risktrac", "hedge"]
+  risk_and_valuation: ["position", "\\bp ?& ?l\\b", "\\bpnl\\b", "\\bmtm\\b", "mark.to.market", "\\bvar\\b", "\\bcurves?\\b", "\\bbasis\\b", "\\bfwd\\b", "forward", "\\bdpr\\b", "\\bbooks?\\b", "\\bdelta\\b", "\\bgamma\\b", "\\bvol(atility)?\\b", "\\berms\\b", "risktrac", "hedge", "\bindex\b", "\bprices?\b", "\bbid\b", "\boffer\b", "\bsp-? ?15\b", "\bnp-? ?15\b", "mid-?c\b", "palo verde", "\bcob\b", "nyiso", "\bpjm\b", "ercot", "henry hub", "nymex", "\biferc\b", "gas daily", "\bspread\b", "\bpeak\b", "off.?peak", "\bstrip\b"]
   scheduling_logistics: ["nomination", "\\bnoms?\\b", "schedul", "imbalance", "\\bflows?\\b", "\\bmeters?\\b", "capacity", "storage", "inject", "withdraw", "preschedul", "\\btags?\\b", "dispatch", "\\bmmbtu", "\\bdth\\b", "\\bmw\\b", "\\bmwh\\b", "gas day", "logistics", "pipeline", "transport", "\\bfuel\\b"]
   settlement: ["settle", "invoice", "billing", "actuals?\\b", "actualiz", "prior period", "payment", "statement", "receivable", "payable", "true.?up", "\\bunify\\b", "\\bppa\\b", "cash out"]
   accounting_r2r: ["accrual", "journal", "\\bgl\\b", "general ledger", "reconcil", "\\brecs?\\b", "balance sheet", "trial balance", "cost cent", "\\bsap\\b", "reclass", "intercompany", "\\bclose\\b", "flash", "\\bco ?code\\b", "\\brc\\b", "account"]
