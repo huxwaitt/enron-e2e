@@ -33,7 +33,7 @@ def build(con: duckdb.DuckDBPyConnection | None = None) -> dict:
 
     # ---- messages: the CMU release minted a unique Message-ID per *file*, so the same
     # email in a sender's "sent" folder and five inboxes has six IDs. Collapse on content.
-    con.execute("""
+    con.execute(r"""
         create or replace table bm_keyed as
         select *, md5(coalesce(from_addr, '') || '|' || coalesce(date_utc::varchar, '') || '|' ||
                       coalesce(subject, '') || '|' || left(regexp_replace(coalesce(body, ''), '\s+', ' ', 'g'), 4000)) as content_key
@@ -43,7 +43,7 @@ def build(con: duckdb.DuckDBPyConnection | None = None) -> dict:
         create or replace table msg_map as
         select message_id, min(message_id) over (partition by content_key) as canonical_id from bm_keyed
     """)
-    con.execute("""
+    con.execute(r"""
         create or replace table messages as
         select min(message_id)                              as message_id,
                msg_iri(min(message_id))                     as message_iri,
