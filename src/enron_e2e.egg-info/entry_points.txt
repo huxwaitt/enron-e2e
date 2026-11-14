@@ -1,2 +1,0 @@
-[console_scripts]
-enron-e2e = enron_e2e.cli:main

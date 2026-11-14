@@ -7,3 +7,4 @@ data/
 lake/
 *.duckdb
 *.duckdb.wal
+*.egg-info/
