@@ -1,0 +1,1991 @@
+# Enron-era standards catalog (c. 1997 - Dec 2001), with post-Enron reforms.
+#
+# Each record maps a standard that governed work in Enron's spreadsheets to
+# what governs the same topic today. See standards/sources.md for the
+# bibliography and conventions.
+#
+# Conventions
+#   - Dates are ISO-8601 strings. Where only the month or year is known from
+#     the source, the value is truncated ("1998-06", "1992").
+#   - `effective` is the date relevant to a calendar-year SEC registrant like
+#     Enron (first day of the first period the standard applied), unless the
+#     standard is transaction-based, in which case it is the first transaction
+#     date covered. `effective_note` carries the official wording.
+#   - `unverified: true` marks a record with at least one field we could not
+#     confirm from a source; `unverified_fields` names them. Unconfirmed
+#     values are null rather than guessed.
+#   - `post_enron: true` marks reforms adopted after Enron's Dec 2, 2001
+#     bankruptcy, kept here so readers can see the before/after.
+#   - category: one of accounting_recognition, accounting_disclosure,
+#     derivatives_and_hedging, energy_trading, consolidation_and_spe,
+#     regulatory_reporting, regulated_utility_accounting,
+#     contracts_master_agreements, market_conventions, audit_and_controls, tax
+#   - process_areas: deal_capture, confirmation, risk_and_valuation,
+#     scheduling_logistics, settlement, credit, accounting_r2r,
+#     consolidation_reporting, regulatory_reporting, fpa, treasury, tax,
+#     audit_controls
+
+# ---------------------------------------------------------------------------
+# Energy trading, derivatives and fair value
+# ---------------------------------------------------------------------------
+
+- id: eitf-98-10
+  title: Accounting for Contracts Involved in Energy Trading and Risk Management Activities
+  issuer: EITF
+  designation: EITF Issue No. 98-10
+  category: energy_trading
+  post_enron: false
+  issued: "1998-11-19"
+  effective: "1999-01-01"
+  effective_note: >-
+    Consensus reached at the November 18-19, 1998 EITF meeting. Applied to
+    financial statements for fiscal years beginning after December 15, 1998;
+    initial effect reported as a cumulative effect of a change in accounting
+    principle (APB 20), no restatement of prior periods.
+  superseded_by: eitf-02-3
+  status_as_of_2001-12-31: in_force
+  enron_relevance: >-
+    The basis for Enron's mark-to-market accounting: forwards, swaps, options
+    and energy transportation contracts held for trading were carried at fair
+    value as "Assets/Liabilities from Price Risk Management Activities", with
+    unrealized gains from newly originated contracts, restructurings and price
+    moves booked in "Other Revenues" (2000 10-K, Note 1). The scope covered
+    capacity, transportation and requirements contracts, and the commodity
+    component of Enron Energy Services outsourcing deals. That let Enron book
+    long-dated, thinly traded contracts at management's estimate of fair
+    value. Enron had used mark-to-market for gas trading since the SEC staff
+    accepted it in early 1992.
+  process_areas: [deal_capture, risk_and_valuation, accounting_r2r, consolidation_reporting]
+  today:
+    codification: ASC 815; ASC 820
+    note: >-
+      EITF 02-3 rescinded 98-10 in October 2002. Energy contracts that are not
+      derivatives went back to accrual accounting (or to ASC 606 / ASC 842 as
+      applicable). Derivatives are fair-valued under ASC 815, with fair value
+      measured and disclosed under ASC 820 (Level 1/2/3 hierarchy).
+  sources:
+    - https://www.cs.trinity.edu/rjensen/000overview/mp3/bookout.htm
+    - https://www.sec.gov/Archives/edgar/data/1024401/000102440101500010/ene10-k.txt
+    - https://media.corporate-ir.net/media_files/irol/89/89455/reports/2002_annual/page62.html
+    - https://en.wikipedia.org/wiki/Enron_scandal
+
+- id: fas-133
+  title: Accounting for Derivative Instruments and Hedging Activities
+  issuer: FASB
+  designation: SFAS No. 133 (as deferred by SFAS No. 137)
+  category: derivatives_and_hedging
+  post_enron: false
+  issued: "1998-06"
+  effective: "2001-01-01"
+  effective_note: >-
+    Originally effective for fiscal years beginning after June 15, 1999.
+    SFAS 137 (June 1999) deferred it to all fiscal quarters of fiscal years
+    beginning after June 15, 2000. Enron adopted it on January 1, 2001 (no
+    early adoption).
+  superseded_by: null
+  status_as_of_2001-12-31: in_force
+  enron_relevance: >-
+    Enron adopted SFAS 133 on January 1, 2001. It recorded an after-tax
+    cumulative-effect loss of about $5 million in earnings and a gain of about
+    $22 million in OCI, and reclassified $532 million from long-term debt to
+    other liabilities. Its 2000 10-K said the final impact depended on pending
+    FASB interpretations of "normal purchases and normal sales" and of
+    inflation escalators in contracts. Hedge designation and effectiveness
+    testing became a control point for the non-trading (asset and merchant
+    investment) hedges.
+  process_areas: [deal_capture, risk_and_valuation, accounting_r2r, treasury, consolidation_reporting]
+  today:
+    codification: ASC 815
+    note: >-
+      Still the core derivatives standard, now codified in ASC 815. Hedge
+      accounting has since been amended (notably by ASU 2017-12), and the
+      fair value measurement it relies on now comes from ASC 820.
+  sources:
+    - https://storage.fasb.org/fas133.pdf
+    - https://storage.fasb.org/fas137.pdf
+    - https://www.sec.gov/Archives/edgar/data/1024401/000102440101500010/ene10-k.txt
+    - https://www.journalofaccountancy.com/issues/1999/aug/news2-aug-1999/
+
+- id: fas-138
+  title: Accounting for Certain Derivative Instruments and Certain Hedging Activities (an amendment of FASB Statement No. 133)
+  issuer: FASB
+  designation: SFAS No. 138
+  category: derivatives_and_hedging
+  post_enron: false
+  issued: "2000-06"
+  effective: "2001-01-01"
+  effective_note: >-
+    Effective for all fiscal quarters beginning after June 15, 2000, alongside
+    SFAS 133 for entities that had not yet adopted 133. For Enron this was the
+    January 1, 2001 adoption.
+  superseded_by: null
+  status_as_of_2001-12-31: in_force
+  enron_relevance: >-
+    Amended SFAS 133 before Enron adopted it, including the normal purchases
+    and normal sales scope exception that decided whether physical gas and
+    power supply contracts were derivatives carried at fair value or accrual
+    contracts. Enron's 2000 10-K named this area as an open interpretive
+    question affecting its adoption estimate.
+  process_areas: [deal_capture, risk_and_valuation, accounting_r2r]
+  today:
+    codification: ASC 815-10-15 (normal purchases and normal sales scope exception)
+    note: >-
+      Folded into ASC 815. Designating normal purchases and normal sales
+      contracts is still a documented election that deal capture has to
+      record at inception.
+  sources:
+    - https://storage.fasb.org/fas138.pdf
+    - https://www.sec.gov/Archives/edgar/data/1024401/000102440101500010/ene10-k.txt
+
+- id: eitf-02-3
+  title: Issues Involved in Accounting for Derivative Contracts Held for Trading Purposes and Contracts Involved in Energy Trading and Risk Management Activities
+  issuer: EITF
+  designation: EITF Issue No. 02-3
+  category: energy_trading
+  post_enron: true
+  issued: "2002-10-25"
+  effective: "2002-10-25"
+  effective_note: >-
+    At its October 25, 2002 meeting the EITF rescinded Issue 98-10. Contracts
+    entered into after that date that are outside SFAS 133 could no longer be
+    marked to market through earnings. Energy trading contracts and
+    derivatives, whether settled physically or financially, were to be shown
+    net in the income statement from January 1, 2003. Footnote 3 barred
+    day-one (inception) gains unless fair value came from a quoted market
+    price or other observable data.
+  superseded_by: fas-157 (footnote 3 nullified); otherwise codified in ASC 815
+  status_as_of_2001-12-31: not_yet_issued
+  enron_relevance: >-
+    The direct accounting response to Enron. It ended mark-to-market for
+    non-derivative energy contracts (such as Enron's long-term outsourcing and
+    transportation deals), which removed the main way such deals produced
+    day-one earnings. It also ended the gross revenue presentation that made
+    Enron's 2000 revenues $100.8 billion.
+  process_areas: [deal_capture, risk_and_valuation, accounting_r2r, consolidation_reporting]
+  today:
+    codification: ASC 815; ASC 820
+    note: >-
+      The net-presentation and no-mark-to-market-for-non-derivatives results
+      carried into ASC 815. The day-one gain prohibition in footnote 3 was
+      nullified by SFAS 157 (2006). Inception gains are now judged under the
+      ASC 820 hierarchy, with heavy disclosure for Level 3.
+  sources:
+    - https://www.cfo.com/news/enrons-derivative-accounting-legacy/678056/
+    - https://media.corporate-ir.net/media_files/irol/89/89455/reports/2002_annual/page62.html
+    - https://storage.fasb.org/fas157.pdf
+
+- id: fas-157
+  title: Fair Value Measurements
+  issuer: FASB
+  designation: SFAS No. 157
+  category: accounting_disclosure
+  post_enron: true
+  issued: "2006-09"
+  effective: "2008-01-01"
+  effective_note: >-
+    Effective for financial statements issued for fiscal years beginning after
+    November 15, 2007, and interim periods within those years (January 1, 2008
+    for calendar-year entities).
+  superseded_by: null
+  status_as_of_2001-12-31: not_yet_issued
+  enron_relevance: >-
+    The "after" picture for Enron's curve-and-model valuations. Under it, most
+    of Enron's long-dated, illiquid regional power and gas positions would
+    have been Level 3 measurements, with required roll-forwards and
+    disclosure of unobservable inputs. Enron's own disclosures said only that
+    prices reflected "management's best estimate".
+  process_areas: [risk_and_valuation, accounting_r2r, consolidation_reporting]
+  today:
+    codification: ASC 820
+    note: >-
+      Codified as ASC 820. It nullified EITF 02-3 footnote 3, so day-one gains
+      can be recognized when the measurement supports them; SEC staff warned
+      in 2006 that this was not a license to "mark to model". Later
+      amendments (for example ASU 2011-04) expanded Level 3 disclosures.
+  sources:
+    - https://storage.fasb.org/fas157.pdf
+    - https://www.sec.gov/news/speech/2006/spch121106jdm.htm
+
+- id: fas-107
+  title: Disclosures about Fair Value of Financial Instruments
+  issuer: FASB
+  designation: SFAS No. 107
+  category: accounting_disclosure
+  post_enron: false
+  issued: "1991-12"
+  effective: "1992-12-31"
+  effective_note: >-
+    Effective for financial statements issued for fiscal years ending after
+    December 15, 1992. Entities with less than $150 million in total assets
+    were allowed a later date.
+  superseded_by: null
+  status_as_of_2001-12-31: in_force
+  enron_relevance: >-
+    Required fair value disclosure for financial instruments not already
+    carried at fair value, such as Enron's debt, notes receivable and
+    non-trading instruments. This supported the price risk management and
+    financial instrument notes in the 10-K.
+  process_areas: [risk_and_valuation, treasury, consolidation_reporting]
+  today:
+    codification: ASC 825-10-50
+    note: >-
+      Still required, now in ASC 825, and measured on the ASC 820 basis.
+      Disclosure relief for certain entities followed later (ASU 2016-01).
+  sources:
+    - https://storage.fasb.org/fas107.pdf
+
+- id: sec-sk-item-305
+  title: Quantitative and Qualitative Disclosures about Market Risk
+  issuer: SEC
+  designation: Regulation S-K Item 305 (Release Nos. 33-7386; 34-38223)
+  category: regulatory_reporting
+  post_enron: false
+  issued: "1997-01-28"
+  effective: "1997-06-15"
+  effective_note: >-
+    Adopted January 28, 1997 (62 FR, Feb 10, 1997). Item 305 applied to
+    filings with annual financial statements for fiscal years ending after
+    June 15, 1997 for registrants with market cap above $2.5 billion; smaller
+    registrants were phased in a year later. Enron was in the first group.
+  superseded_by: null
+  status_as_of_2001-12-31: in_force
+  enron_relevance: >-
+    The source of Enron's Item 7A "Financial Risk Management" section. Enron
+    used the value-at-risk alternative, reporting entity-wide VaR for
+    commodity, interest rate, foreign currency and equity exposures. It also
+    noted the limits of VaR and that it did not capture liquidity or event
+    risk.
+  process_areas: [risk_and_valuation, regulatory_reporting, consolidation_reporting]
+  today:
+    codification: Regulation S-K Item 305 (17 CFR 229.305)
+    note: >-
+      Largely unchanged. Exposures that VaR does not capture, such as Level 3
+      positions and liquidity, are now covered through ASC 820 disclosures,
+      MD&A liquidity discussion and SEC comment-letter practice.
+  sources:
+    - https://www.sec.gov/rules/final/33-7386.htm
+    - https://www.govinfo.gov/content/pkg/FR-1997-02-10/html/97-2991.htm
+    - https://www.sec.gov/Archives/edgar/data/1024401/000102440101500010/ene10-k.txt
+
+# ---------------------------------------------------------------------------
+# Consolidation, SPEs, transfers of financial assets
+# ---------------------------------------------------------------------------
+
+- id: arb-51
+  title: Consolidated Financial Statements (as amended by SFAS 94, Consolidation of All Majority-owned Subsidiaries)
+  issuer: AICPA
+  designation: ARB No. 51; SFAS No. 94 (FASB)
+  category: consolidation_and_spe
+  post_enron: false
+  issued: "1959-08"
+  effective: "1959-08"
+  effective_note: >-
+    ARB 51 was issued and effective in August 1959 (Committee on Accounting
+    Procedure, AICPA). SFAS 94 (October 1987) amended it to require
+    consolidation of all majority-owned subsidiaries, effective for fiscal
+    years ending after December 15, 1988.
+  superseded_by: null
+  status_as_of_2001-12-31: in_force
+  enron_relevance: >-
+    The voting-control consolidation model, with its presumption that
+    consolidated statements are more meaningful, is the baseline the Powers
+    Report used to judge Enron's SPEs. Because Enron's SPEs were not
+    majority-owned voting entities, their treatment turned on the
+    SPE-specific exceptions (EITF 90-15, Topic D-14) rather than on ARB 51
+    itself.
+  process_areas: [consolidation_reporting, accounting_r2r]
+  today:
+    codification: ASC 810-10
+    note: >-
+      Voting-interest consolidation remains in ASC 810-10. Entities without
+      sufficient at-risk equity or with non-voting control are now handled by
+      the variable interest entity model (FIN 46/46(R), SFAS 167 / ASU
+      2009-17).
+  sources:
+    - https://storage.fasb.org/ARB%2051.pdf
+    - https://storage.fasb.org/fas94.pdf
+    - https://www.sec.gov/Archives/edgar/data/1024401/000090951802000089/0000909518-02-000089.txt
+
+- id: apb-18
+  title: The Equity Method of Accounting for Investments in Common Stock
+  issuer: AICPA
+  designation: APB Opinion No. 18
+  category: consolidation_and_spe
+  post_enron: false
+  issued: "1971-03"
+  effective: null
+  effective_note: >-
+    Issued by the Accounting Principles Board in March 1971. The original
+    effective date was not checked against the source text.
+  superseded_by: null
+  status_as_of_2001-12-31: in_force
+  enron_relevance: >-
+    Enron accounted for its unconsolidated affiliates (for example JEDI before
+    the restatement, Whitewing and many international project companies) by
+    the equity method. The exception was investments from its merchant
+    activities, which it carried at market value in "Other Investments".
+    Where acquired assets were held under "temporary control", Enron
+    recognized earnings only for the portion it intended to keep.
+  process_areas: [consolidation_reporting, accounting_r2r]
+  today:
+    codification: ASC 323
+    note: >-
+      The equity method itself is largely unchanged since 1971. Simplifying
+      amendments include ASU 2016-07, which removed retroactive adoption when
+      an investment qualifies for the equity method.
+  sources:
+    - https://en.wikipedia.org/wiki/List_of_Accounting_Principles_Board_Opinions
+    - https://people.wku.edu/jack.hall/apb18.htm
+    - https://www.sec.gov/Archives/edgar/data/1024401/000102440101500010/ene10-k.txt
+  unverified: true
+  unverified_fields: [effective]
+
+- id: eitf-90-15
+  title: Impact of Nonsubstantive Lessors, Residual Value Guarantees, and Other Provisions in Leasing Transactions
+  issuer: EITF
+  designation: EITF Issue No. 90-15 (with implementation guidance in EITF 96-21)
+  category: consolidation_and_spe
+  post_enron: false
+  issued: null
+  effective: null
+  effective_note: >-
+    EITF 90-15 dates from 1990-91 by its issue number, but the exact consensus
+    and effective dates were not confirmed. EITF 96-21 ("Implementation
+    Issues in Accounting for Leasing Transactions involving Special-Purpose
+    Entities") supplemented it.
+  superseded_by: fin-46
+  status_as_of_2001-12-31: in_force
+  enron_relevance: >-
+    Source of the "3 percent" outside equity test that practice applied to
+    Enron's non-consolidated SPEs. Chewco failed it: part of the required 3%
+    came from an Enron-affiliated person and part was not at risk. Enron
+    therefore consolidated Chewco and JEDI back to November 1997 in its
+    November 2001 restatement, raising reported debt by $711 million in 1997
+    and $628 million in 2000.
+  process_areas: [consolidation_reporting, accounting_r2r, treasury, audit_controls]
+  today:
+    codification: ASC 810-10 (Variable Interest Entities subsections); ASC 842
+    note: >-
+      FIN 46 (January 2003) nullified EITF 90-15 and most of 96-21. It stated
+      that the 3% requirement was superseded and that 3% equity is
+      insufficient for many VIEs, with a 10% presumption. Lease
+      classification moved to ASC 842 (ASU 2016-02), which put most leases on
+      the balance sheet.
+  sources:
+    - https://storage.fasb.org/fin46.pdf
+    - https://law-journals-books.vlex.com/vid/consolidate-special-purpose-entity-54502958
+    - https://corporate.findlaw.com/business-operations/the-synthetic-lease-an-introduction-and-practice-guide.html
+    - https://www.sec.gov/Archives/edgar/data/1024401/000090951802000089/0000909518-02-000089.txt
+  unverified: true
+  unverified_fields: [issued, effective]
+
+- id: eitf-topic-d-14
+  title: Transactions involving Special-Purpose Entities
+  issuer: EITF
+  designation: EITF Topic No. D-14 (SEC staff announcement)
+  category: consolidation_and_spe
+  post_enron: false
+  issued: null
+  effective: null
+  effective_note: >-
+    An SEC staff announcement developed over several EITF meetings. The date
+    of the announcement was not confirmed.
+  superseded_by: fin-46
+  status_as_of_2001-12-31: in_force
+  enron_relevance: >-
+    Recorded the SEC staff position that an independent owner's substantive
+    equity investment of at least 3% of total capital was the minimum to
+    avoid consolidation, and that the right level depends on the facts. The
+    independent owner also had to control the SPE, and the equity had to stay
+    at risk throughout. The Powers Report applied this test to Chewco, LJM1,
+    LJM2, Swap Sub and the Raptors.
+  process_areas: [consolidation_reporting, accounting_r2r, audit_controls]
+  today:
+    codification: ASC 810-10 (VIE model)
+    note: >-
+      FIN 46 nullified Topic D-14. Today the primary beneficiary of a VIE (the
+      party with power over its most significant activities plus exposure to
+      significant losses or benefits) consolidates it, with ongoing
+      reassessment and extensive disclosure.
+  sources:
+    - https://storage.fasb.org/fin46.pdf
+    - https://storage.fasb.org/fas140.pdf
+    - https://www.sec.gov/Archives/edgar/data/1024401/000090951802000089/0000909518-02-000089.txt
+  unverified: true
+  unverified_fields: [issued, effective]
+
+- id: fas-125
+  title: Accounting for Transfers and Servicing of Financial Assets and Extinguishments of Liabilities
+  issuer: FASB
+  designation: SFAS No. 125
+  category: consolidation_and_spe
+  post_enron: false
+  issued: "1996-06"
+  effective: "1997-01-01"
+  effective_note: >-
+    Effective for transfers and servicing of financial assets and
+    extinguishments of liabilities occurring after December 31, 1996, applied
+    prospectively. Certain provisions were deferred.
+  superseded_by: fas-140
+  status_as_of_2001-12-31: superseded
+  enron_relevance: >-
+    Set the sale-accounting criteria (surrender of control, isolation) and the
+    qualifying-SPE concept behind Enron's "monetizations" of merchant
+    investments and other financial assets in 1997-2000. Enron typically sold
+    an asset to an SPE while keeping risk through total return swaps.
+  process_areas: [treasury, accounting_r2r, consolidation_reporting]
+  today:
+    codification: ASC 860
+    note: >-
+      Replaced by SFAS 140 (2000) and then substantially amended by SFAS 166
+      (2009), which eliminated the qualifying SPE concept. Now codified in ASC
+      860.
+  sources:
+    - https://storage.fasb.org/fas125.pdf
+    - https://www.fdic.gov/news/inactive-financial-institution-letters/1996/fil96109.pdf
+
+- id: fas-140
+  title: Accounting for Transfers and Servicing of Financial Assets and Extinguishments of Liabilities (a replacement of FASB Statement No. 125)
+  issuer: FASB
+  designation: SFAS No. 140
+  category: consolidation_and_spe
+  post_enron: false
+  issued: "2000-09"
+  effective: "2001-04-01"
+  effective_note: >-
+    Effective for transfers and servicing occurring after March 31, 2001.
+    Recognition and reclassification of collateral, and the securitization
+    disclosures, were effective for fiscal years ending after December 15,
+    2000, so they applied to Enron's 2000 10-K.
+  superseded_by: null
+  status_as_of_2001-12-31: in_force
+  enron_relevance: >-
+    Governed Enron's securitizations. In 2000 Enron reported $381 million of
+    gains on securitization sales on $2,379 million of proceeds, including
+    $545 million from sales to Whitewing. Enron usually entered into swaps
+    with the purchaser at the same time, limiting the buyer's risk. The
+    Powers Report describes LJM2 buying interests through such
+    securitizations.
+  process_areas: [treasury, accounting_r2r, consolidation_reporting, risk_and_valuation]
+  today:
+    codification: ASC 860
+    note: >-
+      SFAS 166 (ASU 2009-16) removed the qualifying SPE exception and
+      tightened derecognition. Together with SFAS 167 (ASU 2009-17) it means
+      securitization vehicles are assessed for consolidation under the VIE
+      model.
+  sources:
+    - https://storage.fasb.org/fas140.pdf
+    - https://www.fdic.gov/credit-card-securitization-manual/chapter-iii-accounting-credit-card-securitizations
+    - https://storage.fasb.org/fas167.pdf
+    - https://www.sec.gov/Archives/edgar/data/1024401/000102440101500010/ene10-k.txt
+
+- id: fin-46
+  title: Consolidation of Variable Interest Entities (an interpretation of ARB No. 51), including FIN 46(R)
+  issuer: FASB
+  designation: FASB Interpretation No. 46; FIN 46(R) (revised December 2003)
+  category: consolidation_and_spe
+  post_enron: true
+  issued: "2003-01-17"
+  effective: "2003-01-31"
+  effective_note: >-
+    FIN 46 applied immediately to VIEs created after January 31, 2003, and to
+    older VIEs from the first fiscal year or interim period beginning after
+    June 15, 2003. FIN 46(R), issued December 2003, generally applied by
+    periods ending after December 15, 2003 for SPEs and after March 15, 2004
+    for other VIEs (public companies).
+  superseded_by: fas-167
+  status_as_of_2001-12-31: not_yet_issued
+  enron_relevance: >-
+    The FASB's main post-Enron fix. It replaced the voting and 3%
+    outside-equity tests that Chewco, LJM and the Raptors were built around
+    with consolidation by the primary beneficiary of a variable interest
+    entity. It explicitly nullified EITF 90-15, Topic D-14 and most of EITF
+    96-21.
+  process_areas: [consolidation_reporting, accounting_r2r, audit_controls]
+  today:
+    codification: ASC 810-10 (VIE subsections)
+    note: >-
+      FIN 46(R)'s quantitative expected-loss test was replaced by SFAS 167's
+      qualitative power-and-economics test (2009; ASU 2009-17), later refined
+      by ASU 2015-02.
+  sources:
+    - https://storage.fasb.org/fin46.pdf
+    - https://storage.fasb.org/fin46r.pdf
+    - https://en.wikipedia.org/wiki/FIN_46
+
+- id: fas-167
+  title: Amendments to FASB Interpretation No. 46(R)
+  issuer: FASB
+  designation: SFAS No. 167 (codified by ASU 2009-17)
+  category: consolidation_and_spe
+  post_enron: true
+  issued: "2009-06-12"
+  effective: "2010-01-01"
+  effective_note: >-
+    Issued June 2009 and codified into ASC 810 by ASU 2009-17 (December 2009).
+    Effective for the first annual reporting period beginning after November
+    15, 2009 (January 1, 2010 for calendar-year entities).
+  superseded_by: null
+  status_as_of_2001-12-31: not_yet_issued
+  enron_relevance: >-
+    The current form of the VIE model. Consolidation turns on who has the
+    power to direct the activities that most significantly affect a VIE's
+    economics, which is the question the Powers Report raised about LJM2 and
+    the Raptors. It also removed the QSPE carve-out (with SFAS 166).
+  process_areas: [consolidation_reporting, accounting_r2r]
+  today:
+    codification: ASC 810-10
+    note: >-
+      Current GAAP (ASC 810-10, as amended by ASU 2015-02 and later
+      related-party refinements).
+  sources:
+    - https://storage.fasb.org/fas167.pdf
+    - https://viewpoint.pwc.com/dt/us/en/fasb_financial_accou/asus_fulltext/2009/asu_200917consolidat/asu_200917consolidat_US/asu_200917consolidat_US.html
+  unverified: true
+  unverified_fields: [effective]
+
+- id: eitf-85-1
+  title: Classifying Notes Received for Capital Stock
+  issuer: EITF
+  designation: EITF Issue No. 85-1
+  category: accounting_recognition
+  post_enron: false
+  issued: null
+  effective: null
+  effective_note: >-
+    Dates from 1985 by its issue number. The exact consensus date was not
+    confirmed. The principle (notes received for a company's own stock are
+    shown as a deduction from equity, not as an asset) is what Enron applied
+    in its 2001 correction.
+  superseded_by: null
+  status_as_of_2001-12-31: in_force
+  enron_relevance: >-
+    Enron issued its own stock and stock contracts to the Raptor SPEs in
+    exchange for notes receivable and recorded both an asset and an increase
+    in equity. That overstated equity by $172 million in Q2 2000 and $828
+    million in Q1 2001. The correction was most of the $1.2 billion equity
+    reduction Enron announced on October 16, 2001.
+  process_areas: [accounting_r2r, consolidation_reporting, treasury]
+  today:
+    codification: ASC 505-10-45-2
+    note: >-
+      Same principle in ASC 505-10-45-2; SEC registrants also follow SAB Topic
+      4.E.
+  sources:
+    - https://www.sec.gov/Archives/edgar/data/1024401/000095012901503835/0000950129-01-503835.txt
+    - https://www.sec.gov/Archives/edgar/data/1024401/000090951802000089/0000909518-02-000089.txt
+    - https://www.oilandgasinvestor.com/exclusives/enrons-spes-andersen-sec-and-fasb-6526
+  unverified: true
+  unverified_fields: [issued, effective]
+
+- id: eitf-00-19
+  title: Accounting for Derivative Financial Instruments Indexed to, and Potentially Settled in, a Company's Own Stock
+  issuer: EITF
+  designation: EITF Issue No. 00-19
+  category: derivatives_and_hedging
+  post_enron: false
+  issued: "2000-09-20"
+  effective: "2000-09-20"
+  effective_note: >-
+    Final consensus reached September 20, 2000. It applied to new contracts
+    from inception. Contracts already outstanding were grandfathered until
+    June 30, 2001, with a cumulative catch-up adjustment at that date.
+  superseded_by: null
+  status_as_of_2001-12-31: in_force
+  enron_relevance: >-
+    Governed equity-versus-liability classification of the Enron stock
+    contracts and forwards on Enron's own stock used to capitalize the Raptor
+    vehicles (2000-2001) and to hedge merchant investments with LJM2. This
+    affected both equity and the income statement.
+  process_areas: [accounting_r2r, treasury, consolidation_reporting]
+  today:
+    codification: ASC 815-40
+    note: >-
+      Codified in ASC 815-40, partly nullified by SFAS 150 (2003) and
+      simplified by ASU 2020-06.
+  sources:
+    - https://www.sec.gov/Archives/edgar/data/0001032033/000091205700050216/a2030171z10-q.txt
+    - https://storage.fasb.org/aop_fas150.pdf
+    - https://www.sec.gov/Archives/edgar/data/1024401/000090951802000089/0000909518-02-000089.txt
+
+- id: sab-51
+  title: Accounting for Sales of Stock by a Subsidiary
+  issuer: SEC
+  designation: Staff Accounting Bulletin No. 51 (SAB Topic 5.H)
+  category: accounting_recognition
+  post_enron: false
+  issued: "1983"
+  effective: null
+  effective_note: >-
+    Issued in 1983. The exact date was not confirmed.
+  superseded_by: null
+  status_as_of_2001-12-31: in_force
+  enron_relevance: >-
+    Enron's stated policy: when a subsidiary issued stock above Enron's
+    carrying amount per share, Enron recognized the difference as a gain
+    ("SAB 51 gain") in income (2000 10-K, Note 1).
+  process_areas: [accounting_r2r, consolidation_reporting]
+  today:
+    codification: ASC 810-10-45-23
+    note: >-
+      Since SFAS 160 (effective 2009), changes in a parent's ownership that do
+      not lose control are equity transactions with no income-statement gain.
+      SAB 112 (June 2009) conformed SEC staff guidance.
+  sources:
+    - https://www.sec.gov/Archives/edgar/data/1024401/000102440101500010/ene10-k.txt
+    - https://www.sec.gov/interps/account/sab112.htm
+  unverified: true
+  unverified_fields: [issued, effective]
+
+# ---------------------------------------------------------------------------
+# Revenue, segments, disclosure, related parties
+# ---------------------------------------------------------------------------
+
+- id: sab-101
+  title: Revenue Recognition in Financial Statements
+  issuer: SEC
+  designation: Staff Accounting Bulletin No. 101 (as amended by SAB 101A and 101B)
+  category: accounting_recognition
+  post_enron: false
+  issued: "1999-12-03"
+  effective: "2000-10-01"
+  effective_note: >-
+    Released December 3, 1999. SAB 101A (March 24, 2000) and SAB 101B (June
+    26, 2000) deferred implementation to no later than the fourth fiscal
+    quarter of fiscal years beginning after December 15, 1999. For
+    calendar-year registrants that was Q4 2000, with any change recorded as a
+    cumulative effect as of the start of the year.
+  superseded_by: SAB 104 (December 17, 2003)
+  status_as_of_2001-12-31: in_force
+  enron_relevance: >-
+    The SEC staff's general revenue recognition framework (persuasive
+    evidence of an arrangement, delivery, fixed or determinable fee,
+    collectibility) for Enron's non-trading revenues, such as pipeline,
+    utility and services. Trading revenues followed the specific guidance in
+    EITF 98-10.
+  process_areas: [accounting_r2r, consolidation_reporting, settlement]
+  today:
+    codification: ASC 606
+    note: >-
+      SAB 104 (Dec 2003) revised SAB Topic 13. ASC 606 (ASU 2014-09, effective
+      for public entities for annual periods beginning after Dec 15, 2017)
+      replaced the SAB 101/104 and ASC 605 framework with the five-step
+      contract model.
+  sources:
+    - https://www.sec.gov/interps/account/sab101b1.htm
+    - https://www.govinfo.gov/content/pkg/FR-2000-07-03/pdf/00-16580.pdf
+    - https://www.sec.gov/news/press/2003-174.htm
+    - https://www.revenuehub.org/article/transition-dates-and-methods
+
+- id: eitf-99-19
+  title: Reporting Revenue Gross as a Principal versus Net as an Agent
+  issuer: EITF
+  designation: EITF Issue No. 99-19
+  category: accounting_recognition
+  post_enron: false
+  issued: null
+  effective: null
+  effective_note: >-
+    Consensus reached in 2000. The meeting date, believed to be July 2000, and
+    the transition date, believed to coincide with SAB 101 implementation,
+    were not confirmed.
+  superseded_by: null
+  status_as_of_2001-12-31: in_force
+  enron_relevance: >-
+    Gross-versus-net presentation drove Enron's reported revenue: $100.8
+    billion in 2000, up from $40.1 billion in 1999, almost all in Wholesale
+    Services. Physical trading flows were recorded gross. EITF 02-3 later
+    required energy trading to be shown net from 2003.
+  process_areas: [accounting_r2r, consolidation_reporting, fpa]
+  today:
+    codification: ASC 606-10-55 (principal versus agent considerations)
+    note: >-
+      Principal-versus-agent analysis now sits in ASC 606 and is based on
+      control of the good or service. Trading-book derivatives are presented
+      net under ASC 815.
+  sources:
+    - https://www.sec.gov/info/accountants/staffletters/audrsk2k.htm
+    - https://dart.deloitte.com/USDART/home/codification/revenue/asc606-10/roadmap-revenue-recognition/chapter-10-principal-versus-agent-considerations?combine
+    - https://www.sec.gov/Archives/edgar/data/1024401/000102440101500010/ene10-k.txt
+  unverified: true
+  unverified_fields: [issued, effective]
+
+- id: fas-131
+  title: Disclosures about Segments of an Enterprise and Related Information
+  issuer: FASB
+  designation: SFAS No. 131
+  category: accounting_disclosure
+  post_enron: false
+  issued: "1997-06"
+  effective: "1998-01-01"
+  effective_note: >-
+    Effective for fiscal years beginning after December 15, 1997, with
+    restatement of comparative periods. It replaced SFAS 14.
+  superseded_by: null
+  status_as_of_2001-12-31: in_force
+  enron_relevance: >-
+    Defined Enron's management-approach segments in the 2000 10-K:
+    Transportation and Distribution, Wholesale Services, Retail Energy
+    Services, Broadband Services, and Corporate and Other. The FP&A segment
+    rollups in the spreadsheets map to these.
+  process_areas: [fpa, consolidation_reporting, accounting_r2r]
+  today:
+    codification: ASC 280
+    note: >-
+      Still the management approach (ASC 280). ASU 2023-07 added disclosure of
+      significant segment expenses and other items for fiscal years beginning
+      after December 15, 2023.
+  sources:
+    - https://storage.fasb.org/fas131.pdf
+    - https://www.sec.gov/Archives/edgar/data/1024401/000102440101500010/ene10-k.txt
+
+- id: fas-57
+  title: Related Party Disclosures
+  issuer: FASB
+  designation: SFAS No. 57
+  category: accounting_disclosure
+  post_enron: false
+  issued: "1982-03"
+  effective: "1982-06-30"
+  effective_note: >-
+    Effective for financial statements for fiscal years ending after June 15,
+    1982.
+  superseded_by: null
+  status_as_of_2001-12-31: in_force
+  enron_relevance: >-
+    Required disclosure of the nature of related-party relationships,
+    transaction descriptions, dollar amounts and balances. Enron's 2000 10-K
+    Note 16 described LJM only as limited partnerships whose general
+    partner's managing member was "a senior officer of Enron", without naming
+    Fastow. The Powers Report found the disclosures did not convey the
+    substance of the transactions.
+  process_areas: [consolidation_reporting, accounting_r2r, audit_controls]
+  today:
+    codification: ASC 850
+    note: >-
+      Largely unchanged in ASC 850. FIN 45 amended related-party guarantee
+      disclosure. SOX §402 banned most personal loans to executives, and S-K
+      Item 404 was rewritten in 2006.
+  sources:
+    - https://storage.fasb.org/fas57.pdf
+    - https://dart.deloitte.com/USDART/home/codification/broad-transactions/asc850
+    - https://www.sec.gov/Archives/edgar/data/1024401/000090951802000089/0000909518-02-000089.txt
+    - https://www.sec.gov/Archives/edgar/data/1024401/000102440101500010/ene10-k.txt
+
+- id: sec-sk-item-404
+  title: Certain Relationships and Related Transactions
+  issuer: SEC
+  designation: Regulation S-K Item 404
+  category: regulatory_reporting
+  post_enron: false
+  issued: null
+  effective: null
+  effective_note: >-
+    The pre-2006 rule in force in 2001 required disclosure of transactions
+    over $60,000 in which an executive officer had a material interest. Its
+    original adoption date was not confirmed.
+  superseded_by: Item 404 as amended in 2006 (Release 33-8732)
+  status_as_of_2001-12-31: in_force
+  enron_relevance: >-
+    Governed proxy and 10-K disclosure of Fastow's interest in LJM. Enron
+    incorporated the Item 404 discussion from its proxy by reference. The
+    Powers Report stresses that the rule asked for "the amount of such
+    person's interest", which Enron did not quantify.
+  process_areas: [regulatory_reporting, consolidation_reporting]
+  today:
+    codification: Regulation S-K Item 404 (17 CFR 229.404)
+    note: >-
+      Amendments adopted July 26, 2006 raised the threshold from $60,000 to
+      $120,000, consolidated Item 404(a), and added Item 404(b) on policies
+      for reviewing and approving related-person transactions.
+  sources:
+    - https://www.sec.gov/Archives/edgar/data/1024401/000090951802000089/0000909518-02-000089.txt
+    - https://www.dorsey.com/newsresources/publications/2006/10/action-items-for-related-person-transaction-disc__
+    - https://dart.deloitte.com/USDART/home/accounting/sec/sec-material-supplement/current-accounting-disclosure-issues/nov-2006-current-accounting-disclosure-issues
+  unverified: true
+  unverified_fields: [issued, effective]
+
+- id: sec-regulation-s-x
+  title: Form and Content of Financial Statements (Regulation S-X), incl. Rule 4-08(k) related parties and Rule 3-09 equity investees
+  issuer: SEC
+  designation: Regulation S-X (17 CFR Part 210)
+  category: regulatory_reporting
+  post_enron: false
+  issued: null
+  effective: null
+  effective_note: >-
+    In force throughout the era. Adoption dates of the individual rules cited
+    here were not confirmed.
+  superseded_by: null
+  status_as_of_2001-12-31: in_force
+  enron_relevance: >-
+    Governed the form of Enron's 10-K and 10-Q statements. Rule 4-08(k)
+    requires related-party amounts on the face of the statements (cited in
+    the Powers Report). Separate financial statements of significant equity
+    investees were filed as well: Enron's 2000 10-K included financial
+    statements of Atlantic Water Trust (Azurix).
+  process_areas: [consolidation_reporting, regulatory_reporting]
+  today:
+    codification: Regulation S-X (17 CFR Part 210)
+    note: >-
+      Still in force. SOX-era rules added Rule 2-01 independence changes and
+      off-balance-sheet disclosure in S-K Item 303, and the significance tests
+      were updated in 2020.
+  sources:
+    - https://www.sec.gov/Archives/edgar/data/1024401/000090951802000089/0000909518-02-000089.txt
+    - https://www.sec.gov/Archives/edgar/data/1024401/000102440101500010/0001024401-01-500010-index.htm
+  unverified: true
+  unverified_fields: [issued, effective]
+
+- id: sec-fr-61
+  title: Commission Statement about Management's Discussion and Analysis of Financial Condition and Results of Operations
+  issuer: SEC
+  designation: Release Nos. 33-8056; 34-45321 (FR-61)
+  category: accounting_disclosure
+  post_enron: true
+  issued: "2002-01-22"
+  effective: "2002-01-22"
+  effective_note: >-
+    An interpretive statement issued January 22, 2002 (67 FR 3746) in
+    response to a December 31, 2001 petition from the Big-5 firms. It did not
+    create new legal requirements.
+  superseded_by: null
+  status_as_of_2001-12-31: not_yet_issued
+  enron_relevance: >-
+    Issued seven weeks after Enron's bankruptcy. It told registrants to
+    discuss liquidity and capital resources including off-balance-sheet
+    arrangements, trading activities involving non-exchange-traded contracts
+    carried at fair value, and related-party transactions on terms not
+    available from independent third parties. Each was an Enron failure
+    point.
+  process_areas: [consolidation_reporting, regulatory_reporting, risk_and_valuation]
+  today:
+    codification: Regulation S-K Item 303 (MD&A)
+    note: >-
+      SOX §401(a) then required SEC rules on off-balance-sheet arrangements in
+      MD&A (2003). The 2020 MD&A amendments restructured Item 303 into a
+      principles-based requirement.
+  sources:
+    - https://www.sec.gov/rules/other/33-8056.htm
+    - https://www.govinfo.gov/content/pkg/FR-2002-01-25/pdf/02-1899.pdf
+    - https://www.sec.gov/Archives/edgar/data/1024401/000090951802000089/0000909518-02-000089.txt
+
+# ---------------------------------------------------------------------------
+# Contingencies, impairment, goodwill, compensation, tax
+# ---------------------------------------------------------------------------
+
+- id: fas-5
+  title: Accounting for Contingencies
+  issuer: FASB
+  designation: SFAS No. 5
+  category: accounting_disclosure
+  post_enron: false
+  issued: "1975-03"
+  effective: null
+  effective_note: >-
+    Issued March 1975. The original effective date was not checked against
+    the source text.
+  superseded_by: null
+  status_as_of_2001-12-31: in_force
+  enron_relevance: >-
+    Governed accrual and disclosure of loss contingencies, including
+    guarantees and contingent support obligations given to off-balance-sheet
+    structures and the litigation and regulatory exposures (for example
+    California) that grew in 2001.
+  process_areas: [accounting_r2r, consolidation_reporting, credit, treasury]
+  today:
+    codification: ASC 450
+    note: >-
+      Now ASC 450. Guarantees were split out by FIN 45 (ASC 460), which
+      requires a liability at inception. Credit-loss guidance moved to ASC 326
+      (CECL).
+  sources:
+    - https://storage.fasb.org/fas5.pdf
+    - https://dart.deloitte.com/USDART/home/codification/liabilities/asc450-10/deloitte-s-roadmap-contingencies-loss-recoveries/chapter-1-overview/1-3-history-guidance-guarantees
+  unverified: true
+  unverified_fields: [effective]
+
+- id: fin-45
+  title: Guarantor's Accounting and Disclosure Requirements for Guarantees, Including Indirect Guarantees of Indebtedness of Others
+  issuer: FASB
+  designation: FASB Interpretation No. 45
+  category: accounting_disclosure
+  post_enron: true
+  issued: "2002-11-25"
+  effective: "2003-01-01"
+  effective_note: >-
+    Initial recognition and measurement applied prospectively to guarantees
+    issued or modified after December 31, 2002. Disclosures applied to periods
+    ending after December 15, 2002.
+  superseded_by: null
+  status_as_of_2001-12-31: not_yet_issued
+  enron_relevance: >-
+    Under SFAS 5, Enron's guarantees and make-whole commitments to SPE
+    structures could stay off the balance sheet until a loss was probable.
+    FIN 45 requires a liability at fair value when a guarantee is issued, and
+    disclosure of maximum potential exposure.
+  process_areas: [accounting_r2r, credit, treasury, consolidation_reporting]
+  today:
+    codification: ASC 460
+    note: >-
+      Codified in ASC 460 and largely unchanged. It interprets FAS 5, 57 and
+      107 and rescinded FIN 34.
+  sources:
+    - https://storage.fasb.org/aop_FIN45.pdf
+    - https://dart.deloitte.com/USDART/home/codification/liabilities/asc450-10/deloitte-s-roadmap-contingencies-loss-recoveries/chapter-1-overview/1-3-history-guidance-guarantees
+
+- id: fas-121
+  title: Accounting for the Impairment of Long-Lived Assets and for Long-Lived Assets to Be Disposed Of
+  issuer: FASB
+  designation: SFAS No. 121
+  category: accounting_recognition
+  post_enron: false
+  issued: "1995-03"
+  effective: "1996-01-01"
+  effective_note: >-
+    Effective for financial statements for fiscal years beginning after
+    December 15, 1995.
+  superseded_by: SFAS No. 144 (August 2001; effective for fiscal years beginning after Dec 15, 2001)
+  status_as_of_2001-12-31: in_force
+  enron_relevance: >-
+    Governed impairment testing of Enron's long-lived assets: power plants,
+    pipelines, international projects, water assets and the broadband fiber
+    network. Enron took asset write-downs in 2001.
+  process_areas: [accounting_r2r, fpa, consolidation_reporting]
+  today:
+    codification: ASC 360-10
+    note: >-
+      SFAS 144 replaced it with a single model for impairment and disposal
+      (ASC 360-10) and removed goodwill from its scope (goodwill moved to SFAS
+      142 / ASC 350).
+  sources:
+    - https://storage.fasb.org/fas121.pdf
+    - https://storage.fasb.org/fas144.pdf
+    - https://www.journalofaccountancy.com/issues/2002/mar/assetimpairmentanddisposal/
+
+- id: fas-142
+  title: Goodwill and Other Intangible Assets
+  issuer: FASB
+  designation: SFAS No. 142
+  category: accounting_recognition
+  post_enron: false
+  issued: "2001-06"
+  effective: "2002-01-01"
+  effective_note: >-
+    Effective for fiscal years beginning after December 15, 2001. Goodwill
+    and intangibles acquired after June 30, 2001 followed its
+    non-amortization rules immediately.
+  superseded_by: null
+  status_as_of_2001-12-31: issued_not_yet_effective
+  enron_relevance: >-
+    Issued in Enron's final year. It would have ended goodwill amortization
+    from January 1, 2002 (for example on the Portland General acquisition)
+    and required annual impairment tests. Enron never filed a 2001 10-K, so
+    it never reported under it.
+  process_areas: [accounting_r2r, consolidation_reporting, fpa]
+  today:
+    codification: ASC 350
+    note: >-
+      Goodwill is not amortized by public entities and is tested for
+      impairment at least annually (ASC 350). ASU 2017-04 simplified the test.
+  sources:
+    - https://storage.fasb.org/fas142.pdf
+    - https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001024401&type=10-K&dateb=&owner=include&count=40
+
+- id: fas-123
+  title: Accounting for Stock-Based Compensation
+  issuer: FASB
+  designation: SFAS No. 123
+  category: accounting_disclosure
+  post_enron: false
+  issued: "1995-10"
+  effective: "1996-01-01"
+  effective_note: >-
+    Disclosure provisions effective for fiscal years beginning after December
+    15, 1995. Entities could keep APB Opinion 25 intrinsic-value accounting
+    and disclose pro forma fair-value expense instead.
+  superseded_by: SFAS No. 123(R) (December 2004)
+  status_as_of_2001-12-31: in_force
+  enron_relevance: >-
+    Enron applied APB Opinion 25, so no compensation expense was recognized
+    for fixed stock option plans. Restricted stock expense was $220 million in
+    2000, and fair-value expense for options appeared only as SFAS 123 pro
+    forma disclosure. This bears on how heavily option-based Enron pay showed
+    up in earnings.
+  process_areas: [accounting_r2r, consolidation_reporting, tax]
+  today:
+    codification: ASC 718
+    note: >-
+      SFAS 123(R) eliminated the APB 25 alternative, so option fair value is
+      expensed (ASC 718).
+  sources:
+    - https://storage.fasb.org/fas123.pdf
+    - https://www.sec.gov/Archives/edgar/data/1024401/000102440101500010/ene10-k.txt
+
+- id: fas-109
+  title: Accounting for Income Taxes
+  issuer: FASB
+  designation: SFAS No. 109
+  category: tax
+  post_enron: false
+  issued: "1992-02"
+  effective: "1993-01-01"
+  effective_note: >-
+    Effective for fiscal years beginning after December 15, 1992.
+  superseded_by: null
+  status_as_of_2001-12-31: in_force
+  enron_relevance: >-
+    The book-tax framework for deferred taxes on Enron's mark-to-market gains,
+    which were taxed differently from book, and for the tax benefits of its
+    structured transactions. The Joint Committee on Taxation staff (February
+    2003, JCS-3-03) examined 12 large structured transactions Enron
+    entered into from 1995 to 2001, many of them involving offshore entities.
+  process_areas: [tax, accounting_r2r, consolidation_reporting]
+  today:
+    codification: ASC 740
+    note: >-
+      Now ASC 740. FIN 48 (2006) added recognition and measurement of
+      uncertain tax positions, and tax-shelter disclosure (for example
+      reportable-transaction rules) was strengthened after Enron.
+  sources:
+    - https://storage.fasb.org/fas109.pdf
+    - https://www.jurist.org/news/2003/02/enron-tax-shelter-investigation-report/
+    - https://www.finance.senate.gov/download/enron-the-joint-committee-on-taxations-investigative-report&download=1
+
+- id: irc-475
+  title: Mark to Market Accounting Method for Dealers in Securities (and elective MTM for commodities dealers/traders)
+  issuer: IRS
+  designation: Internal Revenue Code §475 (OBRA 1993 §13223; §475(e)-(f) added by Taxpayer Relief Act of 1997)
+  category: tax
+  post_enron: false
+  issued: "1993"
+  effective: null
+  effective_note: >-
+    §475 was enacted by the Omnibus Budget Reconciliation Act of 1993. The
+    §475(e) commodities-dealer and §475(f) trader elections apply to taxable
+    years ending after August 5, 1997 (Rev. Proc. 99-17 sets the election
+    procedure). The effective date of the 1993 securities-dealer rule was not
+    confirmed.
+  superseded_by: null
+  status_as_of_2001-12-31: in_force
+  enron_relevance: >-
+    The tax-side counterpart to EITF 98-10. A commodities dealer could elect
+    under §475(e) to mark its energy book to market for tax, which matters for
+    deferred tax on trading gains. Whether and when Enron entities made the
+    election was not verified.
+  process_areas: [tax, risk_and_valuation, accounting_r2r]
+  today:
+    codification: IRC §475; Treas. Reg. §1.475
+    note: >-
+      Still in force. The IRS issued a valuation safe harbor (2007 regulations)
+      letting eligible taxpayers use financial-statement marks for §475.
+  sources:
+    - https://www.govinfo.gov/content/pkg/FR-1999-01-28/html/99-1787.htm
+    - https://taxnotes.com/lr/resolve/rev-proc-99-17/dldc
+    - https://regulations.justia.com/regulations/fedreg/2007/06/12/E7-11146.html
+  unverified: true
+  unverified_fields: [effective, enron_relevance]
+
+# ---------------------------------------------------------------------------
+# Audit and controls (era)
+# ---------------------------------------------------------------------------
+
+- id: sas-82
+  title: Consideration of Fraud in a Financial Statement Audit
+  issuer: AICPA
+  designation: Statement on Auditing Standards No. 82 (AU 316)
+  category: audit_and_controls
+  post_enron: false
+  issued: "1997-02"
+  effective: "1997-12-15"
+  effective_note: >-
+    Issued by the Auditing Standards Board in February 1997, superseding SAS
+    53. It is generally cited as effective for audits of periods ending on or
+    after December 15, 1997; one source printed "on or before", apparently a
+    typo.
+  superseded_by: SAS No. 99 (October 2002)
+  status_as_of_2001-12-31: in_force
+  enron_relevance: >-
+    The fraud-risk standard Arthur Andersen worked under for Enron's
+    1997-2000 audits. Andersen also gave structuring advice on the
+    transactions it audited: the Powers Report says Enron's records show
+    Andersen billed $5.7 million for advice on the LJM and Chewco
+    transactions alone, on top of audit fees.
+  process_areas: [audit_controls]
+  today:
+    codification: PCAOB AS 2401
+    note: >-
+      SAS 99 (October 2002; periods beginning on or after Dec 15, 2002)
+      required brainstorming, journal-entry testing and management-override
+      procedures. For public companies it is now PCAOB AS 2401.
+  sources:
+    - https://en.wikipedia.org/wiki/Statement_on_Auditing_Standards_No._99:_Consideration_of_Fraud
+    - https://www.journalofaccountancy.com/issues/2002/may/auditorsnewproceduresfordetectingfraud.html
+    - https://www.sec.gov/Archives/edgar/data/1024401/000090951802000089/0000909518-02-000089.txt
+  unverified: true
+  unverified_fields: [effective]
+
+- id: sab-99
+  title: Materiality
+  issuer: SEC
+  designation: Staff Accounting Bulletin No. 99 (SAB Topic 1.M)
+  category: audit_and_controls
+  post_enron: false
+  issued: "1999-08-12"
+  effective: "1999-08-12"
+  effective_note: >-
+    Staff guidance effective on issuance. It rejected exclusive reliance on
+    numerical thresholds (such as 5%) and required qualitative factors.
+  superseded_by: null
+  status_as_of_2001-12-31: in_force
+  enron_relevance: >-
+    Framed the materiality calls in Enron's 2001 close. Enron and Andersen
+    concluded, "using a qualitative analysis", that the $1 billion overstated
+    equity from the Raptor notes receivable was not material enough to
+    restate earlier quarters, and corrected it in Q3 2001 instead (Powers
+    Report).
+  process_areas: [audit_controls, accounting_r2r, consolidation_reporting]
+  today:
+    codification: SAB Topic 1.M; ASC 250-10-S99
+    note: >-
+      Still in force. It is applied alongside SAB 108 (2006, quantifying
+      misstatements) and SOX §404 deficiency evaluation.
+  sources:
+    - https://www.sec.gov/interps/account/sab99.htm
+    - https://www.sec.gov/Archives/edgar/data/1024401/000090951802000089/0000909518-02-000089.txt
+
+- id: sec-auditor-independence-2000
+  title: Revision of the Commission's Auditor Independence Requirements
+  issuer: SEC
+  designation: Release Nos. 33-7919; 34-43602 (Regulation S-X Rule 2-01)
+  category: audit_and_controls
+  post_enron: false
+  issued: "2000-11-21"
+  effective: "2001-02-05"
+  effective_note: >-
+    Published at 65 FR 76008 (December 5, 2000) and effective February 5,
+    2001. A transition period to August 5, 2002 applied to appraisal and
+    valuation services and to internal audit outsourcing. The adoption date
+    shown here is not confirmed (see unverified_fields).
+  superseded_by: SOX §201 and the 2003 SEC independence rules
+  status_as_of_2001-12-31: in_force
+  enron_relevance: >-
+    In force for Andersen's last Enron engagement (FY2001). It listed internal
+    audit outsourcing and valuation services among non-audit services that can
+    impair independence, but allowed them during a transition period. Andersen
+    combined audit work with extensive structuring advice for Enron.
+  process_areas: [audit_controls]
+  today:
+    codification: Regulation S-X Rule 2-01; SOX §201; PCAOB Rule 3524/3525 (audit committee pre-approval)
+    note: >-
+      SOX §201 prohibited internal audit outsourcing, valuation and other
+      services for audit clients outright, and §301 required audit committee
+      pre-approval of permitted services.
+  sources:
+    - https://www.sec.gov/rules/final/33-7919.htm
+    - https://www.govinfo.gov/link/fr/65/76082
+  unverified: true
+  unverified_fields: [issued]
+
+- id: coso-1992
+  title: Internal Control - Integrated Framework
+  issuer: COSO
+  designation: COSO Internal Control - Integrated Framework (1992)
+  category: audit_and_controls
+  post_enron: false
+  issued: "1992"
+  effective: null
+  effective_note: >-
+    A voluntary framework published in 1992 with five components: control
+    environment, risk assessment, control activities, information and
+    communication, and monitoring. It has no effective date.
+  superseded_by: COSO Internal Control - Integrated Framework (2013), released May 14, 2013
+  status_as_of_2001-12-31: in_force
+  enron_relevance: >-
+    The reference model for internal control in Enron's era. There was no
+    public-company requirement to assess or attest to it, so failures such as
+    the LJM approval controls (the Powers Report's "control" findings) were
+    not externally reported.
+  process_areas: [audit_controls]
+  today:
+    codification: COSO 2013 (used as the criteria for SOX §404 and PCAOB AS 2201)
+    note: >-
+      The 2013 update kept the five components and codified 17 principles.
+      Most US registrants use it as the suitable framework for management's
+      §404(a) assessment.
+  sources:
+    - https://www.coso.org/_files/ugd/3059fc_8fdac5b8011e4cd08d566bf40b1ac2a8.pdf
+    - https://www.iasplus.com/en/othernews/global/coso-framework
+  unverified: true
+  unverified_fields: [effective]
+
+# ---------------------------------------------------------------------------
+# Audit and controls (post-Enron)
+# ---------------------------------------------------------------------------
+
+- id: sox-2002
+  title: Sarbanes-Oxley Act of 2002
+  issuer: US Congress / SEC
+  designation: Pub. L. 107-204 (§§101, 201, 302, 401, 402, 404, 906)
+  category: audit_and_controls
+  post_enron: true
+  issued: "2002-07-30"
+  effective: "2002-08-29"
+  effective_note: >-
+    Signed July 30, 2002. SEC §302 certification rules were adopted August 29,
+    2002 for periodic reports covering periods ending on or after that date.
+    §404 management reports and auditor attestation applied to accelerated
+    filers for fiscal years ending on or after November 15, 2004.
+  superseded_by: null
+  status_as_of_2001-12-31: not_yet_issued
+  enron_relevance: >-
+    The statutory response to Enron and WorldCom. It requires CEO/CFO
+    certification (§302/§906) and management assessment and auditor
+    attestation of ICFR (§404), and created the PCAOB (§101). It also banned
+    most non-audit services to audit clients (§201), required MD&A disclosure
+    of off-balance-sheet arrangements (§401(a)) and banned executive loans
+    (§402).
+  process_areas: [audit_controls, consolidation_reporting, regulatory_reporting, accounting_r2r]
+  today:
+    codification: SOX; Regulation S-K Items 307/308; Exchange Act Rules 13a-14, 13a-15
+    note: >-
+      Fully in force. ICFR is assessed against COSO 2013 and audited under
+      PCAOB AS 2201. Non-accelerated filers are exempt from §404(b)
+      attestation (Dodd-Frank §989G).
+  sources:
+    - https://www.sec.gov/newsroom/press-releases/2002-128-commission-approves-rules-implementing-provisions-sarbanes-oxley-act-accelerating-periodic-filings
+    - https://www.perkinscoie.com/en/news-insights/recent-sec-final-rules-ceo-and-cfo-certification-of-periodic.html
+    - https://www.sec.gov/divisions/corpfin/cfalerts/cfalert030405.htm
+
+- id: pcaob-as-2201
+  title: An Audit of Internal Control Over Financial Reporting That Is Integrated with An Audit of Financial Statements
+  issuer: PCAOB
+  designation: PCAOB AS 2201 (originally Auditing Standard No. 5; predecessor AS No. 2, 2004)
+  category: audit_and_controls
+  post_enron: true
+  issued: "2007-07-27"
+  effective: "2007-11-15"
+  effective_note: >-
+    The SEC approved AS No. 5 on July 27, 2007 (Release 34-56152), effective
+    for fiscal years ending on or after November 15, 2007. It superseded AS
+    No. 2 (2004). It was renumbered AS 2201 in the PCAOB reorganization
+    effective December 31, 2016.
+  superseded_by: null
+  status_as_of_2001-12-31: not_yet_issued
+  enron_relevance: >-
+    Under SOX, the PCAOB took auditing standard-setting for public companies
+    from the AICPA, whose self-regulation had failed with Andersen. The
+    integrated ICFR audit would test the kinds of entity-level and
+    management-override controls (related-party approvals, SPE structuring,
+    valuation reserves) that failed at Enron.
+  process_areas: [audit_controls]
+  today:
+    codification: PCAOB AS 2201
+    note: >-
+      Current standard. A top-down, risk-based audit of ICFR integrated with
+      the financial statement audit, with later amendments.
+  sources:
+    - https://pcaobus.org/oversight/standards/archived-standards/details/Auditing_Standard_5
+    - https://pcaobus.org/oversight/standards/auditing-standards/details/AS2201
+    - https://www.morganlewis.com/blogs/financialreporting/2015/05/pcaobs-reorganization-of-auditing-standards-will-change-references-to-auditing-standards
+
+# ---------------------------------------------------------------------------
+# Regulated utility and pipeline accounting (Northern Natural, Transwestern, PGE)
+# ---------------------------------------------------------------------------
+
+- id: fas-71
+  title: Accounting for the Effects of Certain Types of Regulation
+  issuer: FASB
+  designation: SFAS No. 71
+  category: regulated_utility_accounting
+  post_enron: false
+  issued: "1982-12"
+  effective: "1984-01-01"
+  effective_note: >-
+    Effective for fiscal years beginning after December 15, 1983.
+  superseded_by: null
+  status_as_of_2001-12-31: in_force
+  enron_relevance: >-
+    Applied to Enron's FERC-regulated interstate pipelines (Northern Natural
+    Gas, Transwestern) and to Portland General Electric (FERC and Oregon PUC).
+    It let Enron record regulatory assets and liabilities: net regulatory
+    assets of the regulated pipelines were $290 million at end-2000, up from
+    $250 million in 1999.
+  process_areas: [accounting_r2r, regulatory_reporting, consolidation_reporting]
+  today:
+    codification: ASC 980
+    note: >-
+      Codified as ASC 980. SFAS 101 still governs discontinuing it when an
+      operation stops meeting the criteria.
+  sources:
+    - https://storage.fasb.org/fas71.pdf
+    - https://www.sec.gov/comments/4-600/4600-41.pdf
+    - https://www.sec.gov/Archives/edgar/data/1024401/000102440101500010/ene10-k.txt
+
+- id: ferc-usofa-electric
+  title: Uniform System of Accounts Prescribed for Public Utilities and Licensees (and FERC Form No. 1)
+  issuer: FERC
+  designation: 18 CFR Part 101; FERC Form No. 1
+  category: regulated_utility_accounting
+  post_enron: false
+  issued: null
+  effective: null
+  effective_note: >-
+    In force throughout the era. The original adoption date (Federal Power
+    Commission era) was not confirmed.
+  superseded_by: null
+  status_as_of_2001-12-31: in_force
+  enron_relevance: >-
+    Portland General Electric, owned by Enron from 1997, kept its books on the
+    FERC electric chart of accounts and filed FERC Form No. 1 annually, in
+    addition to Oregon PUC reporting. The utility's ledger and rate base
+    figures in the corpus follow this chart.
+  process_areas: [accounting_r2r, regulatory_reporting]
+  today:
+    codification: 18 CFR Part 101; FERC Form No. 1 / 1-F / 3-Q
+    note: >-
+      Still in force. Order No. 627 (2002) added accounts for derivatives,
+      hedging and comprehensive income, and later orders added accounts such
+      as renewable energy assets (Order No. 898).
+  sources:
+    - https://www.ferc.gov/industries-data/electric/resources/industry-forms/form-no-1-annual-report-major-electric-utility
+    - https://WWW.FERC.GOV/sites/default/files/2020-05/RM02-3.pdf
+    - https://www.sec.gov/Archives/edgar/data/1024401/000102440101500010/ene10-k.txt
+  unverified: true
+  unverified_fields: [issued, effective]
+
+- id: ferc-usofa-gas
+  title: Uniform System of Accounts Prescribed for Natural Gas Companies (and FERC Form No. 2)
+  issuer: FERC
+  designation: 18 CFR Part 201; FERC Form No. 2
+  category: regulated_utility_accounting
+  post_enron: false
+  issued: null
+  effective: null
+  effective_note: >-
+    In force throughout the era. The original adoption date was not
+    confirmed.
+  superseded_by: null
+  status_as_of_2001-12-31: in_force
+  enron_relevance: >-
+    Northern Natural Gas and Transwestern Pipeline, both regulated under the
+    Natural Gas Act, kept FERC gas-company accounts and filed Form No. 2.
+    Rate cases, cost of service and regulatory asset schedules in the
+    pipeline workbooks rest on this chart.
+  process_areas: [accounting_r2r, regulatory_reporting, settlement]
+  today:
+    codification: 18 CFR Part 201; FERC Form No. 2 / 2-A / 3-Q
+    note: >-
+      Still in force, amended alongside Part 101 (for example Order No. 627
+      in 2002).
+  sources:
+    - https://omb.report/icr/201706-1902-002/doc/75545601
+    - https://WWW.FERC.GOV/sites/default/files/2020-05/RM02-3.pdf
+    - https://www.sec.gov/Archives/edgar/data/1024401/000102440101500010/ene10-k.txt
+  unverified: true
+  unverified_fields: [issued, effective]
+
+- id: puhca-1935
+  title: Public Utility Holding Company Act of 1935
+  issuer: SEC
+  designation: PUHCA 1935 (15 U.S.C. 79 et seq.); §3(a)(1) exemption via Rule 2 statement
+  category: regulatory_reporting
+  post_enron: false
+  issued: "1935"
+  effective: null
+  effective_note: >-
+    Enacted 1935. Enron became a public-utility holding company when it
+    acquired Portland General in July 1997. It reorganized as an Oregon
+    corporation and claimed the intrastate exemption under §3(a)(1) by Rule
+    2 filings.
+  superseded_by: PUHCA 2005 (Energy Policy Act of 2005; PUHCA 1935 repealed effective February 8, 2006)
+  status_as_of_2001-12-31: in_force
+  enron_relevance: >-
+    Shaped Enron's corporate structure (Oregon incorporation, hence "ENRON
+    CORP/OR/" on EDGAR) and kept it out of SEC holding-company regulation. The
+    SEC denied Enron's exemption applications on December 29, 2003, finding
+    PGE had substantial interstate sales and out-of-state assets. Enron then
+    operated as a PUHCA holding company subject to SEC financing orders during
+    bankruptcy.
+  process_areas: [regulatory_reporting, treasury, consolidation_reporting]
+  today:
+    codification: PUHCA 2005; 18 CFR Part 366
+    note: >-
+      PUHCA 1935 was repealed effective February 8, 2006. PUHCA 2005 replaced
+      SEC structural regulation with FERC and state books-and-records access
+      (18 CFR Part 366).
+  sources:
+    - https://www.sec.gov/files/rules/other/35-27809.pdf
+    - https://www.projectfinance.law/publications/2004/february/sec-signals-tougher-stance-on-puhca-exemptions
+    - https://mondaq.com/unitedstates/oil-gas-electricity/36976/ferc-adopts-final-rules-under-new-public-utility-holding-company-act
+    - https://www.wiley.law/newsletter-936
+  unverified: true
+  unverified_fields: [effective]
+
+# ---------------------------------------------------------------------------
+# Energy market structure and trading regulation
+# ---------------------------------------------------------------------------
+
+- id: ferc-order-636
+  title: Pipeline Service Obligations and Revisions to Regulations Governing Self-Implementing Transportation; Restructuring of Interstate Natural Gas Pipeline Services
+  issuer: FERC
+  designation: FERC Order No. 636 (Docket RM91-11)
+  category: energy_trading
+  post_enron: false
+  issued: "1992-04-09"
+  effective: null
+  effective_note: >-
+    Final rule issued April 1992, implemented through pipeline-specific
+    restructuring proceedings. The effective and implementation dates were not
+    confirmed.
+  superseded_by: null
+  status_as_of_2001-12-31: in_force
+  enron_relevance: >-
+    Required pipelines to unbundle merchant sales from transportation. That
+    created the open-access capacity and spot gas markets that Enron's gas
+    trading, transport-capacity trading and EnronOnline relied on. Enron's
+    own pipelines (Northern Natural, Transwestern) became open-access
+    transporters. Order No. 637 (February 9, 2000) later revised
+    capacity-release rules.
+  process_areas: [scheduling_logistics, deal_capture, regulatory_reporting]
+  today:
+    codification: 18 CFR Part 284
+    note: >-
+      Still the foundation of US gas transportation (18 CFR Part 284), built on
+      by Order 637 and the Order 587 business-practice series.
+  sources:
+    - https://webarchive.library.unt.edu/web/20090825044458/http://www.ferc.gov/legal/maj-ord-reg.asp
+    - https://webarchive.library.unt.edu/eot2008/20090116053707/http://ferc.gov/students/whatisferc/history.htm
+    - https://www.sec.gov/Archives/edgar/data/1024401/000102440101500010/ene10-k.txt
+  unverified: true
+  unverified_fields: [effective]
+
+- id: ferc-order-888-889
+  title: Promoting Wholesale Competition Through Open Access Non-discriminatory Transmission Services (888); Open Access Same-Time Information System and Standards of Conduct (889)
+  issuer: FERC
+  designation: FERC Order Nos. 888 and 889
+  category: energy_trading
+  post_enron: false
+  issued: "1996-04-24"
+  effective: null
+  effective_note: >-
+    Issued April 24, 1996. Rehearing orders 888-A and 889-A followed in March
+    1997. The effective date of the original rule was not confirmed.
+  superseded_by: null
+  status_as_of_2001-12-31: in_force
+  enron_relevance: >-
+    Open-access transmission tariffs and OASIS made multi-utility wholesale
+    power trading possible, the market Enron Power Marketing traded in. It
+    also governed the transmission reservations and scheduling behind the
+    power deals in the corpus.
+  process_areas: [scheduling_logistics, deal_capture, regulatory_reporting]
+  today:
+    codification: 18 CFR Part 35 (pro forma OATT); 18 CFR Part 37 (OASIS)
+    note: >-
+      Reformed by Order No. 890 (2007) and Order No. 1000 (2011). RTOs and ISOs
+      (Order No. 2000, December 1999) now run most transmission markets.
+  sources:
+    - https://www.ferc.gov/history-oatt-reform
+    - https://ferc.gov/industries-data/electric/industry-activities/open-access-transmission-tariff-oatt-reform/history-oatt-reform/order-no-888
+    - https://www.sec.gov/Archives/edgar/data/1024401/000102440101500010/ene10-k.txt
+  unverified: true
+  unverified_fields: [effective]
+
+- id: ca-ab-1890
+  title: California Electric Utility Industry Restructuring Act (creating the CalPX and CAISO)
+  issuer: California Legislature / CPUC
+  designation: Assembly Bill 1890 (Stats. 1996, ch. 854)
+  category: energy_trading
+  post_enron: false
+  issued: "1996-09-23"
+  effective: "1998-03-31"
+  effective_note: >-
+    Signed September 23, 1996. The statute targeted January 1, 1998 for the
+    Power Exchange and ISO. Sources give March 1, March 31 or April 1, 1998
+    for actual market start; March 31, 1998 (EIA) is used here as
+    approximate.
+  superseded_by: null
+  status_as_of_2001-12-31: in_force
+  enron_relevance: >-
+    Created the CalPX day-ahead and CAISO real-time markets that Enron's West
+    Power desk traded and scheduled into during the 2000-01 crisis. FERC
+    staff's March 26, 2003 report found that many of Enron's strategies broke
+    the CAISO/PX tariffs' anti-gaming provisions. FERC then revoked Enron's
+    market-based rate authority.
+  process_areas: [scheduling_logistics, deal_capture, settlement, regulatory_reporting]
+  today:
+    codification: CAISO tariff (FERC-jurisdictional); FERC anti-manipulation rule 18 CFR 1c (EPAct 2005)
+    note: >-
+      The CalPX ceased operating in the crisis. CAISO now runs integrated
+      day-ahead and real-time markets. FERC gained explicit anti-manipulation
+      authority in EPAct 2005.
+  sources:
+    - https://www.eia.gov/electricity/policies/legislation/california/assemblybill.html
+    - https://docs.cpuc.ca.gov/published/FINAL_DECISION/5530.htm
+    - https://webarchive.library.unt.edu/eot2008/20090114221159/http:/www.ferc.gov/news/news-releases/2003/2003-1/report3-26x.pdf
+    - https://www.power-eng.com/gas/energy-commission-revokes-enrons-market-based-rate-authority/
+  unverified: true
+  unverified_fields: [effective]
+
+- id: cftc-1993-exemptions
+  title: CFTC exemptions for swap agreements (Part 35) and for certain energy contracts
+  issuer: CFTC
+  designation: 17 CFR Part 35 (58 FR 5594, Jan 22, 1993); Energy exemption (58 FR 21286, Apr 20, 1993)
+  category: energy_trading
+  post_enron: false
+  issued: "1993-01-22"
+  effective: "1993-04-20"
+  effective_note: >-
+    The Part 35 swap exemption was published January 22, 1993. The energy
+    contracts exemption (deferred purchase or sale of specified energy
+    products between commercial parties) followed on April 20, 1993. The
+    CFTC reaffirmed both in December 2000.
+  superseded_by: cfma-2000 (statutory exclusions/exemptions); later Dodd-Frank Title VII
+  status_as_of_2001-12-31: in_force
+  enron_relevance: >-
+    Kept Enron's OTC energy swaps and forwards outside exchange-style CFTC
+    regulation before the CFMA. That made the bilateral master-agreement
+    model (ISDA, EEI, GISB) the main control framework for Enron's wholesale
+    book.
+  process_areas: [deal_capture, confirmation, credit, regulatory_reporting]
+  today:
+    codification: Commodity Exchange Act as amended by Dodd-Frank Title VII; 17 CFR Parts 23, 43, 45
+    note: >-
+      Swaps are now CFTC-regulated: swap dealer registration, clearing and
+      trade-execution mandates, margin, and SDR reporting. The forward
+      contract exclusion still covers physically settled commercial forwards.
+  sources:
+    - https://www.cftc.gov/About/HistoryoftheCFTC/history_1990s.html
+    - https://www.cftc.gov/sites/default/files/foia/fedreg00/foi001213e.htm
+    - https://govinfo.gov/content/pkg/CFR-2001-title17-vol1/pdf/CFR-2001-title17-vol1-part35.pdf
+
+- id: cfma-2000
+  title: Commodity Futures Modernization Act of 2000
+  issuer: US Congress / CFTC
+  designation: Pub. L. 106-554 (CEA §2(h) exempt commodities - the "Enron loophole")
+  category: energy_trading
+  post_enron: false
+  issued: "2000-12-21"
+  effective: "2000-12-21"
+  effective_note: >-
+    Enacted December 21, 2000 as part of Pub. L. 106-554. New CEA §2(h)
+    exempted bilateral trades in exempt commodities (energy, metals) between
+    eligible commercial entities, and trades on electronic trading facilities
+    (exempt commercial markets), from most CFTC regulation.
+  superseded_by: dodd-frank-title-vii
+  status_as_of_2001-12-31: in_force
+  enron_relevance: >-
+    The "Enron loophole". Enron and other energy traders sought the exemption,
+    and it left EnronOnline, Enron's principal-to-principal electronic
+    platform launched in 1999, largely outside CFTC oversight in 2001.
+  process_areas: [deal_capture, confirmation, regulatory_reporting, credit]
+  today:
+    codification: CEA as amended by Dodd-Frank Title VII; 17 CFR Parts 37, 43, 45
+    note: >-
+      Closing the loophole was legislated in 2008, and Dodd-Frank (2010)
+      brought energy swaps under CFTC swap regulation. Electronic venues are
+      now SEFs or DCMs.
+  sources:
+    - https://www.everycrsreport.com/reports/RS22912.html
+    - https://www.risk.net/exchanges/1511785/bid-close-enron-loophole
+    - https://www.ogj.com/general-interest/article/17275516/cftc-increases-its-exempt-commercial-market-oversight
+
+- id: dodd-frank-title-vii
+  title: Dodd-Frank Wall Street Reform and Consumer Protection Act, Title VII (Wall Street Transparency and Accountability)
+  issuer: US Congress / CFTC
+  designation: Pub. L. 111-203, Title VII; CFTC Parts 43 (real-time reporting) and 45 (swap data recordkeeping and reporting)
+  category: regulatory_reporting
+  post_enron: true
+  issued: "2010-07-21"
+  effective: "2012-03-09"
+  effective_note: >-
+    Signed July 21, 2010. The CFTC Part 43 final rule (77 FR 1182, January 9,
+    2012) took effect March 9, 2012, and the Part 45 final rule was published
+    January 13, 2012 (77 FR 2136). Compliance was phased in by asset class and
+    counterparty type. Both parts were substantially amended in 2020.
+  superseded_by: null
+  status_as_of_2001-12-31: not_yet_issued
+  enron_relevance: >-
+    Closed the regulatory gap that EnronOnline and Enron's OTC swap book
+    operated in. Energy swaps are now reported to swap data repositories with
+    unique identifiers, and dealers face capital, margin and business-conduct
+    rules. Deal capture now has a regulatory reporting obligation that did
+    not exist in 2001.
+  process_areas: [deal_capture, confirmation, regulatory_reporting, credit]
+  today:
+    codification: CEA §§2(a)(13), 4r; 17 CFR Parts 43, 45, 49
+    note: >-
+      Current regime. Part 43 requires public real-time price reporting and
+      Part 45 regulatory reporting to an SDR. Credit Support Annexes were
+      reworked for uncleared margin rules.
+  sources:
+    - https://www.cftc.gov/LawRegulation/FederalRegister/FinalRules/2011-33199.html
+    - https://www.cftc.gov/LawRegulation/FederalRegister/FinalRules/2011-33173.html
+    - https://www.cftc.gov/LawRegulation/FederalRegister/finalrules/2020-21570.html
+
+- id: ferc-order-2001
+  title: Revised Public Utility Filing Requirements (Electric Quarterly Reports)
+  issuer: FERC
+  designation: FERC Order No. 2001 (Docket RM01-8)
+  category: regulatory_reporting
+  post_enron: true
+  issued: "2002-04-25"
+  effective: "2002-04-01"
+  effective_note: >-
+    Issued April 25, 2002 and effective 60 days later. The first EQR (interim
+    format) covered April 1 - June 30, 2002 and was due July 31, 2002. It
+    replaced power marketers' quarterly transaction reports and the filing of
+    long-term agreements.
+  superseded_by: null
+  status_as_of_2001-12-31: not_yet_issued
+  enron_relevance: >-
+    In 2001 Enron Power Marketing reported its market-based-rate sales to
+    FERC through summary quarterly transaction reports. The EQR requires
+    contract-level and transaction-level data, the kind of transparency whose
+    absence the post-crisis western-markets investigation found.
+  process_areas: [regulatory_reporting, deal_capture, settlement]
+  today:
+    codification: 18 CFR 35.10b (Electric Quarterly Reports)
+    note: >-
+      Still required of public utilities with market-based rate authority,
+      with data dictionary revisions over time.
+  sources:
+    - https://webarchive.library.unt.edu/web/20080916192326/http://ferc.gov/docs-filing/eqr/news-help/require-guide.pdf
+    - https://www.govinfo.gov/content/pkg/FR-2002-05-08/pdf/02-10806.pdf
+    - https://webarchive.library.unt.edu/eot2008/20081105043216/http://edocket.access.gpo.gov/2008/E8-26209.htm
+
+- id: ferc-price-index-policy-2003
+  title: Policy Statement on Natural Gas and Electric Price Indices
+  issuer: FERC
+  designation: Docket No. PL03-3-000; 104 FERC ¶ 61,121 (2003)
+  category: market_conventions
+  post_enron: true
+  issued: "2003-07-24"
+  effective: "2003-07-24"
+  effective_note: >-
+    Issued July 24, 2003 and clarified in 2003 and 2005. It set standards for
+    index developers and for companies reporting trades to them, with a
+    rebuttable-presumption safe harbor. A codification was proposed in 2021
+    and a revised policy issued in 2022.
+  superseded_by: null
+  status_as_of_2001-12-31: not_yet_issued
+  enron_relevance: >-
+    The after picture for the index-priced deals in the Enron corpus. In 2001
+    trade data reached Inside FERC and Gas Daily through informal trader
+    reporting with little verification. The 2003 policy requires
+    independent back-office reporting, a code of conduct and data
+    retention.
+  process_areas: [deal_capture, risk_and_valuation, settlement, regulatory_reporting]
+  today:
+    codification: 18 CFR 284.403 (code of conduct for reporting); FERC price index policy (revised 2022)
+    note: >-
+      Index reporting is now under FERC policy and the 18 CFR 284.403 code of
+      conduct, together with EPAct 2005 anti-manipulation authority.
+  sources:
+    - https://webarchive.library.unt.edu/eot2008/20090114222131/http:/www.ferc.gov/news/news-releases/2003/2003-3/07-23-03-indexgas.pdf
+    - https://www.govinfo.gov/content/pkg/FR-2021-03-02/pdf/2020-28386.pdf
+    - https://www.law.cornell.edu/cfr/text/18/284.403
+
+# ---------------------------------------------------------------------------
+# Contracts and master agreements
+# ---------------------------------------------------------------------------
+
+- id: isda-1992-master
+  title: 1992 ISDA Master Agreement (Multicurrency-Cross Border)
+  issuer: ISDA
+  designation: 1992 ISDA Master Agreement (Multicurrency-Cross Border) and Schedule
+  category: contracts_master_agreements
+  post_enron: false
+  issued: "1992"
+  effective: null
+  effective_note: >-
+    Published 1992 (ISDA issued Local Currency-Single Jurisdiction and
+    Multicurrency-Cross Border forms). Each counterparty relationship takes
+    effect on execution, so there is no single effective date.
+  superseded_by: 2002 ISDA Master Agreement (published early 2003)
+  status_as_of_2001-12-31: in_force
+  enron_relevance: >-
+    The standard master for Enron's financial swaps and options (commodity,
+    interest rate, currency, equity). Its Schedule terms (Specified Entities,
+    cross-default thresholds, Additional Termination Events tied to credit
+    ratings, Market Quotation vs Loss) set Enron's exposure. Enron's
+    December 2, 2001 Chapter 11 filing was a Bankruptcy Event of Default
+    under its counterparties' masters.
+  process_areas: [confirmation, credit, settlement, treasury, deal_capture]
+  today:
+    codification: 2002 ISDA Master Agreement (1992 form still used for legacy relationships)
+    note: >-
+      The 2002 form replaced Market Quotation/Loss with a single Close-out
+      Amount, shortened grace periods and added set-off. Most new
+      relationships use it, overlaid by ISDA protocols and Dodd-Frank or EMIR
+      requirements.
+  sources:
+    - https://isda.org/book/comparison-between-the-1992-and-2002-isda-master-agreement
+    - https://www.mondaq.com/unitedstates/commoditiesderivativesstock-exchanges/19843/the-2002-isda-master-agreement
+    - https://faegredrinker.com/en/insights/publications/2018/5/isda-master-agreement-closeout-provisions-english-courts-highlight-a-difference-between-the-1992-and
+    - https://www.sec.gov/files/rules/other/35-27809.pdf
+
+- id: isda-1993-commodity-definitions
+  title: 1993 ISDA Commodity Derivatives Definitions (and 2000 Supplement)
+  issuer: ISDA
+  designation: 1993 ISDA Commodity Derivatives Definitions; 2000 Supplement
+  category: contracts_master_agreements
+  post_enron: false
+  issued: "1993"
+  effective: null
+  effective_note: >-
+    Published 1993. The 2000 Supplement replaced Article 7 and is incorporated
+    by reference in confirmations ("as supplemented by the 2000 Supplement").
+    The exact publication dates were not confirmed.
+  superseded_by: 2005 ISDA Commodity Definitions
+  status_as_of_2001-12-31: in_force
+  enron_relevance: >-
+    Supplied the definitions (Commodity Reference Prices, Pricing Dates,
+    averaging, Market Disruption Events) used in the confirmations for Enron's
+    cash-settled gas, power and oil swaps and options. Those terms map to
+    deal-capture fields in the trading spreadsheets.
+  process_areas: [confirmation, deal_capture, settlement, risk_and_valuation]
+  today:
+    codification: 2005 ISDA Commodity Definitions
+    note: >-
+      The 2005 Commodity Definitions are the market standard for new
+      commodity confirmations.
+  sources:
+    - https://www.isda.org/book/2000-supplement-to-1993-commodity-definitions/
+    - https://tdsecurities.com/tds/document/1993-ISDA-Commodity-Derivatives-Definitions
+    - https://www.isda.org/a/31IDE/Letter-Agreement-on-2005-Commodity-Definitions.doc
+  unverified: true
+  unverified_fields: [effective]
+
+- id: isda-1994-csa-ny
+  title: 1994 ISDA Credit Support Annex (Security Interest - New York Law)
+  issuer: ISDA
+  designation: 1994 ISDA Credit Support Annex (NY law)
+  category: contracts_master_agreements
+  post_enron: false
+  issued: "1994"
+  effective: null
+  effective_note: >-
+    Published 1994 as an annex to the Schedule of an ISDA Master under New
+    York law. The exact publication date was not confirmed.
+  superseded_by: null
+  status_as_of_2001-12-31: in_force
+  enron_relevance: >-
+    Governed collateral (thresholds, minimum transfer amounts, eligible
+    collateral, rating-linked thresholds) on Enron's ISDA relationships.
+    Enron's late-2001 rating downgrades triggered collateral calls under such
+    annexes, a key part of its liquidity collapse.
+  process_areas: [credit, treasury, settlement]
+  today:
+    codification: 1994 ISDA CSA (NY law); ISDA 2016 Credit Support Annex for Variation Margin
+    note: >-
+      Still used. Regulatory uncleared-margin rules created the 2016 VM CSA
+      (and IM documents), largely replacing negotiated thresholds for covered
+      entities.
+  sources:
+    - https://www.nomura.com/americas/df-disclosures/credit-support-doc.shtml
+    - https://www.isda.org/books
+  unverified: true
+  unverified_fields: [effective]
+
+- id: eei-master-2000
+  title: EEI Master Power Purchase and Sale Agreement (with Collateral Annex)
+  issuer: EEI
+  designation: EEI Master Power Purchase & Sale Agreement, Version 2.1 (modified 4/25/00), EEI/NEM copyright
+  category: contracts_master_agreements
+  post_enron: false
+  issued: "2000-04-25"
+  effective: null
+  effective_note: >-
+    Drafted from January 1999 by an EEI working group of more than 80
+    companies, and published as Version 2.1 dated April 25, 2000 (copyright
+    EEI and National Energy Marketers Association). It applies per
+    counterparty on execution.
+  superseded_by: null
+  status_as_of_2001-12-31: in_force
+  enron_relevance: >-
+    The new standard master for physical wholesale power in 2000-2001,
+    replacing utility-specific forms. Its confirmation and Schedule P product
+    definitions (Firm LD, Unit Firm, etc.), collateral annex and
+    early-termination netting governed EPMI's power trades and the
+    termination claims after Enron's bankruptcy.
+  process_areas: [confirmation, deal_capture, credit, settlement, scheduling_logistics]
+  today:
+    codification: EEI Master Agreement v2.1 with Collateral Annex and published amendments/errata
+    note: >-
+      Still the dominant North American physical power master. EEI added an
+      errata and guidance after the CFMA and later swap rules.
+  sources:
+    - https://eei.org/resources-and-media/master-contract
+    - https://ppp.worldbank.org/node/9416
+    - https://cms.eei.org/resources-and-media/master-contract/miscellaneous-optional
+  unverified: true
+  unverified_fields: [effective]
+
+- id: gisb-base-contract-1996
+  title: GISB Base Contract for Short-Term Sale and Purchase of Natural Gas
+  issuer: GISB/NAESB
+  designation: Form GISB-BC-2/13/96 with General Terms and Conditions GISB-GTC-2/13/96 (later v1.5 dated Jan 7, 2000)
+  category: contracts_master_agreements
+  post_enron: false
+  issued: "1996-02-13"
+  effective: null
+  effective_note: >-
+    The form is dated February 13, 1996. NAESB materials also refer to a
+    version dated May 13, 1996, and version 1.5 is dated January 7, 2000. It
+    applies per counterparty on execution.
+  superseded_by: NAESB Base Contract for Sale and Purchase of Natural Gas (April 19, 2002; current version September 5, 2006)
+  status_as_of_2001-12-31: in_force
+  enron_relevance: >-
+    The industry-standard short-term physical gas contract during Enron's gas
+    merchant era. Its elections (oral vs written transaction procedure,
+    confirm deadline of 2 business days, Cover Standard vs Spot Price
+    Standard, payment date) correspond to fields in physical gas deal capture
+    and confirmation.
+  process_areas: [confirmation, deal_capture, settlement, scheduling_logistics, credit]
+  today:
+    codification: NAESB Base Contract (2006)
+    note: >-
+      Replaced by the NAESB Base Contract (2002, then 2006), which supports
+      long-term deals and was revised after Enron. Parties may still use
+      earlier versions.
+  sources:
+    - https://naesb.org//pdf/Gisbsale.pdf
+    - https://www.naesb.org/pdf/042302pr.pdf
+    - https://www.haynesboone.com/news/publications/mai-in-thomson-reuters-understanding-the-naesb-base-contract-for-sale-and-purchase-of-natural-gas
+  unverified: true
+  unverified_fields: [effective]
+
+# ---------------------------------------------------------------------------
+# Market conventions
+# ---------------------------------------------------------------------------
+
+- id: gisb-wgq-standards
+  title: GISB natural gas business practice standards (nominations, gas day, flowing gas) as incorporated by FERC
+  issuer: GISB/NAESB
+  designation: GISB Standards (v1.0) incorporated by reference in FERC Order No. 587 (Docket RM96-1)
+  category: market_conventions
+  post_enron: false
+  issued: "1996-07-17"
+  effective: null
+  effective_note: >-
+    FERC Order No. 587, issued July 17, 1996 (61 FR 39053, July 26, 1996),
+    incorporated GISB standards on nominations, flowing gas and related
+    practices for interstate pipelines. The implementation date was not
+    confirmed.
+  superseded_by: NAESB WGQ standards (current versions incorporated by later Order 587-series rules)
+  status_as_of_2001-12-31: in_force
+  enron_relevance: >-
+    Defined the logistics conventions behind the gas scheduling workbooks: the
+    gas day starting at 9:00 a.m. Central Clock Time, standard nomination
+    cycles (Timely, Evening, Intraday) and confirmation and allocation
+    practices. Enron's traders, schedulers and its own pipelines worked to
+    these timelines.
+  process_areas: [scheduling_logistics, settlement, confirmation]
+  today:
+    codification: 18 CFR 284.12 (incorporation of NAESB WGQ standards)
+    note: >-
+      Order 587 series continues. Order No. 809 (2015) moved the Timely
+      Nomination deadline from 11:30 a.m. to 1:00 p.m. CCT. All NAESB times
+      remain tied to Central Clock Time.
+  sources:
+    - https://www.govinfo.gov/content/pkg/FR-1996-10-25/html/96-27432.htm
+    - https://ns.naesb.org/pdf4/ferc071521_final_rule_order587z.pdf
+    - https://www.govinfo.gov/content/pkg/FR-2021-08-10/pdf/2021-16915.pdf
+  unverified: true
+  unverified_fields: [effective]
+
+- id: nymex-henry-hub-natural-gas
+  title: NYMEX Henry Hub Natural Gas Futures
+  issuer: NYMEX
+  designation: NYMEX Natural Gas (Henry Hub) futures contract (NG)
+  category: market_conventions
+  post_enron: false
+  issued: "1990-04-03"
+  effective: "1990-04-03"
+  effective_note: >-
+    Began trading April 3, 1990, with delivery at Sabine Pipe Line's Henry
+    Hub, Louisiana. Options followed October 2, 1992. Contract size is 10,000
+    MMBtu.
+  superseded_by: null
+  status_as_of_2001-12-31: in_force
+  enron_relevance: >-
+    The benchmark for Enron's gas forward curves. Regional prices were marked
+    as basis to Henry Hub, NYMEX settlements were the reference for daily
+    P&L and VaR, and many Enron swaps and EnronOnline products priced off
+    NYMEX last-day settlement.
+  process_areas: [risk_and_valuation, deal_capture, settlement]
+  today:
+    codification: CME Group / NYMEX NG contract rules (Rulebook Chapter 220)
+    note: >-
+      Still the world's most-traded natural gas futures contract, now on CME
+      Group's NYMEX (merged 2008).
+  sources:
+    - https://www.cmegroup.com/articles/whitepapers/henry-hub-natural-gas-futures-global-benchmark.html
+    - https://www.cmegroup.com/openmarkets/commodities/2021/henry-hub-remains-the-center-of-natural-gas-markets.html
+    - https://rbnenergy.com/henry-the-hub-i-am-i-am-the-evolution-of-the-natural-gas-benchmark
+
+- id: nymex-electricity-futures-1996
+  title: NYMEX electricity futures (California-Oregon Border and Palo Verde)
+  issuer: NYMEX
+  designation: NYMEX COB and Palo Verde electricity futures
+  category: market_conventions
+  post_enron: false
+  issued: "1996-03-29"
+  effective: "1996-03-29"
+  effective_note: >-
+    Trading began March 29, 1996, with options from April 26, 1996. The
+    contract was 736 MWh per month (2 MW for 16 on-peak hours, 0600-2200).
+    Eastern contracts followed about two years later.
+  superseded_by: null
+  status_as_of_2001-12-31: in_force
+  enron_relevance: >-
+    Set the on-peak block convention (16-hour peak, monthly delivery) and the
+    western hub reference points (COB, Palo Verde) used in Enron's West Power
+    curves and deal tickets. Liquidity was thin, so marks relied heavily on
+    OTC and broker quotes.
+  process_areas: [risk_and_valuation, deal_capture, scheduling_logistics]
+  today:
+    codification: CME / ICE power futures and swaps (exchange rulebooks)
+    note: >-
+      Western power hub futures and swaps now trade and clear on ICE and CME.
+      The 16-hour on-peak block convention persists.
+  sources:
+    - https://www.osti.gov/biblio/319013
+    - https://www.govinfo.gov/content/pkg/FR-1995-08-31/html/95-21620.htm
+    - https://www.fortnightly.com/fortnightly/1996/04/cftc-approves-nymex-futuresb-contracts
+
+- id: gas-price-index-conventions
+  title: Published natural gas price indices (Platts Inside FERC's Gas Market Report first-of-month index; Gas Daily daily index)
+  issuer: Platts (McGraw-Hill)
+  designation: Inside FERC's Gas Market Report bidweek (first-of-month) index; Gas Daily midpoint index
+  category: market_conventions
+  post_enron: false
+  issued: null
+  effective: null
+  effective_note: >-
+    Publisher indices compiled from confidential surveys of buyers and sellers
+    (Inside FERC was published biweekly by Platts). The start dates of the
+    indices were not confirmed.
+  superseded_by: null
+  status_as_of_2001-12-31: in_force
+  enron_relevance: >-
+    Most physical gas deals, and the floating legs of many swaps in the
+    corpus, priced at "IF" first-of-month or Gas Daily daily indices at
+    specific hubs and pipeline points. At trial, the Inside FERC price editor
+    testified that Enron trade data sometimes went into the index but that
+    Enron did not control it.
+  process_areas: [deal_capture, settlement, risk_and_valuation]
+  today:
+    codification: Platts / NGI index methodologies; FERC price index policy and 18 CFR 284.403
+    note: >-
+      Index publishers now operate under FERC's 2003 policy and later
+      revisions, with methodology disclosure and safe-harbor reporting
+      standards. Platts is now S&P Global Commodity Insights.
+  sources:
+    - https://www.naturalgasintel.com/price-editors-testify-to-editorial-checks-against-bogus-trades/
+    - https://www.spglobal.com/energy/en/pricing-benchmarks/our-methodology/subscriber-notes/022626-preliminary-monthly-natural-gas-indexes-delayed-for-trade-date-feb-25
+    - https://webarchive.library.unt.edu/eot2008/20090114222131/http:/www.ferc.gov/news/news-releases/2003/2003-3/07-23-03-indexgas.pdf
+  unverified: true
+  unverified_fields: [issued, effective]
