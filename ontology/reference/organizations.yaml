@@ -56,3 +56,15 @@ special_purpose_entities:
   - {id: enroni:org/whitewing, label: Whitewing Associates L.P., alt_labels: [Whitewing], email_mentions: 4}
   - {id: enroni:org/talon, label: Talon I LLC, alt_labels: [Raptor I, Talon], email_mentions: 16,
      description: First of the four Raptor vehicles (Talon, Timberwolf, Porcupine, Bobcat) used to hedge merchant investments.}
+
+# SAP R/3 company codes observed in the email corpus (regex over 254k unique messages).
+sap_company_codes:
+  - {code: "0413", entity: enroni:org/ena, confidence: high, quote: "Effective March 1, 2001 Enron North America (CO 0413) employees will begin using XMS"}
+  - {code: "0060", entity: enroni:org/tw, confidence: high, quote: "Frank says it should be in company 0060 (TW)."}
+  - {code: "0012", label: Houston Pipe Line (HPL), confidence: high, quote: "approximately 65 employees will move over to HPL Co. 0012"}
+  - {code: "0985", entity: enroni:org/ees, confidence: medium, quote: "company #0985, correct? That is the only EES company that we are preparing bankruptcy analys[is]"}
+  - {code: "0011", entity: enroni:org/enron-corp, confidence: low, quote: "RC 102757 has been set up on Co. 0011 for the Southern Cone Risk Management"}
+  - {code: "0179", confidence: unknown}
+  - {code: "0366", confidence: unknown, quote: "Corp SAP Charges to Company 0366"}
+  - {code: "0584", confidence: unknown, quote: "Please have Corporate and ETS charges to Co. 0584 stop"}
+# Cost centers ("RC" = responsibility center) are 6-digit, e.g. "Co# 0413, RC # 106230", "CO 0012 Cost Center 105630".

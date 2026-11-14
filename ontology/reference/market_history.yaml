@@ -1,0 +1,90 @@
+# Calibration anchors for synthetic source systems.
+henry_hub_spot_monthly:
+  description: Henry Hub natural gas spot price, monthly average, USD per MMBtu.
+  source: U.S. Energy Information Administration, series RNGWHHD (monthly), https://www.eia.gov/dnav/ng/hist/rngwhhdm.htm
+  license: Public domain (U.S. Government work)
+  retrieved: '2026-11-14'
+  unit: USD/MMBtu
+  values:
+    1998-01: 2.09
+    1998-02: 2.23
+    1998-03: 2.24
+    1998-04: 2.43
+    1998-05: 2.14
+    1998-06: 2.17
+    1998-07: 2.17
+    1998-08: 1.85
+    1998-09: 2.02
+    1998-10: 1.91
+    1998-11: 2.12
+    1998-12: 1.72
+    1999-01: 1.85
+    1999-02: 1.77
+    1999-03: 1.79
+    1999-04: 2.15
+    1999-05: 2.26
+    1999-06: 2.3
+    1999-07: 2.31
+    1999-08: 2.8
+    1999-09: 2.55
+    1999-10: 2.73
+    1999-11: 2.37
+    1999-12: 2.36
+    2000-01: 2.42
+    2000-02: 2.66
+    2000-03: 2.79
+    2000-04: 3.04
+    2000-05: 3.59
+    2000-06: 4.29
+    2000-07: 3.99
+    2000-08: 4.43
+    2000-09: 5.06
+    2000-10: 5.02
+    2000-11: 5.52
+    2000-12: 8.9
+    2001-01: 8.17
+    2001-02: 5.61
+    2001-03: 5.23
+    2001-04: 5.19
+    2001-05: 4.19
+    2001-06: 3.72
+    2001-07: 3.11
+    2001-08: 2.97
+    2001-09: 2.19
+    2001-10: 2.46
+    2001-11: 2.34
+    2001-12: 2.3
+    2002-01: 2.32
+    2002-02: 2.32
+    2002-03: 3.03
+    2002-04: 3.43
+    2002-05: 3.5
+    2002-06: 3.26
+    2002-07: 2.99
+    2002-08: 3.09
+    2002-09: 3.55
+    2002-10: 4.13
+    2002-11: 4.04
+    2002-12: 4.74
+events:
+- date: '1999-11-29'
+  label: EnronOnline launches
+  confidence: medium
+- date: '2000-05-01'
+  label: California power crisis begins (summer 2000 price spikes)
+  confidence: medium
+- date: '2001-08-14'
+  label: Jeffrey Skilling resigns as CEO
+  confidence: high
+- date: '2001-10-16'
+  label: 'Q3 2001 earnings: $1.01B after-tax charges, $1.2B equity reduction'
+  confidence: high
+- date: '2001-11-08'
+  label: 8-K restates 1997-2000 financials (Chewco/JEDI, LJM1 consolidation)
+  confidence: high
+- date: '2001-11-28'
+  label: Ratings cut below investment grade; Dynegy terminates merger
+  confidence: high
+- date: '2001-12-02'
+  label: Enron Corp. and affiliates file Chapter 11
+  confidence: high
