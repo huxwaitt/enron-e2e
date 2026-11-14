@@ -241,12 +241,14 @@
   category: regulatory_reporting
   post_enron: false
   issued: "1997-01-28"
-  effective: "1997-06-15"
+  effective: "1997-12-31"
   effective_note: >-
     Adopted January 28, 1997 (62 FR, Feb 10, 1997). Item 305 applied to
     filings with annual financial statements for fiscal years ending after
     June 15, 1997 for registrants with market cap above $2.5 billion; smaller
-    registrants were phased in a year later. Enron was in the first group.
+    registrants were phased in a year later. Enron was in the first group,
+    so its first Item 305 disclosure was for fiscal year ended December 31,
+    1997.
   superseded_by: null
   status_as_of_2001-12-31: in_force
   enron_relevance: >-
@@ -431,8 +433,10 @@
   enron_relevance: >-
     Set the sale-accounting criteria (surrender of control, isolation) and the
     qualifying-SPE concept behind Enron's "monetizations" of merchant
-    investments and other financial assets in 1997-2000. Enron typically sold
-    an asset to an SPE while keeping risk through total return swaps.
+    investments and other financial assets in 1997-2000. In Enron's
+    securitizations the seller entered into swaps on the underlying assets
+    at the same time, which limited the purchaser's risk and left exposure
+    with Enron (2000 10-K).
   process_areas: [treasury, accounting_r2r, consolidation_reporting]
   today:
     codification: ASC 860
@@ -487,7 +491,7 @@
   category: consolidation_and_spe
   post_enron: true
   issued: "2003-01-17"
-  effective: "2003-01-31"
+  effective: "2003-02-01"
   effective_note: >-
     FIN 46 applied immediately to VIEs created after January 31, 2003, and to
     older VIEs from the first fiscal year or interim period beginning after
@@ -524,8 +528,9 @@
   effective: "2010-01-01"
   effective_note: >-
     Issued June 2009 and codified into ASC 810 by ASU 2009-17 (December 2009).
-    Effective for the first annual reporting period beginning after November
-    15, 2009 (January 1, 2010 for calendar-year entities).
+    Effective as of the beginning of the first annual reporting period that
+    begins after November 15, 2009 (January 1, 2010 for calendar-year
+    entities); earlier application prohibited.
   superseded_by: null
   status_as_of_2001-12-31: not_yet_issued
   enron_relevance: >-
@@ -542,8 +547,6 @@
   sources:
     - https://storage.fasb.org/fas167.pdf
     - https://viewpoint.pwc.com/dt/us/en/fasb_financial_accou/asus_fulltext/2009/asu_200917consolidat/asu_200917consolidat_US/asu_200917consolidat_US.html
-  unverified: true
-  unverified_fields: [effective]
 
 - id: eitf-85-1
   title: Classifying Notes Received for Capital Stock
@@ -563,9 +566,10 @@
   enron_relevance: >-
     Enron issued its own stock and stock contracts to the Raptor SPEs in
     exchange for notes receivable and recorded both an asset and an increase
-    in equity. That overstated equity by $172 million in Q2 2000 and $828
-    million in Q1 2001. The correction was most of the $1.2 billion equity
-    reduction Enron announced on October 16, 2001.
+    in equity. That overstated notes receivable and equity by about $172
+    million from Q2 2000, plus $828 million more from Q1 2001 contracts, $1
+    billion in total. The correction was most of the $1.2 billion equity
+    reduction Enron announced on October 16, 2001 (Nov 8, 2001 8-K).
   process_areas: [accounting_r2r, consolidation_reporting, treasury]
   today:
     codification: ASC 505-10-45-2
@@ -594,10 +598,12 @@
   superseded_by: null
   status_as_of_2001-12-31: in_force
   enron_relevance: >-
-    Governed equity-versus-liability classification of the Enron stock
-    contracts and forwards on Enron's own stock used to capitalize the Raptor
-    vehicles (2000-2001) and to hedge merchant investments with LJM2. This
-    affected both equity and the income statement.
+    The era's guidance on classifying contracts settled in a company's own
+    stock as equity or as an asset or liability. It bears on the Enron
+    common stock and stock contracts that Enron issued to the Raptor
+    vehicles (2000 and Q1 2001), which hedged Enron's merchant investments.
+    Whether and how Enron applied 00-19 to these contracts was not
+    verified.
   process_areas: [accounting_r2r, treasury, consolidation_reporting]
   today:
     codification: ASC 815-40
@@ -607,7 +613,9 @@
   sources:
     - https://www.sec.gov/Archives/edgar/data/0001032033/000091205700050216/a2030171z10-q.txt
     - https://storage.fasb.org/aop_fas150.pdf
-    - https://www.sec.gov/Archives/edgar/data/1024401/000090951802000089/0000909518-02-000089.txt
+    - https://www.sec.gov/Archives/edgar/data/1024401/000095012901503835/0000950129-01-503835.txt
+  unverified: true
+  unverified_fields: [enron_relevance]
 
 - id: sab-51
   title: Accounting for Sales of Stock by a Subsidiary
@@ -747,10 +755,10 @@
   category: accounting_disclosure
   post_enron: false
   issued: "1982-03"
-  effective: "1982-06-30"
+  effective: "1982-12-31"
   effective_note: >-
     Effective for financial statements for fiscal years ending after June 15,
-    1982.
+    1982 (first calendar year-end: December 31, 1982).
   superseded_by: null
   status_as_of_2001-12-31: in_force
   enron_relevance: >-
@@ -758,8 +766,8 @@
     transaction descriptions, dollar amounts and balances. Enron's 2000 10-K
     Note 16 described LJM only as limited partnerships whose general
     partner's managing member was "a senior officer of Enron", without naming
-    Fastow. The Powers Report found the disclosures did not convey the
-    substance of the transactions.
+    Fastow. The Powers Report concluded that, despite substantial disclosure,
+    "the disclosures were fundamentally inadequate".
   process_areas: [consolidation_reporting, accounting_r2r, audit_controls]
   today:
     codification: ASC 850
@@ -790,8 +798,9 @@
   enron_relevance: >-
     Governed proxy and 10-K disclosure of Fastow's interest in LJM. Enron
     incorporated the Item 404 discussion from its proxy by reference. The
-    Powers Report stresses that the rule asked for "the amount of such
-    person's interest", which Enron did not quantify.
+    Powers Report faults the failure to disclose Fastow's compensation from
+    LJM (later learned to exceed $30 million) even though Item 404 asked,
+    "where practicable", for the amount of his interest.
   process_areas: [regulatory_reporting, consolidation_reporting]
   today:
     codification: Regulation S-K Item 404 (17 CFR 229.404)
@@ -882,10 +891,10 @@
   category: accounting_disclosure
   post_enron: false
   issued: "1975-03"
-  effective: null
+  effective: "1975-07-01"
   effective_note: >-
-    Issued March 1975. The original effective date was not checked against
-    the source text.
+    Issued March 1975; effective for fiscal years beginning on or after July
+    1, 1975 (for a calendar-year company, January 1, 1976).
   superseded_by: null
   status_as_of_2001-12-31: in_force
   enron_relevance: >-
@@ -903,8 +912,6 @@
   sources:
     - https://storage.fasb.org/fas5.pdf
     - https://dart.deloitte.com/USDART/home/codification/liabilities/asc450-10/deloitte-s-roadmap-contingencies-loss-recoveries/chapter-1-overview/1-3-history-guidance-guarantees
-  unverified: true
-  unverified_fields: [effective]
 
 - id: fin-45
   title: Guarantor's Accounting and Disclosure Requirements for Guarantees, Including Indirect Guarantees of Indebtedness of Others
@@ -951,7 +958,7 @@
   enron_relevance: >-
     Governed impairment testing of Enron's long-lived assets: power plants,
     pipelines, international projects, water assets and the broadband fiber
-    network. Enron took asset write-downs in 2001.
+    network.
   process_areas: [accounting_r2r, fpa, consolidation_reporting]
   today:
     codification: ASC 360-10
@@ -980,8 +987,7 @@
   status_as_of_2001-12-31: issued_not_yet_effective
   enron_relevance: >-
     Issued in Enron's final year. It would have ended goodwill amortization
-    from January 1, 2002 (for example on the Portland General acquisition)
-    and required annual impairment tests. Enron never filed a 2001 10-K, so
+    from January 1, 2002 and required annual impairment tests. Enron never filed a 2001 10-K, so
     it never reported under it.
   process_areas: [accounting_r2r, consolidation_reporting, fpa]
   today:
@@ -1098,12 +1104,12 @@
   category: audit_and_controls
   post_enron: false
   issued: "1997-02"
-  effective: "1997-12-15"
+  effective: null
   effective_note: >-
     Issued by the Auditing Standards Board in February 1997, superseding SAS
-    53. It is generally cited as effective for audits of periods ending on or
-    after December 15, 1997; one source printed "on or before", apparently a
-    typo.
+    53. It is commonly cited as effective for audits of periods ending on or
+    after December 15, 1997, but the only source found printed "on or
+    before" (apparently a typo), so the effective date is left null.
   superseded_by: SAS No. 99 (October 2002)
   status_as_of_2001-12-31: in_force
   enron_relevance: >-
@@ -1161,13 +1167,13 @@
   designation: Release Nos. 33-7919; 34-43602 (Regulation S-X Rule 2-01)
   category: audit_and_controls
   post_enron: false
-  issued: "2000-11-21"
+  issued: null
   effective: "2001-02-05"
   effective_note: >-
     Published at 65 FR 76008 (December 5, 2000) and effective February 5,
     2001. A transition period to August 5, 2002 applied to appraisal and
     valuation services and to internal audit outsourcing. The adoption date
-    shown here is not confirmed (see unverified_fields).
+    (November 2000) was not confirmed to the day.
   superseded_by: SOX §201 and the 2003 SEC independence rules
   status_as_of_2001-12-31: in_force
   enron_relevance: >-
@@ -1217,8 +1223,6 @@
   sources:
     - https://www.coso.org/_files/ugd/3059fc_8fdac5b8011e4cd08d566bf40b1ac2a8.pdf
     - https://www.iasplus.com/en/othernews/global/coso-framework
-  unverified: true
-  unverified_fields: [effective]
 
 # ---------------------------------------------------------------------------
 # Audit and controls (post-Enron)
@@ -1535,12 +1539,13 @@
   category: energy_trading
   post_enron: false
   issued: "1993-01-22"
-  effective: "1993-04-20"
+  effective: null
   effective_note: >-
     The Part 35 swap exemption was published January 22, 1993. The energy
     contracts exemption (deferred purchase or sale of specified energy
     products between commercial parties) followed on April 20, 1993. The
-    CFTC reaffirmed both in December 2000.
+    CFTC reaffirmed both in December 2000. The rules' formal effective dates
+    were not confirmed (Federal Register publication dates are shown).
   superseded_by: cfma-2000 (statutory exclusions/exemptions); later Dodd-Frank Title VII
   status_as_of_2001-12-31: in_force
   enron_relevance: >-
@@ -1559,6 +1564,8 @@
     - https://www.cftc.gov/About/HistoryoftheCFTC/history_1990s.html
     - https://www.cftc.gov/sites/default/files/foia/fedreg00/foi001213e.htm
     - https://govinfo.gov/content/pkg/CFR-2001-title17-vol1/pdf/CFR-2001-title17-vol1-part35.pdf
+  unverified: true
+  unverified_fields: [effective]
 
 - id: cfma-2000
   title: Commodity Futures Modernization Act of 2000
@@ -1578,7 +1585,8 @@
   enron_relevance: >-
     The "Enron loophole". Enron and other energy traders sought the exemption,
     and it left EnronOnline, Enron's principal-to-principal electronic
-    platform launched in 1999, largely outside CFTC oversight in 2001.
+    platform launched in late 1999 (2000 10-K), largely outside CFTC
+    oversight in 2001.
   process_areas: [deal_capture, confirmation, regulatory_reporting, credit]
   today:
     codification: CEA as amended by Dodd-Frank Title VII; 17 CFR Parts 37, 43, 45
@@ -1642,8 +1650,8 @@
   enron_relevance: >-
     In 2001 Enron Power Marketing reported its market-based-rate sales to
     FERC through summary quarterly transaction reports. The EQR requires
-    contract-level and transaction-level data, the kind of transparency whose
-    absence the post-crisis western-markets investigation found.
+    contract-level and transaction-level data, which the western markets
+    investigation that followed the 2000-01 crisis lacked.
   process_areas: [regulatory_reporting, deal_capture, settlement]
   today:
     codification: 18 CFR 35.10b (Electric Quarterly Reports)
@@ -1756,7 +1764,7 @@
     - https://tdsecurities.com/tds/document/1993-ISDA-Commodity-Derivatives-Definitions
     - https://www.isda.org/a/31IDE/Letter-Agreement-on-2005-Commodity-Definitions.doc
   unverified: true
-  unverified_fields: [effective]
+  unverified_fields: [issued_exact_date]
 
 - id: isda-1994-csa-ny
   title: 1994 ISDA Credit Support Annex (Security Interest - New York Law)
@@ -1774,8 +1782,9 @@
   enron_relevance: >-
     Governed collateral (thresholds, minimum transfer amounts, eligible
     collateral, rating-linked thresholds) on Enron's ISDA relationships.
-    Enron's late-2001 rating downgrades triggered collateral calls under such
-    annexes, a key part of its liquidity collapse.
+    Under rating-linked thresholds a downgrade raises collateral calls, which
+    is why Enron's credit ratings were central to its liquidity in late 2001
+    (the specific CSA terms of Enron's relationships were not verified).
   process_areas: [credit, treasury, settlement]
   today:
     codification: 1994 ISDA CSA (NY law); ISDA 2016 Credit Support Annex for Variation Margin
@@ -1787,7 +1796,7 @@
     - https://www.nomura.com/americas/df-disclosures/credit-support-doc.shtml
     - https://www.isda.org/books
   unverified: true
-  unverified_fields: [effective]
+  unverified_fields: [issued_exact_date]
 
 - id: eei-master-2000
   title: EEI Master Power Purchase and Sale Agreement (with Collateral Annex)
@@ -1820,8 +1829,6 @@
     - https://eei.org/resources-and-media/master-contract
     - https://ppp.worldbank.org/node/9416
     - https://cms.eei.org/resources-and-media/master-contract/miscellaneous-optional
-  unverified: true
-  unverified_fields: [effective]
 
 - id: gisb-base-contract-1996
   title: GISB Base Contract for Short-Term Sale and Purchase of Natural Gas
@@ -1854,8 +1861,6 @@
     - https://naesb.org//pdf/Gisbsale.pdf
     - https://www.naesb.org/pdf/042302pr.pdf
     - https://www.haynesboone.com/news/publications/mai-in-thomson-reuters-understanding-the-naesb-base-contract-for-sale-and-purchase-of-natural-gas
-  unverified: true
-  unverified_fields: [effective]
 
 # ---------------------------------------------------------------------------
 # Market conventions
